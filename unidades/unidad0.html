@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3: Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Dockerfile y Docker Compose</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -241,6 +241,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/ejercicios4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Orquestación de Contenedores con Docker Swarm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Despliegue de Aplicaciones con Docker Compose</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
       </ul>
@@ -311,16 +331,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/paste-1.png" class="img-fluid"></p>
 </div>
 <p>Este comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).</p>
+<p>Descargar una imagen desde un registro.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Listar las imágenes descargadas.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Listar contenedores en ejecución.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Listar todos los contenedores, incluyendo los detenidos.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejecutar un contenedor a partir de una imagen.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> <span class="op">&lt;</span>HOST_PORT<span class="op">&gt;</span>:<span class="op">&lt;</span>CONTAINER_PORT<span class="op">&gt;</span> <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Detener un contenedor en ejecución.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Iniciar un contenedor detenio.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Eliminar un contenedor.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Eliminar una imagen.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rmi <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="atajos-y-comandos-adicionales" class="level2">
+<h2 class="anchored" data-anchor-id="atajos-y-comandos-adicionales">Atajos y Comandos Adicionales:</h2>
+<p>Ejecutar comandos dentro de un contenedor en ejecución.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Obtener detalles sobre un contenedor o imagen.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="op">&lt;</span>CONTAINER_ID or IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ver los logs de un contenedor.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Utilizar Docker Compose para gestionar aplicaciones multi-contenedor.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="práctica" class="level2">
 <h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
-<p>Descarga la imagen “nginx”:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Descarga la imagen de Nginx desde el registro público.</p>
-<p>Crea y ejecuta un contenedor en el puerto 8080:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8080:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
+<li>Descarga la imagen de Nginx desde el registro público.</li>
 <li>Crea y ejecuta un contenedor de Nginx en el puerto 8080.</li>
-<li>Detén y elimina el contenedor creado:</li>
+<li>Detén y elimina el contenedor creado</li>
 <li>Utiliza los comandos para detener y eliminar un contenedor.</li>
 </ul>
 </section>
@@ -329,15 +374,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<div class="justify">
-<p>Descarga la imagen de <strong>Nginx</strong>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Crea y ejecuta un contenedor en el puerto 8080:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8080:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Detén y elimina el contenedor creado:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop <span class="va">$(</span><span class="ex">docker</span> ps <span class="at">-q</span><span class="va">)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="va">$(</span><span class="ex">docker</span> ps <span class="at">-a</span> <span class="at">-q</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<ol type="1">
+<li>Abre tu terminal o línea de comandos.</li>
+<li>Descarga la imagen de Nginx desde el registro público de Docker:</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Crea y ejecuta un contenedor de Nginx en el puerto 8080:</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8080:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Elige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.</p>
+<ol start="4" type="1">
+<li>Verifica que el contenedor esté en ejecución:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Si el contenedor está en ejecución, detenlo utilizando el siguiente comando:</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>&lt;CONTAINER_ID&gt;</code> con el ID real del contenedor que obtuviste en el paso anterior.</p>
+<ol start="6" type="1">
+<li>Elimina el contenedor detenido:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="op">&lt;</span>CONTAINER_ID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>&lt;CONTAINER_ID&gt;</code> con el ID real del contenedor.</p>
 </details>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -349,7 +409,8 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Combinar banderas mejora la eficiencia en la ejecución de comandos.</p>
+<p>Combina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente.</p>
+<p>¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!</p>
 </div>
 </div>
 </section>

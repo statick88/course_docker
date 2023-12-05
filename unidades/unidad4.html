@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3: Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Dockerfile y Docker Compose</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -243,6 +243,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../unidades/ejercicios4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Orquestación de Contenedores con Docker Swarm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Despliegue de Aplicaciones con Docker Compose</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -255,9 +275,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
+  <ul class="collapse">
+  <li><a href="#devcontainers" id="toc-devcontainers" class="nav-link" data-scroll-target="#devcontainers">DevContainers</a></li>
+  </ul></li>
   <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
-  <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica:</a></li>
+  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
   <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad4.qmd" class="toc-action">View source</a></p></div></div></nav>
@@ -284,74 +307,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="conceptos" class="level2">
 <h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<p><strong>DevContainers:</strong> DevContainers es una característica de Visual Studio Code que permite definir, configurar y compartir fácilmente entornos de desarrollo con contenedores de Docker. Con DevContainers, puedes especificar las herramientas, extensiones y configuraciones necesarias para tu proyecto, garantizando que todos los miembros del equipo utilicen el mismo entorno de desarrollo, independientemente de su sistema operativo.</p>
-<p><strong>Stack MEAN:</strong> El stack MEAN (MongoDB, Express.js, Angular, Node.js) es un conjunto de tecnologías ampliamente utilizado para el desarrollo web moderno. MongoDB es una base de datos NoSQL, Express.js es un marco web para Node.js, Angular es un framework para construir aplicaciones web de una sola página (SPA), y Node.js es un entorno de ejecución para JavaScript en el lado del servidor.</p>
+<section id="devcontainers" class="level3">
+<h3 class="anchored" data-anchor-id="devcontainers">DevContainers</h3>
+<p>DevContainers es una extensión de Visual Studio Code que permite definir entornos de desarrollo en contenedores. Facilita la configuración y el uso de entornos de desarrollo reproducibles.</p>
+</section>
 </section>
 <section id="ejemplos" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
-<p>Configuración de DevContainers para el stack MEAN:</p>
-<p>Creación del archivo .devcontainer/devcontainer.json:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MEAN Stack"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dockerComposeFile"</span><span class="fu">:</span> <span class="st">"docker-compose.yml"</span><span class="fu">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"service"</span><span class="fu">:</span> <span class="st">"app"</span><span class="fu">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"workspaceFolder"</span><span class="fu">:</span> <span class="st">"/workspace"</span><span class="fu">,</span></span>
+<p>Configurar un entorno DevContainers para un stack MEAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">En</span> <span class="er">el</span> <span class="er">archivo</span> <span class="er">.devcontainer/devcontainer.json</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MEAN Stack"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dockerFile"</span><span class="fu">:</span> <span class="st">"Dockerfile"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{},</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ms-vscode.node-debug2"</span><span class="ot">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dbaeumer.vscode-eslint"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dbaeumer.vscode-eslint"</span><span class="ot">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ms-azuretools.vscode-docker"</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"npm install"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Creación del archivo docker-compose.yml:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">app</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> node:14</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> /bin/sh -c "while sleep 1000; do :; done"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ..:/workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Estructura del proyecto:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>.</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>├── .devcontainer</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>│   └── devcontainer.json</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>├── docker-compose.yml</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>└── src</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    └── app.js</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Archivo app.js (Ejemplo de aplicación Node.js):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">'express'</span>)<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> port <span class="op">=</span> <span class="dv">3000</span><span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">'/'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> res<span class="op">.</span><span class="fu">send</span>(<span class="st">'Hola desde Express.js en un contenedor Docker!'</span>))<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(port<span class="op">,</span> () <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Aplicación escuchando en http://localhost:</span><span class="sc">${</span>port<span class="sc">}</span><span class="vs">`</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"forwardPorts"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">3000</span><span class="ot">,</span> <span class="dv">4200</span><span class="ot">,</span> <span class="dv">27017</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"yarn install &amp;&amp; ng serve"</span><span class="fu">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"appPort"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">3000</span><span class="ot">]</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este archivo de configuración crea un entorno DevContainers utilizando un Dockerfile específico, instala extensiones de Visual Studio Code, reenvía puertos necesarios para el desarrollo MEAN stack, y ejecuta comandos post-creación.</p>
 </section>
-<section id="actividad-práctica" class="level2">
-<h2 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica:</h2>
-<p>Configurar un entorno de desarrollo MEAN con DevContainers en Visual Studio Code.</p>
+<section id="práctica" class="level2">
+<h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
 <ul>
-<li>Clona un repositorio base que contenga la estructura mencionada y el código de ejemplo.</li>
-<li>Abre el proyecto en Visual Studio Code.</li>
-<li>Visualiza y comprende los archivos .devcontainer/devcontainer.json y docker-compose.yml.</li>
-<li>Inicia el entorno de desarrollo con DevContainers.</li>
-<li>Accede a la aplicación en tu navegador utilizando el puerto especificado en el archivo app.js.</li>
-<li>Realiza modificaciones en el código de la aplicación y observa cómo se reflejan en tiempo real dentro del contenedor.</li>
+<li>Configura un entorno DevContainers para un proyecto Python:</li>
+<li>Asegúrate de que el entorno tiene la extensión “ms-python.python” instalada.</li>
 </ul>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Clonar el repositorio base:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://ejemplo-repositorio-mean.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Abrir el proyecto en Visual Studio Code:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ejemplo-repositorio-mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Iniciar el entorno de desarrollo con DevContainers:</p>
-<p>Visual Studio Code detectará automáticamente la configuración de DevContainers y te preguntará si deseas reabrir el proyecto en un contenedor.</p>
-<p>Acceder a la aplicación en el navegador:</p>
-<p>Visita <a href="http://localhost:3000">http://localhost:3000</a> en tu navegador.</p>
-<p>Realizar modificaciones en el código:</p>
-<p>Abre el archivo src/app.js y realiza cambios en el mensaje de respuesta.</p>
-Observa cómo los cambios se reflejan en tiempo real dentro del contenedor.
+<p>Ejemplo de archivo .devcontainer/devcontainer.json:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Python Project"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dockerFile"</span><span class="fu">:</span> <span class="st">"Dockerfile.python"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ms-python.python"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"forwardPorts"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">8000</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"pip install -r requirements.txt &amp;&amp; python manage.py runserver 0.0.0.0:8000"</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"appPort"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">8000</span><span class="ot">]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -363,17 +362,15 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Si experimentas problemas con la integración de DevContainers, asegúrate de tener Docker instalado y la extensión “Remote - Containers” habilitada en Visual Studio Code.</p>
-<p>Además, verifica que tu sistema cumple con los requisitos para DevContainers.</p>
+<p>Usa DevContainers para garantizar un entorno de desarrollo coherente y fácilmente replicable.</p>
 </div>
 </div>
 </section>
 <section id="qué-aprendimos" class="level2">
 <h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
 <ul>
-<li>Aprendimos a configurar DevContainers en Visual Studio Code para un entorno de desarrollo MEAN.</li>
-<li>Comprendimos cómo utilizar Docker Compose junto con DevContainers para definir la infraestructura del entorno de desarrollo.</li>
-<li>Exploramos la posibilidad de realizar cambios en el código de la aplicación de manera eficiente gracias a la integración de DevContainers con Visual Studio Code.</li>
+<li>Comprendemos cómo utilizar DevContainers para crear entornos de desarrollo específicos para proyectos.</li>
+<li>Ahora sabemos cómo configurar extensiones y reenviar puertos en entornos DevContainers.</li>
 </ul>
 
 

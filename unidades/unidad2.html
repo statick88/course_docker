@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - 3: Dockerfile y Docker Compose</title>
+<title>Docker 2023 - 3. Dockerfile y Docker Compose</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">3: Dockerfile y Docker Compose</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">3. Dockerfile y Docker Compose</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3: Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3. Dockerfile y Docker Compose</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -243,6 +243,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../unidades/ejercicios4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Orquestación de Contenedores con Docker Swarm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6: Despliegue de Aplicaciones con Docker Compose</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -255,7 +275,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
+  <ul class="collapse">
+  <li><a href="#dockerfile" id="toc-dockerfile" class="nav-link" data-scroll-target="#dockerfile">Dockerfile</a></li>
+  <li><a href="#docker-compose" id="toc-docker-compose" class="nav-link" data-scroll-target="#docker-compose">Docker Compose</a></li>
+  </ul></li>
   <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
   <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
   <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
@@ -267,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">3: Dockerfile y Docker Compose</span></h1>
+<h1 class="title"><span class="chapter-title">3. Dockerfile y Docker Compose</span></h1>
 </div>
 
 
@@ -284,47 +308,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="conceptos" class="level2">
 <h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<p><strong>Dockerfile:</strong> Es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es como un plano para la construcción de imágenes.</p>
-<p><strong>Docker Compose:</strong> Es una herramienta que permite definir y compartir aplicaciones multi-contenedor. Con un solo archivo (docker-compose.yml), puedes configurar y ejecutar tus servicios.</p>
+<section id="dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
+<p>Un Dockerfile es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es esencialmente un script que define cómo se construirá la imagen.</p>
+</section>
+<section id="docker-compose" class="level3">
+<h3 class="anchored" data-anchor-id="docker-compose">Docker Compose</h3>
+<p>Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y volúmenes en un archivo YAML.</p>
+</section>
 </section>
 <section id="ejemplos" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
-<ul>
-<li>Crear un Dockerfile para una aplicación Node.js:</li>
-</ul>
+<p>Crear un Dockerfile para una aplicación Node.js:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"npm"</span>, <span class="st">"start"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Este Dockerfile configura una imagen de Node.js, establece el directorio de trabajo, copia los archivos locales al contenedor y define el comando para ejecutar la aplicación.</p>
-<ul>
-<li>Configurar Docker Compose para una aplicación Node.js:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">myapp</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile.node</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-node-app</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Configurar Docker Compose para una aplicación Node.js:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">myapp</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile.node</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-node-app</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Este archivo docker-compose.yml define un servicio llamado “myapp” que construirá una imagen usando el Dockerfile “Dockerfile.node” y le asignará el nombre de “my-node-app”.</p>
 </section>
 <section id="práctica" class="level2">
 <h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
 <ul>
-<li><p>Crea un Dockerfile para una aplicación Python simple:</p></li>
-<li><p>Configura un archivo docker-compose.yml para ejecutar la aplicación:</p>
+<li>Crea un Dockerfile para una aplicación Python simple.</li>
+<li>Configura un archivo docker-compose.yml para ejecutar la aplicación.</li>
+</ul>
 <details>
 <summary>
-<p>Resolución de la Actividad Práctica</p>
-</summary></details></li>
-<li><p>Ejemplo de Dockerfile (nombre: Dockerfile.python):</p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"app.py"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+Resolución de la Actividad Práctica
+</summary>
+<p>Ejemplo de Dockerfile (nombre: Dockerfile.python):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"app.py"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ejemplo de docker-compose.yml:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
@@ -333,34 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile.python</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-python-app</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="justify">
-<p>Cuando trabajas con Docker Compose, es útil conocer el comando docker-compose up con la opción -d para ejecutar los contenedores en segundo plano. Esto permite liberar la terminal para otras operaciones mientras tus servicios continúan ejecutándose en el fondo.</p>
-</div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="justify">
-<p>Este comando es especialmente útil en entornos de desarrollo donde deseas ejecutar múltiples servicios, pero aún así necesitas utilizar tu terminal para otras tareas. Además, puedes detener los servicios en segundo plano con:</p>
-</div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> down</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Esto ayudará a liberar los recursos utilizados por los contenedores sin afectar tu entorno de desarrollo principal.</p>
-</div>
-</div>
+</details>
 </section>
 <section id="qué-aprendimos" class="level2">
 <h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
 <ul>
-<li>Hemos adquirido habilidades para crear imágenes personalizadas y gestionar aplicaciones multi-contenedor con Docker Compose.</li>
-<li>Ahora comprendemos la importancia de organizar nuestras aplicaciones en contenedores y cómo Docker Compose simplifica la orquestación.</li>
+<li>Aprendimos a crear un Dockerfile para personalizar una imagen Docker.</li>
+<li>Entendimos cómo usar Docker Compose para orquestar servicios en un entorno multi-contenedor.</li>
+<li>Practicamos la configuración básica de un Dockerfile y un archivo docker-compose.yml.</li>
 </ul>
 
 
