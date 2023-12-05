@@ -284,8 +284,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conceptos" class="level2">
 <h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
 <div class="justify">
-<p><strong>Docker:</strong> Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.</p>
-<p><strong>Contenedor:</strong> Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.</p>
+<section id="docker" class="level3 center">
+<h3 class="anchored" data-anchor-id="docker">Docker</h3>
+<p><img src="images/docker_image.png" class="img-fluid"></p>
+</section>
+<p>Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.</p>
+<section id="contenedor" class="level3 center">
+<h3 class="anchored" data-anchor-id="contenedor">Contenedor</h3>
+<p><img src="images/docker_container.png" class="img-fluid"></p>
+</section>
+<p>Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.</p>
 </div>
 </section>
 <section id="ejemplos" class="level2">
@@ -293,9 +301,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="justify">
 <p>Descargar una imagen:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull docker/getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="center">
+<p><img src="images/paste-2.png" class="img-fluid"></p>
+</div>
 <p>Este comando descarga la imagen <strong>getting-started</strong> desde el registro público de Docker.</p>
 <p>Correr un contenedor en el puerto 80:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 80:80 docker/getting-started</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="center">
+<p><img src="images/paste-1.png" class="img-fluid"></p>
+</div>
 <p>Este comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).</p>
 <section id="práctica" class="level2">
 <h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
