@@ -20,13 +20,6 @@ Aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.
 - Documento explicando la implementación de la red de contenedores.
 - Archivo ".dockerignore".
 
-## Rubrica de Evaluación:
-
-- Escaneo de vulnerabilidades realizado con éxito: 4 puntos
-- Correcta implementación de la política de etiquetado: 4 puntos
-- Validación exitosa del archivo Docker Compose: 4 puntos
-- Implementación adecuada de la red de contenedores: 4 puntos
-- Correcta configuración del archivo ".dockerignore": 4 puntos
 
 <details>
   <summary>Resolución de la Actividad Práctica</summary>
@@ -57,4 +50,12 @@ node_modules
 .git
 .env
 ```
+
+## Rubrica de Evaluación:
+
+- Escaneo de vulnerabilidades realizado con éxito: 4 puntos
+- Correcta implementación de la política de etiquetado: 4 puntos
+- Validación exitosa del archivo Docker Compose: 4 puntos
+- Implementación adecuada de la red de contenedores: 4 puntos
+- Correcta configuración del archivo ".dockerignore": 4 puntos
 </details>

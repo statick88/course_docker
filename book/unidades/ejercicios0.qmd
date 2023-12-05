@@ -16,11 +16,6 @@ Instrucciones:
 - Documento explicando los comandos utilizados.
 - Imagen Docker "alpine-curl" disponible localmente.
 
-## Rubrica de Evaluación:
-
-- Correcta ejecución de comandos: 6 puntos
-- Clara documentación: 4 puntos
-- Imagen "alpine-curl" creada correctamente: 10 puntos
 
 <details>
   <summary>Resolución de la Actividad Práctica</summary>
@@ -52,3 +47,9 @@ Crear una nueva imagen "alpine-curl":
 docker commit my-alpine alpine-curl
 ```
 </details>
+
+## Rubrica de Evaluación:
+
+- Correcta ejecución de comandos: 6 puntos
+- Clara documentación: 4 puntos
+- Imagen "alpine-curl" creada correctamente: 10 puntos

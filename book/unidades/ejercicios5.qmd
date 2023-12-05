@@ -1,0 +1,21 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.
+
+## Instrucciones:
+
+Inicializa el Swarm en el Nodo Manager ejecutando el siguiente comando:
+
+``` bash
+docker swarm init --advertise-addr <IP_DEL_NODO_MANAGER>
+```
+Sustituye <IP_DEL_NODO_MANAGER> con la dirección IP del nodo que actuará como manager.
+
+Únete a un Nodo al Swarm ejecutando el siguiente comando en cada Nodo Worker:
+
+``` bash
+docker swarm join --token <TOKEN_GENERADO> <IP_DEL_NODO_MANAGER>:<PUERTO>
+```
+Reemplaza <TOKEN_GENERADO> con el token proporcionado en el paso anterior y <IP_DEL_NODO_MANAGER> con la dirección IP del nodo manager.

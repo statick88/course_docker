@@ -1,0 +1,45 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Crear un servicio distribuido con varias réplicas utilizando Docker Swarm.
+
+## Instrucciones:
+
+Crea un servicio llamado "web" que ejecute tres replicas del contenedor Nginx con el siguiente comando:
+
+``` bash
+docker service create --replicas 3 -p 8080:80 --name web nginx
+```
+
+Despliegue de Aplicaciones con Docker Compose
+
+---
+
+# Desplegar una Aplicación Compleja con Docker Compose
+
+## Objetivo:
+
+Desplegar una aplicación compuesta por servicios web y de base de datos utilizando Docker Compose.
+
+## Instrucciones:
+
+- Crea un archivo llamado docker-compose.yml con el contenido proporcionado.
+- Despliega la aplicación ejecutando el siguiente comando:
+
+``` bash
+docker-compose up -d
+```
+- Utiliza el flag -d para realizar el despliegue en segundo plano.
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+La resolución de la actividad práctica consiste en seguir las instrucciones proporcionadas para cada práctica y verificar que los servicios se desplieguen correctamente.
+
+## Rubrica de Evaluación:
+
+- Configuración exitosa del clúster de Docker Swarm (Práctica 1): 5 puntos
+- Creación correcta del servicio distribuido (Práctica 2): 5 puntos
+- Creación del archivo docker-compose.yml: 3 puntos
+- Despliegue exitoso de la aplicación con Docker Compose: 7 puntos

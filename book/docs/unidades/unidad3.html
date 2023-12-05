@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3: Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Dockerfile y Docker Compose</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. DevContainers</span></a>
+  <a href="../unidades/unidad4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">DevContainers</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,7 +255,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
+  <ul class="collapse">
+  <li><a href="#escaneo-de-imagen" id="toc-escaneo-de-imagen" class="nav-link" data-scroll-target="#escaneo-de-imagen">Escaneo de imagen:</a></li>
+  <li><a href="#capas-de-la-imagen" id="toc-capas-de-la-imagen" class="nav-link" data-scroll-target="#capas-de-la-imagen">Capas de la imagen:</a></li>
+  <li><a href="#multi-stage-builds" id="toc-multi-stage-builds" class="nav-link" data-scroll-target="#multi-stage-builds">Multi-Stage builds:</a></li>
+  </ul></li>
   <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
   <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
   <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
@@ -284,32 +289,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="conceptos" class="level2">
 <h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<p><strong>Escaneo de imagen:</strong> Después de construir una imagen, es buena práctica realizar un escaneo en busca de vulnerabilidades.</p>
-<p><strong>Capas de la imagen:</strong> Cada imagen de Docker se construye en capas, permitiendo un nivel de abstracción independiente.</p>
-<p><strong>Multi-Stage builds:</strong> Permiten separar dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción, reduciendo el tamaño de la imagen final.</p>
+<section id="escaneo-de-imagen" class="level3">
+<h3 class="anchored" data-anchor-id="escaneo-de-imagen">Escaneo de imagen:</h3>
+<p>Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como Snyk, que examinan la imagen en busca de posibles problemas de seguridad.</p>
+</section>
+<section id="capas-de-la-imagen" class="level3">
+<h3 class="anchored" data-anchor-id="capas-de-la-imagen">Capas de la imagen:</h3>
+<p>Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción.</p>
+</section>
+<section id="multi-stage-builds" class="level3">
+<h3 class="anchored" data-anchor-id="multi-stage-builds">Multi-Stage builds:</h3>
+<p>Las Multi-Stage builds son una práctica recomendada para construir imágenes Docker. Permiten separar las dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción. Al hacerlo, se reduce significativamente el tamaño de la imagen final. Un ejemplo común es construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx para la producción.</p>
+</section>
 </section>
 <section id="ejemplos" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
 <p>Escaneo de imagen con Snyk:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades.</p>
+<p>Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades. Esto es esencial para identificar y abordar posibles riesgos de seguridad antes de implementar la aplicación.</p>
 <p>Uso de Multi-Stage builds:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">COPY</span> . .</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx.</p>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx. Este enfoque no solo facilita el proceso de construcción sino que también resulta en imágenes más eficientes y seguras.</p>
 </section>
 <section id="práctica" class="level2">
 <h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
 <ul>
-<li>Realiza un escaneo de vulnerabilidades en una imagen de tu elección:</li>
-<li>Utiliza Snyk para escanear una imagen de Docker.</li>
-<li>Implementa un Multi-Stage build en un Dockerfile:</li>
+<li>Realiza un escaneo de vulnerabilidades en una imagen de tu elección utilizando Snyk.</li>
+<li>Implementa un Multi-Stage build en un Dockerfile para una aplicación de tu preferencia.</li>
 </ul>
 <details>
 <summary>
@@ -318,15 +331,14 @@ Resolución de la Actividad Práctica
 <p>Escaneo de imagen con Snyk:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test my-image:my-tag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ejemplo de Multi-Stage Dockerfile:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">COPY</span> . .</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -338,15 +350,15 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia</p>
+<p>Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia.</p>
 </div>
 </div>
 </section>
 <section id="qué-aprendimos" class="level2">
 <h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
 <ul>
-<li>Entendemos la importancia de escanear imágenes en busca de vulnerabilidades.</li>
-<li>Ahora sabemos cómo utilizar Multi-Stage builds para optimizar el tamaño de las imágenes.</li>
+<li>Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.</li>
+<li>Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.</li>
 </ul>
 
 

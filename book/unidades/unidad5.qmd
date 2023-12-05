@@ -1,0 +1,57 @@
+# 6: Orquestación de Contenedores con Docker Swarm
+
+## Conceptos:
+
+### Docker Swarm
+
+Es una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker.
+
+### Nodos y Servicios
+
+En el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos.
+
+## Ejemplos:
+
+Inicializando un Swarm:
+
+``` bash
+docker swarm init
+```
+Este comando inicia un clúster de Swarm en el nodo actual.
+
+Creando un Servicio:
+
+``` bash
+docker service create --replicas 3 -p 8080:80 --name web nginx
+```
+Aquí estamos creando un servicio llamado "web" que ejecuta tres replicas del contenedor Nginx.
+
+## Práctica:
+
+- Configurar un Clúster de Docker Swarm:
+- Inicia un clúster de Docker Swarm con dos nodos.
+- Crea un servicio distribuido que ejecute una aplicación de ejemplo en el clúster.
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Inicializar el Swarm:
+
+``` bash
+docker swarm init --advertise-addr <IP_DEL_NODO>
+```
+Unirse a un Nodo al Swarm:
+
+``` bash
+docker swarm join --token <TOKEN> <IP_DEL_MANAGER>:<PUERTO>
+```
+Crear un Servicio:
+
+``` bash
+docker service create --replicas 3 -p 8080:80 --name web nginx
+```
+</details>
+
+:::{.callout-tip}
+Utiliza Docker Swarm para mejorar la escalabilidad y la administración de tus aplicaciones en contenedores.
+:::

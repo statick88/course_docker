@@ -1,0 +1,60 @@
+# 6: Despliegue de Aplicaciones con Docker Compose
+
+## Conceptos:
+
+### Docker Compose para Despliegues Complejos
+
+Docker Compose no solo es útil para el desarrollo local; también se puede usar para definir y desplegar aplicaciones en entornos de producción.
+
+### Variables de Entorno en Docker Compose
+
+Permite gestionar configuraciones específicas del entorno, facilitando la portabilidad de la aplicación entre diferentes contextos.
+
+## Ejemplos:
+
+Definir un Servicio con Docker Compose:
+
+``` yaml
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+```
+Este archivo docker-compose.yml define un servicio llamado "web" que utiliza la imagen de Nginx y mapea el puerto 8080.
+
+## Práctica:
+
+- Desplegar una Aplicación Compleja con Docker Compose
+- Crea un archivo docker-compose.yml para una aplicación de varios servicios.
+- Despliega la aplicación en tu entorno local.
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Ejemplo de docker-compose.yml:
+
+``` yaml
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+```
+Desplegar con Docker Compose:
+
+``` bash
+docker-compose up -d
+```
+</details>
+
+:::{.callout-tip}
+Optimiza tus despliegues de aplicaciones utilizando Docker Compose y configura variables de entorno según sea necesario.
+:::

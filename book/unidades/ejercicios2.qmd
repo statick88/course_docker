@@ -19,12 +19,6 @@ Practicar la creación de imágenes personalizadas utilizando Dockerfile y la or
 - Documento explicando los comandos utilizados.
 - Capturas de pantalla que demuestren el acceso a la aplicación.
 
-## Rubrica de Evaluación:
-
-- Correcta creación del Dockerfile: 6 puntos
-- Imagen construida correctamente: 4 puntos
-- Configuración adecuada en Docker Compose: 6 puntos
-- Acceso exitoso a la aplicación: 4 puntos
 
 <details>
   <summary>Resolución de la Actividad Práctica</summary>
@@ -58,3 +52,10 @@ docker-compose up -d
 Verificar el acceso a la aplicación:
 
 Acceder a [http://localhost:5000](http://localhost:5000) en el navegador.
+
+## Rubrica de Evaluación:
+
+- Correcta creación del Dockerfile: 6 puntos
+- Imagen construida correctamente: 4 puntos
+- Configuración adecuada en Docker Compose: 6 puntos
+- Acceso exitoso a la aplicación: 4 puntos

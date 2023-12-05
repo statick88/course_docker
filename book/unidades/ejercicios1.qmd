@@ -17,11 +17,6 @@ Practicar el uso de volúmenes en Docker para persistir datos entre contenedores
 - Documento explicando los comandos utilizados.
 - Capturas de pantalla que demuestren la persistencia de datos entre contenedores.
 
-## Rubrica de Evaluación:
-
-- Correcta creación y vinculación de volúmenes: 6 puntos
-- Creación y persistencia de archivos en el volumen: 8 puntos
-- Verificación exitosa de la persistencia entre contenedores: 6 puntos
 
 <details>
   <summary>Resolución de la Actividad Práctica</summary>
@@ -51,3 +46,9 @@ Verificar la persistencia del archivo HTML:
 - Acceder a [http://localhost:8080](http://localhost:8080) en el navegador.
 - Acceder a [http://localhost:8081](http://localhost:8081) en el navegador.
 </details>
+
+## Rubrica de Evaluación:
+
+- Correcta creación y vinculación de volúmenes: 6 puntos
+- Creación y persistencia de archivos en el volumen: 8 puntos
+- Verificación exitosa de la persistencia entre contenedores: 6 puntos
