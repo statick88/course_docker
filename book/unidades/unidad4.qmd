@@ -1,0 +1,111 @@
+# 5. DevContainers 
+
+## Conceptos:
+
+**DevContainers:** DevContainers es una característica de Visual Studio Code que permite definir, configurar y compartir fácilmente entornos de desarrollo con contenedores de Docker. Con DevContainers, puedes especificar las herramientas, extensiones y configuraciones necesarias para tu proyecto, garantizando que todos los miembros del equipo utilicen el mismo entorno de desarrollo, independientemente de su sistema operativo.
+
+**Stack MEAN:** El stack MEAN (MongoDB, Express.js, Angular, Node.js) es un conjunto de tecnologías ampliamente utilizado para el desarrollo web moderno. MongoDB es una base de datos NoSQL, Express.js es un marco web para Node.js, Angular es un framework para construir aplicaciones web de una sola página (SPA), y Node.js es un entorno de ejecución para JavaScript en el lado del servidor.
+
+## Ejemplos:
+
+Configuración de DevContainers para el stack MEAN:
+
+Creación del archivo .devcontainer/devcontainer.json:
+
+``` json
+{
+  "name": "MEAN Stack",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "extensions": [
+    "ms-vscode.node-debug2",
+    "dbaeumer.vscode-eslint"
+  ],
+  "postCreateCommand": "npm install"
+}
+```
+
+Creación del archivo docker-compose.yml:
+
+``` yaml
+version: '3'
+services:
+  app:
+    image: node:14
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ..:/workspace
+```
+Estructura del proyecto:
+
+``` markdown
+.
+├── .devcontainer
+│   └── devcontainer.json
+├── docker-compose.yml
+└── src
+    └── app.js
+```
+Archivo app.js (Ejemplo de aplicación Node.js):
+
+``` javascript
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hola desde Express.js en un contenedor Docker!'));
+
+app.listen(port, () => console.log(`Aplicación escuchando en http://localhost:${port}`));
+```
+## Actividad Práctica:
+
+Configurar un entorno de desarrollo MEAN con DevContainers en Visual Studio Code.
+
+- Clona un repositorio base que contenga la estructura mencionada y el código de ejemplo.
+- Abre el proyecto en Visual Studio Code.
+- Visualiza y comprende los archivos .devcontainer/devcontainer.json y docker-compose.yml.
+- Inicia el entorno de desarrollo con DevContainers.
+- Accede a la aplicación en tu navegador utilizando el puerto especificado en el archivo app.js.
+- Realiza modificaciones en el código de la aplicación y observa cómo se reflejan en tiempo real dentro del contenedor.
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+
+Clonar el repositorio base:
+
+``` bash
+git clone https://ejemplo-repositorio-mean.git
+```
+Abrir el proyecto en Visual Studio Code:
+
+``` bash
+code ejemplo-repositorio-mean
+```
+Iniciar el entorno de desarrollo con DevContainers:
+
+Visual Studio Code detectará automáticamente la configuración de DevContainers y te preguntará si deseas reabrir el proyecto en un contenedor.
+
+Acceder a la aplicación en el navegador:
+
+Visita [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+Realizar modificaciones en el código:
+
+Abre el archivo src/app.js y realiza cambios en el mensaje de respuesta.
+
+Observa cómo los cambios se reflejan en tiempo real dentro del contenedor.
+</details>
+
+:::{.callout-tip}
+Si experimentas problemas con la integración de DevContainers, asegúrate de tener Docker instalado y la extensión "Remote - Containers" habilitada en Visual Studio Code. 
+
+Además, verifica que tu sistema cumple con los requisitos para DevContainers.
+:::
+
+## ¿Qué Aprendimos?
+
+- Aprendimos a configurar DevContainers en Visual Studio Code para un entorno de desarrollo MEAN.
+- Comprendimos cómo utilizar Docker Compose junto con DevContainers para definir la infraestructura del entorno de desarrollo.
+- Exploramos la posibilidad de realizar cambios en el código de la aplicación de manera eficiente gracias a la integración de DevContainers con Visual Studio Code.

@@ -1,0 +1,51 @@
+# 2: Trabajando con Volúmenes
+
+## Conceptos:
+
+**Volumes:** Son mecanismos que permiten persistir datos más allá del ciclo de vida de un contenedor.
+
+## Ejemplos:
+
+Crear un nuevo volumen:
+
+```bash
+docker volume create my_volume
+```
+Este comando crea un volumen llamado "my_volume".
+
+Usar un volumen al correr un contenedor:
+
+```bash
+docker run -v my_volume:/app -d node:18-alpine
+```
+Este comando ejecuta un contenedor de Node.js y vincula el volumen "my_volume" al directorio "/app" dentro del contenedor.
+
+## Práctica:
+
+- Crea un volumen llamado **data_volume**.
+- Crea un volumen llamado **data_volume**.
+- Ejecuta un contenedor de MySQL, utilizando el volumen creado.
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Crea un volumen:
+
+```bash
+docker volume create data_volume
+```
+Ejecuta el contenedor MySQL con el volumen creado:
+
+```bash
+docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mydb -v data_volume:/var/lib/mysql --network-alias mysql -d mysql:latest
+```
+</details>
+
+:::{.callout-tip}
+**Recuerda la regla de oro:** Si dos contenedores están en la misma red, podrán comunicarse.
+:::
+
+## ¿Qué Aprendimos?
+
+- Ahora entendemos cómo trabajar con volúmenes para mantener la persistencia de datos en Docker.
+- Aprendimos sobre Named Volumes y cómo vincularlos a contenedores.

@@ -1,0 +1,70 @@
+# 4: Buenas Prácticas y Seguridad
+
+## Conceptos:
+
+**Escaneo de imagen:** Después de construir una imagen, es buena práctica realizar un escaneo en busca de vulnerabilidades.
+
+**Capas de la imagen:** Cada imagen de Docker se construye en capas, permitiendo un nivel de abstracción independiente.
+
+**Multi-Stage builds:** Permiten separar dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción, reduciendo el tamaño de la imagen final.
+
+## Ejemplos:
+
+Escaneo de imagen con Snyk:
+
+```bash
+snyk container test <IMAGE_NAME:TAG>
+```
+Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades.
+
+Uso de Multi-Stage builds:
+
+``` dockerfile
+FROM node:14 AS builder
+WORKDIR /app
+  COPY . .
+  RUN npm install
+  RUN npm run build
+
+  FROM nginx:alpine
+  COPY --from=builder /app/dist /usr/share/nginx/html
+```
+Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx.
+
+## Práctica:
+
+- Realiza un escaneo de vulnerabilidades en una imagen de tu elección:
+- Utiliza Snyk para escanear una imagen de Docker.
+- Implementa un Multi-Stage build en un Dockerfile:
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Escaneo de imagen con Snyk:
+
+``` bash
+snyk container test my-image:my-tag
+```
+Ejemplo de Multi-Stage Dockerfile:
+
+``` dockerfile
+
+FROM node:14 AS builder
+WORKDIR /app
+  COPY . .
+  RUN npm install
+  RUN npm run build
+
+  FROM nginx:alpine
+  COPY --from=builder /app/dist /usr/share/nginx/html
+```
+</details>
+
+:::{.callout-tip}
+Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia
+:::
+
+## ¿Qué Aprendimos?
+
+- Entendemos la importancia de escanear imágenes en busca de vulnerabilidades.
+- Ahora sabemos cómo utilizar Multi-Stage builds para optimizar el tamaño de las imágenes.

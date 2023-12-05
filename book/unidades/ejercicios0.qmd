@@ -1,0 +1,54 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Familiarizarse con los comandos básicos de Docker y atajos para gestionar contenedores de manera eficiente.
+Instrucciones:
+
+- Utilizando el comando docker run, inicia un contenedor de la imagen "nginx" en segundo plano, mapeando el puerto 8080 del host al puerto 80 del contenedor.
+- Detén y elimina el contenedor recién creado utilizando comandos Docker.
+- Crea un nuevo contenedor con la imagen "alpine" y ejecuta un terminal interactivo dentro de él.
+- Desde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.
+- Crea una imagen llamada "alpine-curl" a partir de este contenedor modificado.
+
+## Entregables:
+
+- Documento explicando los comandos utilizados.
+- Imagen Docker "alpine-curl" disponible localmente.
+
+## Rubrica de Evaluación:
+
+- Correcta ejecución de comandos: 6 puntos
+- Clara documentación: 4 puntos
+- Imagen "alpine-curl" creada correctamente: 10 puntos
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+- Iniciar un contenedor Nginx:
+
+``` bash
+docker run -d -p 8080:80 --name my-nginx nginx
+```
+Detener y eliminar el contenedor Nginx:
+
+``` bash
+docker stop my-nginx
+docker rm my-nginx
+```
+Crear un contenedor Alpine interactivo:
+
+``` bash
+docker run -it --name my-alpine alpine /bin/sh
+```
+Instalar el paquete curl desde el contenedor Alpine:
+
+``` bash
+apk add --no-cache curl
+```
+Crear una nueva imagen "alpine-curl":
+
+``` bash
+docker commit my-alpine alpine-curl
+```
+</details>

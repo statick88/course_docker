@@ -1,0 +1,89 @@
+# 3: Dockerfile y Docker Compose
+
+## Conceptos:
+
+**Dockerfile:** Es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es como un plano para la construcción de imágenes.
+
+**Docker Compose:** Es una herramienta que permite definir y compartir aplicaciones multi-contenedor. Con un solo archivo (docker-compose.yml), puedes configurar y ejecutar tus servicios.
+
+## Ejemplos:
+
+- Crear un Dockerfile para una aplicación Node.js:
+
+``` dockerfile
+FROM node:14
+WORKDIR /app
+COPY . .
+CMD ["npm", "start"]
+```
+
+Este Dockerfile configura una imagen de Node.js, establece el directorio de trabajo, copia los archivos locales al contenedor y define el comando para ejecutar la aplicación.
+
+- Configurar Docker Compose para una aplicación Node.js:
+
+``` yaml
+    version: '3'
+    services:
+      myapp:
+        build:
+          context: .
+          dockerfile: Dockerfile.node
+        image: my-node-app
+```
+Este archivo docker-compose.yml define un servicio llamado "myapp" que construirá una imagen usando el Dockerfile "Dockerfile.node" y le asignará el nombre de "my-node-app".
+
+## Práctica:
+
+- Crea un Dockerfile para una aplicación Python simple:
+- Configura un archivo docker-compose.yml para ejecutar la aplicación:
+
+    <details>
+    <summary>Resolución de la Actividad Práctica</summary>
+
+- Ejemplo de Dockerfile (nombre: Dockerfile.python):
+
+``` dockerfile
+
+FROM python:3.9
+WORKDIR /app
+COPY . .
+CMD ["python", "app.py"]
+```
+
+Ejemplo de docker-compose.yml:
+
+```yaml
+version: '3'
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    image: my-python-app
+```
+</details>
+
+:::{.callout-tip}
+
+::: justify
+Cuando trabajas con Docker Compose, es útil conocer el comando docker-compose up con la opción -d para ejecutar los contenedores en segundo plano. Esto permite liberar la terminal para otras operaciones mientras tus servicios continúan ejecutándose en el fondo.
+:::
+
+``` bash
+docker-compose up -d
+```
+
+::: justify
+Este comando es especialmente útil en entornos de desarrollo donde deseas ejecutar múltiples servicios, pero aún así necesitas utilizar tu terminal para otras tareas. Además, puedes detener los servicios en segundo plano con:
+:::
+
+``` bash
+docker-compose down
+```
+Esto ayudará a liberar los recursos utilizados por los contenedores sin afectar tu entorno de desarrollo principal.
+:::
+
+## ¿Qué Aprendimos?
+
+- Hemos adquirido habilidades para crear imágenes personalizadas y gestionar aplicaciones multi-contenedor con Docker Compose.
+- Ahora comprendemos la importancia de organizar nuestras aplicaciones en contenedores y cómo Docker Compose simplifica la orquestación.

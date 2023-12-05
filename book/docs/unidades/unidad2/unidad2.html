@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="El Curso Completo de Django te llevará desde los conceptos fundamentales hasta la creación práctica de un blog funcional. Con una combinación de teoría y proyectos prácticos, explorarás desde la configuración inicial hasta el despliegue en Azure. Diseñado tanto para principiantes como para aquellos que desean mejorar sus habilidades con Django, este curso ofrece una base sólida para la construcción de aplicaciones web robustas. ¡Embárcate en este emocionante viaje de aprendizaje en el mundo del desarrollo web con Django!">
+
+<title>Django 2023 - Módulo 2: Modelos y Bases de Datos.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../unidades/unidad3/unidad3.html" rel="next">
+<link href="../../unidades/unidad1/unidad1.html" rel="prev">
+<link href="../../python-logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad2/unidad2.html">Modelos y Bases de Datos</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad2/unidad2.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Módulo 2: Modelos y Bases de Datos.</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../\images\django-img.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Django 2023</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/statick88/Course_of_python/tree/main/book/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../curso_django_2023.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../curso_django_2023.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Curso de Django</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Git y Github</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad0/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 0: Git/Github</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Introducción a Django</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad1/unidad1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 1: Introducción a Django.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Modelos y Bases de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad2/unidad2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Módulo 2: Modelos y Bases de Datos.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Vistas y Plantillas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad3/unidad3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 3: Vistas y Plantillas.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Docker</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad5/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 5:Docker.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#diseño-de-modelos-en-django" id="toc-diseño-de-modelos-en-django" class="nav-link active" data-scroll-target="#diseño-de-modelos-en-django">Diseño de Modelos en Django</a></li>
+  <li><a href="#definimos-el-modelo." id="toc-definimos-el-modelo." class="nav-link" data-scroll-target="#definimos-el-modelo.">1. Definimos el Modelo.</a>
+  <ul class="collapse">
+  <li><a href="#creación-de-un-modelo." id="toc-creación-de-un-modelo." class="nav-link" data-scroll-target="#creación-de-un-modelo.">Creación de un Modelo.</a></li>
+  </ul></li>
+  <li><a href="#definir-métodos-del-modelo." id="toc-definir-métodos-del-modelo." class="nav-link" data-scroll-target="#definir-métodos-del-modelo.">2. Definir Métodos del Modelo.</a></li>
+  <li><a href="#aplicar-migraciones." id="toc-aplicar-migraciones." class="nav-link" data-scroll-target="#aplicar-migraciones.">3. Aplicar Migraciones.</a></li>
+  <li><a href="#ejemplo-de-las-clases-publicación-y-comentario-en-django" id="toc-ejemplo-de-las-clases-publicación-y-comentario-en-django" class="nav-link" data-scroll-target="#ejemplo-de-las-clases-publicación-y-comentario-en-django">Ejemplo de las clases Publicación y Comentario en Django:</a></li>
+  <li><a href="#migraciones-de-la-base-de-datos" id="toc-migraciones-de-la-base-de-datos" class="nav-link" data-scroll-target="#migraciones-de-la-base-de-datos">Migraciones de la Base de Datos</a></li>
+  <li><a href="#consultas-a-la-base-de-datos-con-el-orm-de-django." id="toc-consultas-a-la-base-de-datos-con-el-orm-de-django." class="nav-link" data-scroll-target="#consultas-a-la-base-de-datos-con-el-orm-de-django.">Consultas a la Base de Datos con el ORM de Django.</a></li>
+  <li><a href="#ejemplo-de-consulta-con-el-orm-de-django" id="toc-ejemplo-de-consulta-con-el-orm-de-django" class="nav-link" data-scroll-target="#ejemplo-de-consulta-con-el-orm-de-django">Ejemplo de Consulta con el ORM de Django</a></li>
+  <li><a href="#diagrama-de-consulta-con-orm-de-django." id="toc-diagrama-de-consulta-con-orm-de-django." class="nav-link" data-scroll-target="#diagrama-de-consulta-con-orm-de-django.">Diagrama de Consulta con ORM de Django.</a></li>
+  <li><a href="#relaciones-entre-modelos." id="toc-relaciones-entre-modelos." class="nav-link" data-scroll-target="#relaciones-entre-modelos.">Relaciones entre Modelos.</a></li>
+  <li><a href="#clave-primaria-clave-foránea-y-relaciones-entre-modelos-en-django." id="toc-clave-primaria-clave-foránea-y-relaciones-entre-modelos-en-django." class="nav-link" data-scroll-target="#clave-primaria-clave-foránea-y-relaciones-entre-modelos-en-django.">Clave Primaria, Clave Foránea y Relaciones entre Modelos en Django.</a></li>
+  <li><a href="#clave-primaria." id="toc-clave-primaria." class="nav-link" data-scroll-target="#clave-primaria.">Clave Primaria.</a></li>
+  <li><a href="#clave-foránea." id="toc-clave-foránea." class="nav-link" data-scroll-target="#clave-foránea.">Clave Foránea.</a></li>
+  <li><a href="#relaciones-entre-modelos-de-django" id="toc-relaciones-entre-modelos-de-django" class="nav-link" data-scroll-target="#relaciones-entre-modelos-de-django">Relaciones entre Modelos de Django:</a></li>
+  <li><a href="#ejemplo-de-conexión-del-proyecto-blog-con-bases-de-datos" id="toc-ejemplo-de-conexión-del-proyecto-blog-con-bases-de-datos" class="nav-link" data-scroll-target="#ejemplo-de-conexión-del-proyecto-blog-con-bases-de-datos">Ejemplo de Conexión del Proyecto Blog con Bases de Datos</a></li>
+  <li><a href="#sqlite" id="toc-sqlite" class="nav-link" data-scroll-target="#sqlite"><strong>SQLite</strong>:</a></li>
+  <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql"><strong>MySQL</strong>:</a></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><strong>PostgreSQL:</strong></a></li>
+  <li><a href="#mongodb" id="toc-mongodb" class="nav-link" data-scroll-target="#mongodb"><strong>MongoDB:</strong></a></li>
+  <li><a href="#ejemplo-práctico" id="toc-ejemplo-práctico" class="nav-link" data-scroll-target="#ejemplo-práctico">Ejemplo Práctico:</a>
+  <ul class="collapse">
+  <li><a href="#diseño-de-un-modelo-de-usuarios-y-publicaciones-en-un-blog." id="toc-diseño-de-un-modelo-de-usuarios-y-publicaciones-en-un-blog." class="nav-link" data-scroll-target="#diseño-de-un-modelo-de-usuarios-y-publicaciones-en-un-blog.">Diseño de un Modelo de Usuarios y Publicaciones en un Blog.</a>
+  <ul class="collapse">
+  <li><a href="#importación-de-módulos-necesarios" id="toc-importación-de-módulos-necesarios" class="nav-link" data-scroll-target="#importación-de-módulos-necesarios">Importación de módulos necesarios:</a></li>
+  <li><a href="#definición-del-modelo-usuario" id="toc-definición-del-modelo-usuario" class="nav-link" data-scroll-target="#definición-del-modelo-usuario">Definición del modelo “Usuario”:</a></li>
+  <li><a href="#definición-del-modelo-publicacion" id="toc-definición-del-modelo-publicacion" class="nav-link" data-scroll-target="#definición-del-modelo-publicacion">Definición del modelo “Publicacion”:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica:</a>
+  <ul class="collapse">
+  <li><a href="#agrega-un-campo-adicional-al-modelo-de-publicaciones" id="toc-agrega-un-campo-adicional-al-modelo-de-publicaciones" class="nav-link" data-scroll-target="#agrega-un-campo-adicional-al-modelo-de-publicaciones">Agrega un Campo Adicional al Modelo de Publicaciones</a></li>
+  <li><a href="#resolución-de-la-actividad-práctica." id="toc-resolución-de-la-actividad-práctica." class="nav-link" data-scroll-target="#resolución-de-la-actividad-práctica.">Resolución de la Actividad Práctica.</a></li>
+  <li><a href="#extra." id="toc-extra." class="nav-link" data-scroll-target="#extra.">Extra.</a></li>
+  <li><a href="#conclusión." id="toc-conclusión." class="nav-link" data-scroll-target="#conclusión.">Conclusión.</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/Course_of_python/edit/main/book/unidades/unidad2/unidad2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/Course_of_python/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/Course_of_python/blob/main/book/unidades/unidad2/unidad2.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Módulo 2: Modelos y Bases de Datos.</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="diseño-de-modelos-en-django" class="level2">
+<h2 class="anchored" data-anchor-id="diseño-de-modelos-en-django">Diseño de Modelos en Django</h2>
+<p>En este diagrama, se muestra el flujo de diseño de modelos en Django.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         +-----------------------+</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         |                       |</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         | Definir el modelo     |</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         | como una clase        |</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         | Python que hereda de  |</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         | models.Model          |</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         |                       |</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         +----+-------------+----+</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              |             |</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>              |             |</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>              v             v</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  +-------------------+   +------------------+</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  |                   |   |                  |</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  | Definir campos    |   | Definir métodos  |</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  | y atributos       |   | adicionales      |</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  | del modelo        |   | del modelo       |</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  |                   |   |                  |</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  +--------+----------+   +------+-----------+</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>           |                     |</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>           |                     |</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>           v                     v</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>+--------------------+   +--------------------+</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>|                    |   |                    |</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>| Aplicar migraciones|   | Definir __str__    |</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>| para reflejar los  |   | método para        |</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>| cambios en la      |   | representación     |</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>| base de datos      |   | del modelo         |</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>|                    |   |                    |</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>+--------------------+   +--------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="definimos-el-modelo." class="level2">
+<h2 class="anchored" data-anchor-id="definimos-el-modelo.">1. Definimos el Modelo.</h2>
+<p>En Django, los modelos son la base para diseñar la estructura de la base de datos de nuestra aplicación web.</p>
+<p>Cada modelo representa una tabla en la base de datos y define los campos que estarán presentes en dicha tabla.</p>
+<p>Los modelos son definidos como clases Python que heredan de models.Model, lo que permite que Django maneje automáticamente la creación y gestión de la base de datos.</p>
+<section id="creación-de-un-modelo." class="level3">
+<h3 class="anchored" data-anchor-id="creación-de-un-modelo.">Creación de un Modelo.</h3>
+<p>Para crear un modelo en Django, primero definimos una clase Python que representa la tabla en la base de datos. Por ejemplo, si deseamos crear un modelo para representar las publicaciones en nuestro blog, podemos definirlo de la siguiente manera:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> models.TextField()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    fecha_publicacion <span class="op">=</span> models.DateTimeField()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, hemos definido el modelo Publicacion con tres campos: titulo, contenido y fecha_publicacion.</p>
+<p>Cada campo se representa mediante un atributo de la clase, donde: <strong>models.CharField</strong> representa un campo de texto, <strong>models.TextField</strong> representa un campo de texto más largo y <strong>models.DateTimeField</strong> representa una fecha y hora.</p>
+</section>
+</section>
+<section id="definir-métodos-del-modelo." class="level2">
+<h2 class="anchored" data-anchor-id="definir-métodos-del-modelo.">2. Definir Métodos del Modelo.</h2>
+<p>Además de los campos, también podemos definir métodos en el modelo para realizar acciones específicas o para dar formato a los datos. Por ejemplo, podríamos agregar un método que nos devuelva una representación más legible de la publicación:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> models.TextField()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    fecha_publicacion <span class="op">=</span> models.DateTimeField()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.titulo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este caso, hemos definido el método <strong>str</strong> que se ejecutará cuando necesitemos obtener una representación de texto del objeto Publicacion.</p>
+<p>En este caso, hemos decidido que la representación será simplemente el título de la publicación.</p>
+<p>Para poder probar los cambios que hemos realizado vamos a registrar nuestro modelo en el archivo <strong>admin.py</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  admin.py</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Publicacion</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>admin.site.register(Publicacion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="aplicar-migraciones." class="level2">
+<h2 class="anchored" data-anchor-id="aplicar-migraciones.">3. Aplicar Migraciones.</h2>
+<p>Una vez que hemos definido nuestro modelo, necesitamos aplicar las migraciones para que los cambios se reflejen en la base de datos.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar en la terminal o consola</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py makemigrations</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con estos pasos, hemos diseñado nuestro modelo de Publicaciones en Django y aplicado las migraciones para crear la tabla correspondiente en la base de datos. Ahora estamos listos para utilizar nuestro modelo y almacenar datos en la base de datos.</p>
+<p>Finalmente creamos un superusuario para acceder a la administración de nuestro proyecto.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py createsuperuser</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Llenamos un pequeño formulario que nos pide: nombre de usuario, correo electrónico (no obligatorio), password, repeat again password.</p>
+<p>Y listo para poder acceder a la administración de nuestro proyecto nos dirigimos a la siguiente url <a href="http://127.0.0.1:8000/admin" class="uri">http://127.0.0.1:8000/admin</a></p>
+<p>De forma gráfica ingresamos nuestro usuario y contraseña creado.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ingreso_credenciales.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="ejemplo-de-las-clases-publicación-y-comentario-en-django" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-de-las-clases-publicación-y-comentario-en-django">Ejemplo de las clases Publicación y Comentario en Django:</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># En el archivo models.py de la aplicación "Publicaciones"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> models.TextField()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    pub_date <span class="op">=</span> models.DateTimeField(auto_now_add<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.title</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Comentario(models.Model):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    publicacion <span class="op">=</span> models.ForeignKey(Publicacion, on_delete<span class="op">=</span>models.CASCADE)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    author <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> models.TextField()</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    pub_date <span class="op">=</span> models.DateTimeField(auto_now_add<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Comentario de </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>author<span class="sc">}</span><span class="ss"> en </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>publicacion<span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, hemos definido dos clases:</p>
+<p><strong>La clase “Publicacion”:</strong> Representa una publicación en el blog y tiene tres campos: <strong>title</strong> (título de la publicación), <strong>content</strong> (contenido de la publicación) y <strong>pub_date</strong> (fecha de publicación).</p>
+<p>La fecha de publicación se establece automáticamente utilizando la función <strong>auto_now_add=True</strong>.</p>
+<p>También hemos definido un método “str” para que al imprimir una instancia de la clase, se muestre el título de la publicación.</p>
+<p><strong>La clase “Comentario”:</strong> Representa un comentario en una publicación de publicacion específica y tiene cuatro campos: <strong>publicacion</strong> (clave externa que se relaciona con la publicacion al que pertenece el comentario), <strong>author</strong> (nombre del autor del comentario), <strong>content</strong> (contenido del comentario) y <strong>pub_date</strong> (fecha de publicación del comentario).</p>
+<p>Al igual que en la clase <strong>Publicacion</strong>, hemos definido un método “str” para mostrar información útil al imprimir una instancia de la clase.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Codigo_models_and_comentarios.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="migraciones-de-la-base-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="migraciones-de-la-base-de-datos">Migraciones de la Base de Datos</h2>
+<p>Las migraciones en Django son una forma de gestionar los cambios en la estructura de la base de datos de manera controlada y consistente.</p>
+<p>Representan los cambios en la estructura de la base de datos en forma de archivos Python y se utilizan para crear, modificar o eliminar tablas y campos.</p>
+<p>Cuando definimos nuestros modelos en Django (como se mostró en el ejemplo de la clase “Publicación” y “Comentario”), estamos describiendo la estructura de nuestras tablas en la base de datos.</p>
+<p>Sin embargo, antes de que estos modelos se puedan utilizar, Django necesita traducirlos en el lenguaje específico del motor de base de datos que estamos utilizando (por ejemplo, PostgreSQL, MySQL, SQLite, etc.).</p>
+<p>Es aquí donde entran en juego las migraciones.</p>
+<p>Cuando creamos o modificamos modelos, Django genera automáticamente archivos de migración que contienen instrucciones para aplicar los cambios necesarios en la base de datos. Cada migración representa un paso en la evolución de la estructura de la base de datos.</p>
+<p><strong>Comandos para crear y aplicar migraciones:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py makemigrations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando se utiliza para crear una nueva migración a partir de los cambios detectados en los modelos. Cuando ejecutamos este comando, Django analiza los modelos definidos en nuestra aplicación y compara la estructura actual con la estructura de la última migración aplicada.</p>
+<p>Luego, genera una nueva migración que contiene las instrucciones para llevar la base de datos a su estado actual.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez que hemos creado una o varias migraciones, utilizamos este comando para aplicar esas migraciones pendientes y modificar la base de datos de acuerdo con los cambios en los modelos. Django realiza las operaciones necesarias en la base de datos para reflejar la estructura actual de los modelos definidos en nuestra aplicación.</p>
+<p>💡Recuerda: “Es importante ejecutar estos comandos cada vez que realizamos cambios en los modelos para mantener la coherencia entre la estructura de la base de datos y la estructura definida en los modelos, garantizando así la integridad y consistencia de nuestros datos.”</p>
+</section>
+<section id="consultas-a-la-base-de-datos-con-el-orm-de-django." class="level2">
+<h2 class="anchored" data-anchor-id="consultas-a-la-base-de-datos-con-el-orm-de-django.">Consultas a la Base de Datos con el ORM de Django.</h2>
+<p>Cuando construimos aplicaciones web, a menudo necesitamos interactuar con una base de datos para almacenar y recuperar datos.</p>
+<p>Django facilita esta tarea mediante su <strong>Object-Relational Mapping (ORM)</strong>.</p>
+<p>Pero, <strong>¿Qué es exactamente el ORM y cómo podemos hacer consultas a la base de datos utilizando esta funcionalidad?</strong></p>
+<p><strong>Object-Relational Mapping (ORM):</strong> Una forma amigable de interactuar con la base de datos.</p>
+<p>Imagina que tienes una biblioteca y quieres mantener un registro de los libros y sus autores en una base de datos. Tradicionalmente, tendrías que escribir consultas SQL para agregar, actualizar o recuperar información. Sin embargo, con el ORM de Django, puedes utilizar objetos de Python para realizar estas tareas sin tener que escribir consultas SQL directamente. ¡Es como si el ORM tradujera automáticamente tus interacciones con objetos de Python a instrucciones SQL!</p>
+</section>
+<section id="ejemplo-de-consulta-con-el-orm-de-django" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-de-consulta-con-el-orm-de-django">Ejemplo de Consulta con el ORM de Django</h2>
+<p>Supongamos que tienes dos modelos en Django: <strong>Publicacion</strong> con los campos <strong>titulo</strong>, <strong>contenido</strong> y <strong>fecha_publicacion</strong>, y <strong>Comentario</strong> con los campos <strong>texto</strong> y <strong>fecha_comentario</strong>.</p>
+<p>Queremos obtener todas las publicaciones que contengan comentarios y mostrar sus títulos, fechas de publicación y la cantidad de comentarios que tienen.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> miapp.models <span class="im">import</span> Publicacion, Comentario</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizamos una consulta utilizando el ORM de Django</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>publicaciones_con_comentarios <span class="op">=</span> Publicacion.objects.<span class="bu">filter</span>(comentario__isnull<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostramos los resultados</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> publicacion <span class="kw">in</span> publicaciones_con_comentarios:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    cantidad_comentarios <span class="op">=</span> Comentario.objects.<span class="bu">filter</span>(publicacion<span class="op">=</span>publicacion).count()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Título: </span><span class="sc">{</span>publicacion<span class="sc">.</span>titulo<span class="sc">}</span><span class="ss">, Fecha de Publicación: </span><span class="sc">{</span>publicacion<span class="sc">.</span>fecha_publicacion<span class="sc">}</span><span class="ss">, Comentarios: </span><span class="sc">{</span>cantidad_comentarios<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, la función filter(comentario__isnull=False) nos permite obtener todas las publicaciones que tienen comentarios, es decir, filtramos aquellas publicaciones donde el campo <strong>comentario</strong> no es nulo.</p>
+<p>Luego, utilizamos un bucle for para recorrer los resultados y, para cada publicación, realizamos una nueva consulta para contar la cantidad de comentarios asociados a esa publicación utilizando Comentario.objects.filter(publicacion=publicacion).count().</p>
+<p>Así, podemos mostrar los títulos de las publicaciones, sus fechas de publicación y la cantidad de comentarios que tienen.</p>
+</section>
+<section id="diagrama-de-consulta-con-orm-de-django." class="level2">
+<h2 class="anchored" data-anchor-id="diagrama-de-consulta-con-orm-de-django.">Diagrama de Consulta con ORM de Django.</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">                      |  Base de Datos |</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in">                            |</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">                            v</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">                      |    Modelo     |</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="in">                      |  (Publicacion) |</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="in">                            |</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="in">                            v</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="in">                      |   Consulta    |</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">                      |   (filter)    |</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">                            |</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="in">                            v</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="in">                      |   Resultado   |</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="in">                      +----------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este diagrama, el modelo <strong>Publicacion</strong> representa la estructura de la tabla en la base de datos.</p>
+<p>La consulta se realiza a través del ORM de Django, que traduce la interacción con el modelo en una consulta SQL y devuelve el resultado.</p>
+<p>El ORM de Django nos permite realizar consultas de una manera más legible y amigable, lo que facilita enormemente el manejo de datos en nuestras aplicaciones web.</p>
+</section>
+<section id="relaciones-entre-modelos." class="level2">
+<h2 class="anchored" data-anchor-id="relaciones-entre-modelos.">Relaciones entre Modelos.</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            +--------------------+          +--------------------+</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            |      Publicacion   |          |        Autor       |</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            +--------------------+          +--------------------+</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            | - id               |          | - id               |</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            | - titulo           |          | - nombre           |</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            | - contenido        |          | - correo           |</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            | - autor (foránea)  |          +--------------------+</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            +--------------------+</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                   |</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                   v</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            +--------------------+</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            |     Relación       |</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            |   (Clave Foránea)  |</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            +--------------------+</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                   |</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                   v</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            +--------------------+</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            |      Resultado     |</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            +--------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Django facilita el establecimiento de relaciones entre modelos mediante claves foráneas y claves primarias.</p>
+<p>Por ejemplo,</p>
+<p>En un blog, un modelo <strong>Publicacion</strong> podría tener una clave foránea a un modelo <strong>Autor”</strong>, lo que permitiría relacionar cada publicación con su respectivo <strong>autor</strong>.</p>
+<p>Además, Django también soporta diferentes tipos de relaciones como Uno a Uno (por ejemplo, un modelo <strong>Perfil</strong> asociado a un modelo <strong>Usuario</strong>), Uno a Muchos (por ejemplo, un modelo <strong>Categoría</strong> que puede tener múltiples publicaciones) y Muchos a Muchos (por ejemplo, una relación de <strong>Seguidores</strong> entre usuarios).</p>
+<p>Estas relaciones son fundamentales para organizar y acceder a los datos de manera estructurada en una aplicación Django.</p>
+</section>
+<section id="clave-primaria-clave-foránea-y-relaciones-entre-modelos-en-django." class="level2">
+<h2 class="anchored" data-anchor-id="clave-primaria-clave-foránea-y-relaciones-entre-modelos-en-django.">Clave Primaria, Clave Foránea y Relaciones entre Modelos en Django.</h2>
+<p>En Django, los modelos representan la estructura de las tablas en la base de datos. Cada modelo se define como una clase Python que hereda de models.Model. Los atributos de la clase representan los campos de la tabla, y entre ellos, destacamos las claves primarias y las claves foráneas.</p>
+</section>
+<section id="clave-primaria." class="level2">
+<h2 class="anchored" data-anchor-id="clave-primaria.">Clave Primaria.</h2>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Autor(models.Model):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    nombre <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    pais <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.nombre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La clave primaria es un campo único que identifica de forma exclusiva cada registro en una tabla.</p>
+<p>Por defecto, Django crea automáticamente un campo id como clave primaria para cada modelo, pero también es posible definir una clave primaria personalizada utilizando el atributo <strong>primary_key=True</strong>.</p>
+<p>En este ejemplo, la tabla Autor tendrá una clave primaria id generada automáticamente. La columna id es un campo único que identificará de forma única a cada autor en la base de datos.</p>
+</section>
+<section id="clave-foránea." class="level2">
+<h2 class="anchored" data-anchor-id="clave-foránea.">Clave Foránea.</h2>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Libro(models.Model):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    autor <span class="op">=</span> models.ForeignKey(Autor, on_delete<span class="op">=</span>models.CASCADE)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.titulo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La clave foránea es un campo que hace referencia a la clave primaria de otra tabla, estableciendo una relación entre ambas tablas.</p>
+<p>Esto indica que el valor del campo de la clave foránea en una tabla debe coincidir con el valor de la clave primaria en la otra tabla.</p>
+<p>En este ejemplo, el modelo Libro tiene un campo autor que es una clave foránea que hace referencia al modelo Autor. Cada libro está relacionado con un autor específico, y la opción <strong>on_delete=models.CASCADE</strong> indica que si se elimina un autor, todos los libros asociados a ese autor también se eliminarán automáticamente.</p>
+</section>
+<section id="relaciones-entre-modelos-de-django" class="level2">
+<h2 class="anchored" data-anchor-id="relaciones-entre-modelos-de-django">Relaciones entre Modelos de Django:</h2>
+<p><strong>Relación de Uno a Muchos (OneToMany):</strong> Un objeto de un modelo está relacionado con varios objetos de otro modelo.</p>
+<p>Se logra utilizando el campo <strong>ForeignKey</strong>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib.auth.models <span class="im">import</span> User</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> models.TextField()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    autor <span class="op">=</span> models.ForeignKey(User, on_delete<span class="op">=</span>models.CASCADE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Relación de Muchos a Muchos (ManyToMany):</strong> Varios objetos de un modelo están relacionados con varios objetos de otro modelo. Se logra utilizando el campo ManyToManyField.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Etiqueta(models.Model):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    nombre <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Producto(models.Model):</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    nombre <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    etiquetas <span class="op">=</span> models.ManyToManyField(Etiqueta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Relación de Uno a Uno (OneToOne):</strong> Un objeto de un modelo está relacionado con exactamente un objeto de otro modelo, y viceversa. Se logra utilizando el campo OneToOneField.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib.auth.models <span class="im">import</span> User</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Perfil(models.Model):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    usuario <span class="op">=</span> models.OneToOneField(User, on_delete<span class="op">=</span>models.CASCADE)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    fecha_nacimiento <span class="op">=</span> models.DateField()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Estas relaciones nos permiten asociar objetos de diferentes modelos en la base de datos, lo que es esencial para construir aplicaciones web más complejas.</p>
+<p>Django facilita el manejo de estas relaciones, lo que nos permite desarrollar aplicaciones de forma más legible y amigable.</p>
+<p>Django ofrece una potente forma de establecer relaciones entre modelos, lo que nos permite diseñar y construir aplicaciones web más complejas y ricas en datos.</p>
+<p>La elección del tipo de relación dependerá de la lógica de negocio y los requerimientos específicos de la aplicación.</p>
+</section>
+<section id="ejemplo-de-conexión-del-proyecto-blog-con-bases-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-de-conexión-del-proyecto-blog-con-bases-de-datos">Ejemplo de Conexión del Proyecto Blog con Bases de Datos</h2>
+<p>A continuación, se presentará un ejemplo de configuración de Django para conectar el proyecto de blog a tres bases de datos diferentes: SQLite, MySQL, MongoDB y PostgreSQL.</p>
+</section>
+<section id="sqlite" class="level2">
+<h2 class="anchored" data-anchor-id="sqlite"><strong>SQLite</strong>:</h2>
+<p>SQLite es una base de datos incorporada en Django por defecto. No requiere configuración adicional para usarla, ya que Django creará automáticamente un archivo de base de datos SQLite en el directorio del proyecto.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># En el archivo settings.py del proyecto "mi_blog"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>DATABASES <span class="op">=</span> {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'default'</span>: {</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ENGINE'</span>: <span class="st">'django.db.backends.sqlite3'</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'NAME'</span>: BASE_DIR <span class="op">/</span> <span class="st">'db.sqlite3'</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mysql" class="level2">
+<h2 class="anchored" data-anchor-id="mysql"><strong>MySQL</strong>:</h2>
+<p>Para conectar la base de datos de MySQL de <strong>forma local en tu máquina</strong>, necesitarás seguir estos pasos:</p>
+<ol type="1">
+<li><p><strong>Instalar MySQL Server:</strong> Lo primero que necesitas es tener instalado el servidor de MySQL en tu máquina. Puedes descargar la versión correspondiente para tu sistema operativo desde el sitio web oficial de MySQL: <a href="https://dev.mysql.com/downloads/mysql/" class="uri">https://dev.mysql.com/downloads/mysql/</a></p></li>
+<li><p><strong>Configurar el servidor:</strong> Una vez que hayas instalado MySQL, debes configurar el servidor.</p>
+<p>Durante la instalación, se te pedirá establecer una contraseña para el usuario “root” que será el administrador del servidor.</p>
+<p>Asegúrate de recordar esta contraseña, ya que la necesitarás más adelante.</p></li>
+<li><p><strong>Iniciar el servidor:</strong> Después de instalar y configurar MySQL, debes iniciar el servidor.</p>
+<p>Esto puede variar dependiendo de tu sistema operativo, pero generalmente puedes hacerlo desde la línea de comandos o utilizando un programa específico para administrar servidores de bases de datos.</p></li>
+<li><p><strong>Verificar la conexión:</strong> Una vez que el servidor esté en funcionamiento, verifica que puedas conectarte a él.</p>
+<p>Puedes hacerlo desde la línea de comandos utilizando el cliente de MySQL o usando una herramienta de administración como phpMyAdmin.</p></li>
+<li><p><strong>Crear una base de datos:</strong> Antes de conectar Django a la base de datos, necesitas crear una base de datos vacía para tu proyecto.</p>
+<p>Puedes hacerlo desde el cliente de MySQL o desde una herramienta de administración.</p></li>
+<li><p><strong>Configurar Django para usar MySQL:</strong> Ahora que tienes el servidor de MySQL funcionando y una base de datos creada, puedes configurar Django para que utilice MySQL como base de datos, puedes instalar el cliente de MySQL <a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a>.</p>
+<p>Ahora es necesario instalar el connector entre Django y nuestra base de datos, lo podemos hacer con el gestor de paquetes <strong>pip</strong></p></li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mysqlclient</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Ahora vamos a configurar Django.
+
+Para hacerlo, modifica el archivo settings.py de tu proyecto Django y ajusta la configuración de la base de datos:</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># settings.py</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>DATABASES <span class="op">=</span> {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'default'</span>: {</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ENGINE'</span>: <span class="st">'django.db.backends.mysql'</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'NAME'</span>: <span class="st">'nombre_de_la_base_de_datos'</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'USER'</span>: <span class="st">'nombre_de_usuario'</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PASSWORD'</span>: <span class="st">'contraseña_del_usuario'</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'HOST'</span>: <span class="st">'localhost'</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PORT'</span>: <span class="st">'3306'</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asegúrate de reemplazar <strong>nombre_de_la_base_de_datos</strong>, <strong>nombre_de_usuario</strong> y <strong>contraseña_del_usuario</strong> con los valores adecuados para tu configuración de MySQL.</p>
+<ol start="7" type="1">
+<li><strong>Realizar migraciones:</strong> Una vez configurada la base de datos en Django, es necesario aplicar las migraciones para crear las tablas y campos correspondientes. Ejecuta el siguiente comando para aplicar las migraciones:</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li><p><strong>Verificar la conexión:</strong> Finalmente, verifica que la conexión con la base de datos de MySQL se haya establecido correctamente y que puedas realizar consultas y operaciones desde tu proyecto Django.</p>
+<p>Con estos pasos, tendrás configurada la conexión con la base de datos de MySQL en tu proyecto de Django y podrás utilizarla para almacenar y recuperar datos de forma local en tu máquina.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><img src="images/paste-1.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="even">
+<td><img src="images/paste-2.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="odd">
+<td><img src="images/paste-3.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="even">
+<td><img src="images/paste-4.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+</section>
+<section id="postgresql" class="level2">
+<h2 class="anchored" data-anchor-id="postgresql"><strong>PostgreSQL:</strong></h2>
+<p>Lo primero que necesitas es instalar PostgreSQL en tu sistema operativo.</p>
+<p>Puedes descargar la versión correspondiente para tu sistema desde el sitio web oficial de PostgreSQL: <a href="https://www.postgresql.org/download/" class="uri">https://www.postgresql.org/download/</a></p>
+<ol type="1">
+<li><p><strong>Configurar PostgreSQL:</strong> Durante la instalación, se te pedirá establecer una contraseña para el usuario “postgres” que será el administrador del servidor PostgreSQL. Asegúrate de recordar esta contraseña, ya que la necesitarás más adelante.</p></li>
+<li><p><strong>Iniciar el servidor PostgreSQL:</strong> Después de instalar PostgreSQL, debes iniciar el servidor. Esto puede variar dependiendo de tu sistema operativo, pero generalmente puedes hacerlo desde la línea de comandos o utilizando una herramienta específica para administrar servidores de bases de datos.</p></li>
+<li><p><strong>Verificar la conexión:</strong> Una vez que el servidor esté en funcionamiento, verifica que puedas conectarte a él. Puedes hacerlo desde la línea de comandos utilizando el cliente psql o usando una herramienta de administración gráfica como pgAdmin.</p></li>
+<li><p><strong>Instalar el controlador de PostgreSQL para Django:</strong> Para conectar Django con PostgreSQL, necesitas instalar el controlador psycopg2. Puedes instalarlo utilizando el gestor de paquetes pip:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install psycopg2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Configurar Django para usar PostgreSQL:</strong></p>
+<p>Modifica el archivo settings.py de tu proyecto Django y ajusta la configuración de la base de datos:</p></li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># settings.py</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>DATABASES <span class="op">=</span> {</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'default'</span>: {</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ENGINE'</span>: <span class="st">'django.db.backends.postgresql'</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'NAME'</span>: <span class="st">'nombre_de_la_base_de_datos'</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'USER'</span>: <span class="st">'nombre_de_usuario'</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PASSWORD'</span>: <span class="st">'contraseña_del_usuario'</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'HOST'</span>: <span class="st">'localhost'</span>,  <span class="co"># Puedes cambiar esta dirección si PostgreSQL está en otro equipo</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PORT'</span>: <span class="st">''</span>,          <span class="co"># Por defecto es el puerto 5432</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asegúrate de reemplazar <strong>nombre_de_la_base_de_datos</strong>, <strong>nombre_de_usuario</strong> y <strong>contraseña_del_usuario</strong> con los valores adecuados para tu configuración de PostgreSQL.</p>
+<ol start="8" type="1">
+<li><p><strong>Realizar migraciones:</strong></p>
+<p>Una vez configurada la base de datos en Django, es necesario aplicar las migraciones para crear las tablas y campos correspondientes. Ejecuta el siguiente comando para aplicar las migraciones:</p></li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><strong>Verificar la conexión:</strong></li>
+</ol>
+<p>Finalmente, verifica que la conexión con PostgreSQL se haya establecido correctamente y que puedas realizar consultas y operaciones desde tu proyecto Django.</p>
+<p>Con estos pasos, tendrás configurada la conexión con PostgreSQL en tu proyecto de Django y podrás utilizarla para almacenar y recuperar datos.</p>
+<p>PostgreSQL es una base de datos relacional que ofrece características avanzadas y es ampliamente utilizada en aplicaciones web y proyectos de desarrollo.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><img src="images/paste-11.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="even">
+<td><img src="images/paste-12.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="odd">
+<td><img src="images/paste-13.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mongodb" class="level2">
+<h2 class="anchored" data-anchor-id="mongodb"><strong>MongoDB:</strong></h2>
+<ol type="1">
+<li><p>Lo primero que necesitas es instalar <strong>MongoDB</strong> en tu sistema operativo. Puedes descargar la versión correspondiente para tu sistema desde el sitio web oficial de MongoDB: <a href="https://www.mongodb.com/try/download/community" class="uri">https://www.mongodb.com/try/download/community</a></p></li>
+<li><p><strong>Configurar el servidor MongoDB:</strong> Una vez que hayas instalado MongoDB, es necesario configurar el servidor.</p>
+<p>Por defecto, MongoDB se ejecuta en el puerto 27017. Asegúrate de que el servidor MongoDB esté en funcionamiento antes de continuar.</p></li>
+<li><p><strong>Instalar el controlador de MongoDB para Django:</strong> Para conectar Django con MongoDB, necesitas instalar el controlador de MongoDB para Django, llamado “djongo”. Puedes instalarlo utilizando el gestor de paquetes pip:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install djongo==1.3.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para que todo funcione con normalidad, es necesario incluir el paquete <strong>pymongo</strong>, para ello se sugiere utilizar el siguiente comando.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pymongo==3.12.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Configurar Django para usar MongoDB:</strong></p>
+<p>Modifica el archivo settings.py de tu proyecto Django y ajusta la configuración de la base de datos:</p></li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># settings.py</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>INSTALLED_APPS <span class="op">=</span> [</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.admin'</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.auth'</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.contenttypes'</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.sessions'</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.messages'</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.staticfiles'</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'publicaciones'</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'djongo'</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>DATABASES <span class="op">=</span> {</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'default'</span>: {</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ENGINE'</span>: <span class="st">'djongo'</span>,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'NAME'</span>: <span class="st">'nombre_de_la_base_de_datos'</span>,</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'CLIENT'</span>: {</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">'host'</span>: <span class="st">'localhost'</span>, <span class="co"># Cambia esta dirección si tu servidor MongoDB está en otro equipo</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">'port'</span>: <span class="dv">27017</span>,       <span class="co"># Puerto de MongoDB (por defecto es 27017)</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asegúrate de reemplazar <strong>nombre_de_la_base_de_datos</strong> con el nombre que deseas para tu base de datos MongoDB.</p>
+<ol start="7" type="1">
+<li><strong>Realizar migraciones:</strong></li>
+</ol>
+<p>Una vez configurada la base de datos en Django, es necesario aplicar las migraciones para crear las colecciones y documentos correspondientes.</p>
+<p>Ejecuta el siguiente comando para aplicar las migraciones:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py makemigrations</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><strong>Verificar la conexión:</strong></li>
+</ol>
+<p>Finalmente, verifica que la conexión con MongoDB se haya establecido correctamente y que puedas realizar consultas y operaciones desde tu proyecto Django.</p>
+<p>Con estos pasos, tendrás configurada la conexión con MongoDB en tu proyecto de Django y podrás utilizarla para almacenar y recuperar datos.</p>
+<p>Es importante mencionar que MongoDB es una base de datos NoSQL, lo que significa que utiliza un modelo de datos basado en documentos en lugar de tablas y filas como las bases de datos relacionales. Esto permite una mayor flexibilidad y escalabilidad en el almacenamiento de datos.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><img src="images/paste-10.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="even">
+<td><img src="images/paste-11.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="odd">
+<td><img src="images/paste-12.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+<tr class="even">
+<td><img src="images/paste-13.png" class="img-fluid" data-fig-align="center"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ejemplo-práctico" class="level1">
+<h1>Ejemplo Práctico:</h1>
+<section id="diseño-de-un-modelo-de-usuarios-y-publicaciones-en-un-blog." class="level2">
+<h2 class="anchored" data-anchor-id="diseño-de-un-modelo-de-usuarios-y-publicaciones-en-un-blog.">Diseño de un Modelo de Usuarios y Publicaciones en un Blog.</h2>
+<section id="importación-de-módulos-necesarios" class="level3">
+<h3 class="anchored" data-anchor-id="importación-de-módulos-necesarios">Importación de módulos necesarios:</h3>
+<p>Para definir los modelos en Django, primero importamos los módulos necesarios desde la biblioteca Django.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models.py</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib.auth.models <span class="im">import</span> AbstractUser</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="definición-del-modelo-usuario" class="level3">
+<h3 class="anchored" data-anchor-id="definición-del-modelo-usuario">Definición del modelo “Usuario”:</h3>
+<p>El modelo de “Usuario” se crea mediante la herencia de la clase “AbstractUser” proporcionada por Django. Esto nos permite utilizar la funcionalidad de autenticación y autorización incorporada en Django. También podemos agregar campos adicionales según sea necesario.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models.py</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Usuario(AbstractUser):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agrega campos adicionales si es necesario</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el modelo “Usuario”, podemos agregar campos adicionales según las necesidades específicas de nuestra aplicación. Al heredar de la clase “AbstractUser” proporcionada por Django, ya contamos con campos comunes para autenticación, como “username”, “email” y “password”.</p>
+<p>Además de los campos heredados, algunos ejemplos de campos adicionales que podríamos agregar al modelo “Usuario” son:</p>
+<p><strong>Nombre completo:</strong> Podemos agregar un campo para almacenar el nombre completo del usuario.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Usuario(AbstractUser):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campos heredados de AbstractUser</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campo adicional</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    nombre_completo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">255</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Fecha de nacimiento:</strong> Podemos incluir un campo para registrar la fecha de nacimiento del usuario.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Usuario(AbstractUser):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campos heredados de AbstractUser</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campo adicional</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    fecha_nacimiento <span class="op">=</span> models.DateField()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Biografía:</strong> Podemos permitir que los usuarios agreguen una breve biografía sobre ellos mismos.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Usuario(AbstractUser):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campos heredados de AbstractUser</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campo adicional</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    biografia <span class="op">=</span> models.TextField(blank<span class="op">=</span><span class="va">True</span>, null<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Imagen de perfil:</strong> Podemos agregar un campo para que los usuarios carguen una imagen de perfil.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Usuario(AbstractUser):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campos heredados de AbstractUser</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campo adicional</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    imagen_perfil <span class="op">=</span> models.ImageField(upload_to<span class="op">=</span><span class="st">'imagenes_perfil/'</span>, blank<span class="op">=</span><span class="va">True</span>, null<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Estos son solo algunos ejemplos de los campos adicionales que podríamos agregar al modelo “Usuario”. La elección de los campos depende de los requisitos específicos de la aplicación y qué información adicional deseamos almacenar para nuestros usuarios.</p>
+<p>Django proporciona una amplia variedad de tipos de campos para adaptarse a diferentes tipos de datos y necesidades.</p>
+</section>
+<section id="definición-del-modelo-publicacion" class="level3">
+<h3 class="anchored" data-anchor-id="definición-del-modelo-publicacion">Definición del modelo “Publicacion”:</h3>
+<p>El modelo “Publicacion” se crea como una subclase de “models.Model”.</p>
+<p>Aquí definimos los campos que representarán los atributos de una publicación en el blog, como “titulo”, “contenido” y “fecha_publicacion”. Cada campo es una instancia de una clase de campo de Django que define el tipo y las propiedades del campo.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models.py</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> models.TextField()</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    fecha_publicacion <span class="op">=</span> models.DateTimeField()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Método “str”:</p>
+<p>En el modelo “Publicacion”, hemos definido el método “str” que devuelve el título de la publicación cuando se imprime una instancia de la clase.</p>
+<p>Esto hace que sea más fácil identificar las publicaciones en el administrador de Django y en cualquier otra parte donde se muestren objetos de la clase “Publicacion”.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models.py</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Campos de la publicación...</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.titulo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con estos pasos, hemos definido los modelos “Usuario” y “Publicacion” en Django. Estos modelos representarán las tablas “Usuario” y “Publicacion” en la base de datos y nos permitirán interactuar con ellos mediante el ORM de Django.</p>
+</section>
+</section>
+</section>
+<section id="actividad-práctica" class="level1">
+<h1>Actividad Práctica:</h1>
+<section id="agrega-un-campo-adicional-al-modelo-de-publicaciones" class="level2">
+<h2 class="anchored" data-anchor-id="agrega-un-campo-adicional-al-modelo-de-publicaciones">Agrega un Campo Adicional al Modelo de Publicaciones</h2>
+<p>[ ] Agrega un Campo Adicional al Modelo de Publicaciones y Realiza la Migración Correspondiente</p>
+<p>[ ] En el modelo de Publicaciones, agrega un nuevo campo “imagen” de tipo “ImageField”.</p>
+<p>[ ] Crea una migración para aplicar los cambios al modelo usando el comando</p>
+<p>[ ] Aplica la migración a la base de datos.</p>
+</section>
+<section id="resolución-de-la-actividad-práctica." class="level2">
+<h2 class="anchored" data-anchor-id="resolución-de-la-actividad-práctica.">Resolución de la Actividad Práctica.</h2>
+<p><strong>Paso 1:</strong> Agregar un Campo Adicional al Modelo de Publicaciones</p>
+<p>En el archivo “models.py” de la aplicación “blog”, agregamos un nuevo campo llamado “imagen” de tipo “ImageField” al modelo “Publicacion”. Esto nos permitirá almacenar imágenes relacionadas con cada publicación.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models.py</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion(models.Model):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    titulo <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> models.TextField()</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    fecha_publicacion <span class="op">=</span> models.DateTimeField()</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    imagen <span class="op">=</span> models.ImageField(upload_to<span class="op">=</span><span class="st">'publicaciones/'</span>, blank<span class="op">=</span><span class="va">True</span>, null<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.titulo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 2:</strong> Crear una Migración para Aplicar los Cambios</p>
+<p>Después de agregar el nuevo campo “imagen” al modelo, necesitamos crear una migración para aplicar los cambios a la base de datos. Django nos proporciona un comando para generar automáticamente la migración.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar en la terminal o consola</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py makemigrations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 3:</strong> Aplicar la Migración a la Base de Datos</p>
+<p>Una vez que se ha creado la migración, la aplicamos a la base de datos con el siguiente comando:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar en la terminal o consola</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con estos pasos, hemos agregado con éxito un campo adicional “imagen” al modelo de Publicaciones y hemos aplicado la migración a la base de datos para reflejar el cambio. Ahora, cada publicación en el blog tendrá un campo para asociar una imagen, lo que mejorará la experiencia visual para los usuarios.</p>
+</section>
+<section id="extra." class="level2">
+<h2 class="anchored" data-anchor-id="extra.">Extra.</h2>
+<p>Para poder manejar el modelo de Publicaciones desde la administración de Django, es necesario registrar el modelo en el archivo “admin.py” de la aplicación “blog”. De esta manera, podremos acceder a las publicaciones y administrarlas desde la interfaz de administración de Django.</p>
+<p><strong>Paso 4:</strong> Registro del Modelo en el Administrador de Django</p>
+<p>En el archivo “admin.py” de la aplicación “blog”, registramos el modelo “Publicacion” para que sea accesible desde la interfaz de administración.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># admin.py</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib <span class="im">import</span> admin</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Publicacion</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>admin.site.register(Publicacion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con este registro, el modelo “Publicacion” estará disponible en la interfaz de administración de Django.</p>
+<p>Ahora, cuando ingreses a la URL “/admin/” en tu aplicación, podrás iniciar sesión como superusuario y ver la sección de “Publicacions”, donde podrás agregar, editar y eliminar publicaciones desde la interfaz de administración.</p>
+<p>Esto facilitará el manejo de las publicaciones sin tener que acceder directamente a la base de datos.</p>
+</section>
+<section id="conclusión." class="level2">
+<h2 class="anchored" data-anchor-id="conclusión.">Conclusión.</h2>
+<p>Con esto, hemos completado el Módulo 2 de Modelos y Bases de Datos en Django.</p>
+<p>Has aprendido a diseñar modelos en Django, realizar migraciones de la base de datos, hacer consultas utilizando el ORM de Django, establecer relaciones entre modelos y usar formularios en Django.</p>
+<p>En el próximo módulo, continuaremos explorando más características de Django, como vistas y plantillas.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../unidades/unidad1/unidad1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Módulo 1: Introducción a Django.</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../unidades/unidad3/unidad3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Módulo 3: Vistas y Plantillas.</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../license.html">License</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

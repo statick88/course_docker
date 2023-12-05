@@ -1,0 +1,53 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Practicar el uso de volúmenes en Docker para persistir datos entre contenedores.
+
+## Instrucciones:
+
+- Crea un nuevo volumen llamado "mydata".
+- Inicia un contenedor de la imagen "nginx" y vincula el volumen "mydata" al directorio "/usr/share/nginx/html" dentro del contenedor.
+- Crea un archivo HTML dentro del volumen "mydata" con el mensaje "Hola, este es un archivo HTML persistente".
+- Inicia otro contenedor de la imagen "nginx" y vincula el mismo volumen "mydata" al directorio "/usr/share/nginx/html" dentro de este segundo contenedor.
+- Verifica que ambos contenedores comparten el mismo archivo HTML creado en el paso 3.
+
+## Entregables:
+
+- Documento explicando los comandos utilizados.
+- Capturas de pantalla que demuestren la persistencia de datos entre contenedores.
+
+## Rubrica de Evaluación:
+
+- Correcta creación y vinculación de volúmenes: 6 puntos
+- Creación y persistencia de archivos en el volumen: 8 puntos
+- Verificación exitosa de la persistencia entre contenedores: 6 puntos
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Crear un nuevo volumen:
+
+``` bash
+docker volume create mydata
+```
+Iniciar el primer contenedor Nginx con el volumen:
+
+``` bash
+docker run -d -p 8080:80 --name nginx-1 -v mydata:/usr/share/nginx/html nginx
+```
+Crear un archivo HTML dentro del volumen:
+
+``` bash
+docker exec -it nginx-1 sh -c "echo 'Hola, este es un archivo HTML persistente' > /usr/share/nginx/html/index.html"
+```
+Iniciar el segundo contenedor Nginx con el mismo volumen:
+
+``` bash
+docker run -d -p 8081:80 --name nginx-2 -v mydata:/usr/share/nginx/html nginx
+```
+Verificar la persistencia del archivo HTML:
+
+- Acceder a [http://localhost:8080](http://localhost:8080) en el navegador.
+- Acceder a [http://localhost:8081](http://localhost:8081) en el navegador.
+</details>

@@ -1,0 +1,60 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.
+
+## Instrucciones:
+
+- Crea un Dockerfile para una aplicación Python simple que imprima "Hola, Docker" al ejecutarse.
+- Construye la imagen a partir del Dockerfile.
+- Utilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.
+- Inicia el servicio con Docker Compose.
+- Accede a la aplicación en [http://localhost:5000](http://localhost:5000) y verifica que imprime "Hola, Docker".
+
+## Entregables:
+
+- Dockerfile para la aplicación Python.
+- Archivo Docker Compose.
+- Documento explicando los comandos utilizados.
+- Capturas de pantalla que demuestren el acceso a la aplicación.
+
+## Rubrica de Evaluación:
+
+- Correcta creación del Dockerfile: 6 puntos
+- Imagen construida correctamente: 4 puntos
+- Configuración adecuada en Docker Compose: 6 puntos
+- Acceso exitoso a la aplicación: 4 puntos
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Dockerfile para la aplicación Python:
+
+``` dockerfile
+FROM python:3.9
+CMD ["python", "-c", "print('Hola, Docker')"]
+```
+Construir la imagen:
+
+``` bash
+docker build -t my-python-app .
+```
+Archivo Docker Compose (docker-compose.yml):
+
+``` yaml
+version: '3'
+services:
+  myapp:
+    image: my-python-app
+    ports:
+      - "5000:5000"
+```
+Iniciar el servicio con Docker Compose:
+
+``` bash
+docker-compose up -d
+```
+Verificar el acceso a la aplicación:
+
+Acceder a [http://localhost:5000](http://localhost:5000) en el navegador.

@@ -1,0 +1,60 @@
+# Actividad Práctica
+
+## Objetivo:
+
+Aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.
+
+## Instrucciones:
+
+- Escanea la imagen "alpine:latest" en busca de vulnerabilidades utilizando la herramienta Snyk.
+- Implementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.
+- Utiliza la herramienta "docker-compose lint" para verificar la validez del archivo Docker Compose.
+- Implementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.
+- Crea un archivo ".dockerignore" para excluir archivos y directorios innecesarios en la construcción de imágenes Docker.
+
+## Entregables:
+
+- Capturas de pantalla del escaneo de vulnerabilidades.
+- Política de etiquetado para imágenes Docker.
+- Resultado de la verificación del archivo Docker Compose.
+- Documento explicando la implementación de la red de contenedores.
+- Archivo ".dockerignore".
+
+## Rubrica de Evaluación:
+
+- Escaneo de vulnerabilidades realizado con éxito: 4 puntos
+- Correcta implementación de la política de etiquetado: 4 puntos
+- Validación exitosa del archivo Docker Compose: 4 puntos
+- Implementación adecuada de la red de contenedores: 4 puntos
+- Correcta configuración del archivo ".dockerignore": 4 puntos
+
+<details>
+  <summary>Resolución de la Actividad Práctica</summary>
+
+Escaneo de vulnerabilidades:
+
+``` bash
+snyk container test alpine:latest
+```
+Política de etiquetado (ejemplo):
+
+Se etiquetarán las imágenes con el formato "versión-año-mes-día" (ejemplo: 1.0-20230115).
+
+Verificación del archivo Docker Compose:
+
+``` bash
+docker-compose config
+```
+Implementación de una red de contenedores:
+
+``` bash
+docker network create my-network
+```
+Archivo ".dockerignore" (ejemplo):
+
+``` bash
+node_modules
+.git
+.env
+```
+</details>

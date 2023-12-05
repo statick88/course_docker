@@ -1,0 +1,37 @@
+# Curso de Docker
+
+::: center
+¡Bienvenidos al Curso de Docker! 
+
+Este curso te guiará a través de un viaje desde los fundamentos hasta el dominio de Docker, la plataforma de contenedores líder en la industria.
+:::
+
+::: center
+## ¿Qué es este Curso?
+:::
+
+::: justify
+Este curso exhaustivo te llevará desde los conceptos básicos de Docker hasta la implementación práctica de aplicaciones y servicios en contenedores. A través de una combinación de teoría y ejercicios prácticos, explorarás cada aspecto diseñado para fortalecer tus habilidades en el uso de Docker. Desde la instalación inicial hasta la orquestación de contenedores con Docker Compose, este curso te proporcionará las herramientas y conocimientos necesarios para desarrollar, desplegar y escalar aplicaciones con eficiencia.
+:::
+
+::: center
+## ¿A quién está dirigido?
+:::
+
+::: justify
+Este curso está diseñado tanto para aquellos que están dando sus primeros pasos en Docker como para aquellos que desean profundizar en sus conocimientos. Ya seas un estudiante, un profesional en busca de nuevas habilidades o alguien apasionado por la tecnología de contenedores, este curso te brindará la base necesaria para trabajar de manera efectiva con Docker en cualquier entorno.
+:::
+
+::: center
+## ¿Cómo contribuir?
+:::
+
+::: justify
+Valoramos tu participación en este curso. Si encuentras errores, deseas sugerir mejoras o agregar contenido adicional, ¡nos encantaría recibir tus contribuciones! Puedes contribuir a través de nuestra plataforma en línea, donde puedes compartir tus comentarios y sugerencias. Juntos, podemos mejorar continuamente este recurso educativo para beneficiar a la comunidad de usuarios de Docker.
+
+Este curso ha sido creado con el objetivo de proporcionar acceso gratuito y universal al conocimiento de Docker. Estará disponible en línea para que cualquiera, sin importar su ubicación o circunstancias, pueda acceder y aprender a su propio ritmo.
+:::
+
+::: center
+¡Esperamos que disfrutes este emocionante viaje de aprendizaje y descubrimiento en el mundo de Docker y los contenedores!
+:::

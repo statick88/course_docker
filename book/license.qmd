@@ -1,0 +1,22 @@
+# Licencia
+
+Este curso y su contenido están protegidos por derechos de autor y son propiedad de [Nombre de la Compañía]. El contenido de este curso se proporciona con el propósito de educación y aprendizaje.
+
+## Uso Permitido
+
+Puedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje.
+
+## Restricciones
+
+No tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio.
+
+## Atribución
+
+Si compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía].
+
+## Cambios en la Licencia
+
+[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.
+
+Gracias por respetar nuestros derechos de autor y por tu comprensión.
+
