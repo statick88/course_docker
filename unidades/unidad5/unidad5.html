@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Este libro de Python te llevará desde los conceptos iniciales hasta la creación de aplicaciones prácticas con Frameworks como Django, Flask, Fast Api, PyScript y Regex. Apto para principiantes, aprenderás a programar y desarrollar proyectos reales con Bases de datos, APIs y más.">
+
+<title>Python 2023 - Módulo 5:Docker.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../unidades/unidad3/unidad3.html" rel="prev">
+<link href="../../python-logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/unidad5.html">Unidad 5: Docker</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/unidad5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Módulo 5:Docker.</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../python-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Python 2023</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/statick88/Course_of_python/tree/main/book/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../curso_python_2023.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../../curso_python_2023.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Unidad 0: Git y Github</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad0/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 0: Git/Github</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Unidad 1: Introducción a Django</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad1/unidad1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 1: Introducción a Django.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Unidad 2: Introducción a Django</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad2/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 2: Modelos y Bases de Datos.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Unidad 3: Vistas y Plantillas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad3/unidad3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Módulo 3: Vistas y Plantillas.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Unidad 5: Docker</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad5/unidad5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Módulo 5:Docker.</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fundamentos-de-docker." id="toc-fundamentos-de-docker." class="nav-link active" data-scroll-target="#fundamentos-de-docker.">Fundamentos de Docker.</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-docker" id="toc-qué-es-docker" class="nav-link" data-scroll-target="#qué-es-docker">¿Qué es Docker?</a></li>
+  <li><a href="#por-qué-utilizar-docker" id="toc-por-qué-utilizar-docker" class="nav-link" data-scroll-target="#por-qué-utilizar-docker">¿Por qué utilizar Docker?</a></li>
+  </ul></li>
+  <li><a href="#problemas-que-están-presentes-en-el-desarrollo-de-software." id="toc-problemas-que-están-presentes-en-el-desarrollo-de-software." class="nav-link" data-scroll-target="#problemas-que-están-presentes-en-el-desarrollo-de-software.">Problemas que están presentes en el Desarrollo de Software.</a></li>
+  <li><a href="#maquinas-virtuales-vs-docker." id="toc-maquinas-virtuales-vs-docker." class="nav-link" data-scroll-target="#maquinas-virtuales-vs-docker.">Maquinas Virtuales vs Docker.</a>
+  <ul class="collapse">
+  <li><a href="#virtualización" id="toc-virtualización" class="nav-link" data-scroll-target="#virtualización">Virtualización</a></li>
+  <li><a href="#máquinas-virtuales." id="toc-máquinas-virtuales." class="nav-link" data-scroll-target="#máquinas-virtuales.">Máquinas Virtuales.</a></li>
+  <li><a href="#problemas-de-las-vms" id="toc-problemas-de-las-vms" class="nav-link" data-scroll-target="#problemas-de-las-vms">Problemas de las VMs</a></li>
+  <li><a href="#contenedores." id="toc-contenedores." class="nav-link" data-scroll-target="#contenedores.">Contenedores.</a></li>
+  <li><a href="#containerización." id="toc-containerización." class="nav-link" data-scroll-target="#containerización.">Containerización.</a></li>
+  </ul></li>
+  <li><a href="#arquitectura-de-docker." id="toc-arquitectura-de-docker." class="nav-link" data-scroll-target="#arquitectura-de-docker.">Arquitectura de Docker.</a></li>
+  <li><a href="#trabajar-con-docker." id="toc-trabajar-con-docker." class="nav-link" data-scroll-target="#trabajar-con-docker.">Trabajar con Docker.</a></li>
+  <li><a href="#docker-desde-visual-studio-code." id="toc-docker-desde-visual-studio-code." class="nav-link" data-scroll-target="#docker-desde-visual-studio-code.">Docker desde Visual Studio Code.</a></li>
+  <li><a href="#introducción-a-docker-compose" id="toc-introducción-a-docker-compose" class="nav-link" data-scroll-target="#introducción-a-docker-compose">Introducción a Docker Compose</a></li>
+  <li><a href="#ventajas-de-usar-docker-compose" id="toc-ventajas-de-usar-docker-compose" class="nav-link" data-scroll-target="#ventajas-de-usar-docker-compose">Ventajas de usar Docker Compose</a>
+  <ul class="collapse">
+  <li><a href="#cómo-usar-docker-compose-en-nuestro-proyecto-django-blog" id="toc-cómo-usar-docker-compose-en-nuestro-proyecto-django-blog" class="nav-link" data-scroll-target="#cómo-usar-docker-compose-en-nuestro-proyecto-django-blog">Cómo usar Docker Compose en nuestro proyecto Django “Blog”</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/Course_of_python/edit/main/book/unidades/unidad5/unidad5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/Course_of_python/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/Course_of_python/blob/main/book/unidades/unidad5/unidad5.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Módulo 5:Docker.</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="fundamentos-de-docker." class="level2">
+<h2 class="anchored" data-anchor-id="fundamentos-de-docker.">Fundamentos de Docker.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2.png" class="img-fluid figure-img" width="292"></p>
+</figure>
+</div>
+<section id="qué-es-docker" class="level3">
+<h3 class="anchored" data-anchor-id="qué-es-docker">¿Qué es Docker?</h3>
+<p>Docker es una tecnología que se ha convertido en el estandar para desarrollar, distribuir y ejecutar aplicaciones a nivel productivo en todo el mundo, en la nube, un nuestras máquinas, es decir en todos lados.</p>
+</section>
+<section id="por-qué-utilizar-docker" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-utilizar-docker">¿Por qué utilizar Docker?</h3>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/2.png" class="img-fluid" data-fig-align="center" width="678"></td>
+</tr>
+</tbody>
+</table>
+<p>Imaginemos un proyecto en el que muchas personas (decenas de miles) puedan colaborar en una especie de pizarra digital para compartir nuestras ideas y colaborar, para poder escalar a cientos de miles o millones de usuarios existen muchos desafíos, esto se refiere a lo que sucede con el software cuando lo escribimos en nuestras máquinas y lo que debe hacer cuando este en los dispositivos, los servidores, la nube, etc.</p>
+<p>Estos son los problemas a los que nos enfrenteamos los desarrolladores en todo el mundo, sin importar el lenguaje de programación, framework, base de datos o servidor que utilicemos.</p>
+<p>Docker nos permite resolver este tipo de problemas triviales de forma sencilla, rápida y eficiente. Ayuda a trabajar de forma rápida, mejor con mayor confianza y seguridad.</p>
+</section>
+</section>
+<section id="problemas-que-están-presentes-en-el-desarrollo-de-software." class="level2">
+<h2 class="anchored" data-anchor-id="problemas-que-están-presentes-en-el-desarrollo-de-software.">Problemas que están presentes en el Desarrollo de Software.</h2>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/img.jpeg" class="img-fluid" data-fig-align="center" width="722"></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li><strong>Construir:</strong> Necesitamos saber como se construye el software que estamos desarrollando.</li>
+<li><strong>Distribuir:</strong> Como se va a distribuir a los usuarios que van a utilizar el software</li>
+<li><strong>Ejecutar:</strong> Como va a funcionar el sofware que hemos desarrollado.</li>
+</ol>
+<p><strong>1. Construir.-</strong> Escribir código en la máquina del desarrollador. (Compile, que no compile, arreglar el bug, compartir código, etc. )</p>
+<p>Problemática:</p>
+<ul>
+<li>Entorno de desarrollo (paquetes)</li>
+<li>Dependencias (Frameworks, bibliotecas)</li>
+<li>Versiones de entornos de ejecución (runtime, versión Node)</li>
+<li>Equivalencia de entornos de desarrollo (compartir el código)</li>
+<li>Equivalencia con entornos productivos (pasar a producción)</li>
+<li>Servicios externos (integración con otros servicios ej: Base de Datos)</li>
+</ul>
+<p><strong>2. Distribuir.-</strong> Llevar la aplicación donde se va a desplegar (Transformarse en un artefacto).</p>
+<p>Problemática:</p>
+<ul>
+<li>Output de build heterogeneo (múltiples compilaciones)</li>
+<li>Acceso a servidores productivos (No tenemos acceso al servidor)</li>
+<li>Ejecución nativa vs virtualizada</li>
+<li>Entornos Serverless</li>
+</ul>
+<p><strong>3. Ejecutar.-</strong> Implementar la solución en el ambiente de producción (Subir a producción).</p>
+<p>Hacer que funcione como debería funcionar.</p>
+<p>Problemática:</p>
+<ul>
+<li>Dependencia de aplicación (paquetes, runtime)</li>
+<li>Compatibilidad con el entorno productivo (sistema operativo poco amigable con la solución)</li>
+<li>Disponibilidad de servicios externos (Acceso a los servicios externos)</li>
+<li>Recursos de hardware (Capacidad de ejecución - Menos memoria, procesador más debil).</li>
+</ul>
+</section>
+<section id="maquinas-virtuales-vs-docker." class="level2">
+<h2 class="anchored" data-anchor-id="maquinas-virtuales-vs-docker.">Maquinas Virtuales vs Docker.</h2>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/dockev vs.png" class="img-fluid" data-fig-align="center" width="722"></td>
+</tr>
+</tbody>
+</table>
+<section id="virtualización" class="level3">
+<h3 class="anchored" data-anchor-id="virtualización">Virtualización</h3>
+<p>Version virtual de algún recurso tecnológico, como un servidor, un dispositivo de almacenamiento, un sistema operativo o recurso de red.</p>
+<p>La virtualización resuelve los tres problemas de la sección anterior.</p>
+</section>
+<section id="máquinas-virtuales." class="level3">
+<h3 class="anchored" data-anchor-id="máquinas-virtuales.">Máquinas Virtuales.</h3>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/th-437557915.jpeg" class="img-fluid" data-fig-align="center"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="problemas-de-las-vms" class="level3">
+<h3 class="anchored" data-anchor-id="problemas-de-las-vms">Problemas de las VMs</h3>
+<p><strong>Peso:</strong></p>
+<ul>
+<li><p>En el orden de los Gb. Repiten archivos en común.</p></li>
+<li><p>Inicio Lento</p></li>
+</ul>
+<p><strong>Costo de administración:</strong></p>
+<ul>
+<li>Necesita mantenimiento igual que cualquier otra comptuadora.</li>
+</ul>
+<p><strong>Múltiples formatos.</strong></p>
+<ul>
+<li>VDI, VMDK, VHD, raw, entre otros.</li>
+</ul>
+</section>
+<section id="contenedores." class="level3">
+<h3 class="anchored" data-anchor-id="contenedores.">Contenedores.</h3>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/contenedor.jpeg" class="img-fluid" width="751"></td>
+</tr>
+</tbody>
+</table>
+<p>¿Qué es un contenedor?</p>
+<ul>
+<li><p>Es una agrupación de procesos.</p></li>
+<li><p>Es una entidad lógica, no tiene el limite estricto de las máquinas virtuales, emulación del sistema operativo simulado por otra más abajo.</p></li>
+<li><p>Ejecuta sus procesos de forma nativa.</p></li>
+<li><p>Los procesos que se ejecutan adentro de los contenedores ven su universo como el contenedor lo define, no pueden ver mas allá del contenedor, a pesar de estar corriendo en una maquina más grande.</p></li>
+<li><p>No tienen forma de consumir más recursos que los que se les permite. Si esta restringido en memoria ram por ejemplo, es la única que pueden usar.</p></li>
+<li><p>A fines prácticos los podemos imaginar cómo maquinas virtuales, pero NO lo son. Máquinas virtuales livianas.</p></li>
+<li><p>Docker corre de forma nativa solo en Linux.</p></li>
+<li><p>Sector del disco: Cuando un contenedor es ejecutado, el daemon de docker le dice, a partir de acá para arriba este disco es tuyo, pero no puedes subir mas arriba.</p></li>
+<li><p>Docker hace que los procesos adentro de un contenedor este aislados del resto del sistema, no le permite ver más allá.</p></li>
+<li><p>Cada contenedor tiene un ID único, también tiene un nombre.</p></li>
+</ul>
+</section>
+<section id="containerización." class="level3">
+<h3 class="anchored" data-anchor-id="containerización.">Containerización.</h3>
+<p>Empleo de <strong>contenedores</strong> para construir y desplegar software.</p>
+<p><strong>Caracteristicas.</strong></p>
+<ul>
+<li><p>Flexibles</p></li>
+<li><p>Livianos</p></li>
+<li><p>Portables</p></li>
+<li><p>Bajo acoplamiento</p></li>
+<li><p>Escalables</p></li>
+<li><p>Seguros</p></li>
+</ul>
+</section>
+</section>
+<section id="arquitectura-de-docker." class="level2">
+<h2 class="anchored" data-anchor-id="arquitectura-de-docker.">Arquitectura de Docker.</h2>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="images/docker-engine-922965001.jpg" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+<p>Docker es una Plataforma que permite construir, ejecutar y compartir aplicaciones mediante <strong>contenedores</strong>.</p>
+<p><strong>Container:</strong> Es una instancia de una imagen.</p>
+<p><strong>Image:</strong> Es un paquete de software que incluye todo lo necesario para ejecutar una aplicación.</p>
+<p><strong>Network:</strong> Es una red virtual que permite la comunicación entre contenedores y con el exterior.</p>
+<p><strong>Data Volumes:</strong> Es un directorio que se monta en un contenedor para que este pueda acceder a el.</p>
+</section>
+<section id="trabajar-con-docker." class="level2">
+<h2 class="anchored" data-anchor-id="trabajar-con-docker.">Trabajar con Docker.</h2>
+<p><strong>Paso 1: Instalar Docker</strong></p>
+<p>Lo primero que debemos hacer es instalar Docker en nuestro sistema operativo. Para ello, visita el sitio web oficial de Docker y sigue las instrucciones de instalación para tu sistema operativo específico.</p>
+<p><strong>Paso 2: Verificar la Instalación</strong></p>
+<p>Una vez instalado Docker, verifica que esté funcionando correctamente ejecutando el siguiente comando:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando mostrará la versión de Docker instalada en tu sistema.</p>
+<p>Ahora empecemos a probar Docker.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando descargará la imagen de Docker <strong>hello-world</strong> y la ejecutará en un contenedor. Cuando el contenedor se ejecute, imprimirá un mensaje y saldrá.</p>
+<p><strong>Paso 3: Descargar una Imagen de Docker</strong></p>
+<p>Docker utiliza imágenes para crear contenedores. Una imagen es una plantilla de solo lectura que contiene el sistema operativo, el software y los archivos necesarios para ejecutar una aplicación. Puedes descargar imágenes de Docker Hub, que es un registro de imágenes públicas disponibles para su uso.</p>
+<p>Para descargar una imagen, utiliza el siguiente comando:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull nombre_de_la_imagen </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por ejemplo, para descargar la imagen oficial de Ubuntu, puedes ejecutar:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ubuntu </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 4: Ver Imágenes Descargadas</strong></p>
+<p>Para ver la lista de imágenes descargadas en tu sistema, puedes utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 5: Crear un Contenedor</strong></p>
+<p>Una vez que tengas una imagen descargada, puedes crear un contenedor basado en esa imagen. Para ello, utiliza el siguiente comando:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run nombre_de_la_imagen </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por ejemplo, para crear un contenedor basado en la imagen de Ubuntu, puedes ejecutar:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run ubuntu </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 6: Ver Contenedores en Ejecución</strong></p>
+<p>Para ver la lista de contenedores en ejecución en tu sistema, puedes utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 7: Ver Todos los Contenedores</strong></p>
+<p>Para ver la lista de todos los contenedores, incluidos los que no están en ejecución, puedes utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora probemos el docker id con el comando inxpect.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect ID_del_contenedor </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con este comando vemos toda la información del contenedor.</p>
+<p>Ahora probemos dar un NAME al contenedor.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> nombre_del_contenedor nombre_de_la_imagen </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Muy bien, por favor hagamos una pequeña práctica para probar lo que hemos aprendido, por favor creemos 10 contenedores con nombres de paises, por ejemplo: Colombia, Argentina, Brasil, Chile, Ecuador, España, Francia, Italia, México, Perú.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> Colombia hello-world</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> Argentina hello-world</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> Brasil hello-world</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> Chile hello-world</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">'''etc'''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora probemos el comando inxpect con el nombre del contenedor.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect nombre_del_contenedor </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 8: Detener un Contenedor</strong></p>
+<p>Para detener un contenedor en ejecución, puedes utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop ID_del_contenedor </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>ID_del_contenedor</code> con el ID real del contenedor que deseas detener.</p>
+<p><strong>Paso 9: Eliminar un Contenedor</strong></p>
+<p>Antes de continuar probemos el comando docker container prune, este comando elimina todos los contenedores que no estén en ejecución.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container prune </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para eliminar un contenedor que no está en ejecución, puedes utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm ID_del_contenedor </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>ID_del_contenedor</code> con el ID real del contenedor que deseas eliminar.</p>
+</section>
+<section id="docker-desde-visual-studio-code." class="level2">
+<h2 class="anchored" data-anchor-id="docker-desde-visual-studio-code.">Docker desde Visual Studio Code.</h2>
+<p>los pasos para instalar la extensión de Docker en Visual Studio Code y cómo utilizarla para trabajar con Docker en tu proyecto.</p>
+<p><strong>Paso 1:</strong> Instalar la extensión de Docker para Visual Studio Code</p>
+<p>Abre Visual Studio Code.</p>
+<p>Haz clic en el icono de extensiones en el panel lateral izquierdo o presiona Ctrl+Shift+X (o Cmd+Shift+X en macOS) para abrir la sección de extensiones.</p>
+<p>En el cuadro de búsqueda, escribe “Docker” y selecciona la extensión “Docker” desarrollada por Microsoft.</p>
+<p>Haz clic en el botón “Instalar” para instalar la extensión.</p>
+<p>Una vez instalada, verás un nuevo icono de Docker en la barra lateral izquierda de VS Code.</p>
+<p><strong>Paso 2:</strong> Utilizar la extensión de Docker en tu proyecto</p>
+<p>Una vez que la extensión de Docker está instalada, puedes utilizarla para gestionar imágenes y contenedores de Docker en tu proyecto.</p>
+<p>Abre la carpeta de tu proyecto en Visual Studio Code.</p>
+<p>Haz clic en el icono de Docker en la barra lateral izquierda para abrir la vista de Docker.</p>
+<p>En la vista de Docker, verás diferentes secciones como “Imagenes”, “Contenedores”, “Volúmenes” y “Redes”.</p>
+<p>Para construir una imagen de Docker para tu proyecto, haz clic con el botón derecho en la carpeta raíz de tu proyecto y selecciona “Build Image…” en el menú contextual. Esto abrirá una ventana donde puedes configurar los detalles de la imagen y su etiqueta.</p>
+<p>Para crear y ejecutar un contenedor basado en la imagen que acabas de construir, haz clic con el botón derecho en la imagen en la sección “Imagenes” y selecciona “Run”. Esto abrirá una ventana donde puedes configurar las opciones del contenedor, como los puertos y las variables de entorno.</p>
+<p>Una vez que el contenedor esté en ejecución, puedes ver sus registros y otros detalles haciendo clic en el contenedor en la sección “Contenedores”.</p>
+<p>Puedes detener y eliminar contenedores desde la vista de Docker haciendo clic con el botón derecho en el contenedor y seleccionando “Stop” o “Remove”.</p>
+<p>Estos son algunos de los pasos básicos para utilizar Docker desde Visual Studio Code con la extensión oficial de Docker.</p>
+<p>La extensión proporciona una forma sencilla de gestionar imágenes y contenedores de Docker directamente desde el entorno de desarrollo de VS Code, lo que facilita el trabajo con Docker en tus proyectos.</p>
+<p><strong>Práctica: Dockerizar el Proyecto Django “Blog”</strong></p>
+<p>A continuación, vamos a dockerizar el proyecto Django <strong>Blog</strong> que hemos estado desarrollando. Para ello, vamos a seguir los siguientes pasos:</p>
+<ol type="1">
+<li>Crear un archivo <code>Dockerfile</code> en el directorio raíz del proyecto.</li>
+</ol>
+<p>Este archivo contendrá las instrucciones para construir la imagen de Docker.</p>
+<ol start="2" type="1">
+<li>En el <code>Dockerfile</code>, especificar la imagen base que utilizaremos.</li>
+</ol>
+<p>Por ejemplo, podemos usar la imagen oficial de Python para Django:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.8 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Copiar el código fuente de nuestra aplicación al contenedor:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . /app </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Establecer el directorio de trabajo dentro del contenedor:</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Instalar las dependencias de Python necesarias para nuestro proyecto:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Exponer el puerto en el que se ejecutará nuestro servidor de Django:</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 8000 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Especificar el comando para ejecutar nuestra aplicación:</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"manage.py"</span>, <span class="st">"runserver"</span>, <span class="st">"0.0.0.0:8000"</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li><p>Guardar y cerrar el archivo <code>Dockerfile</code>.</p></li>
+<li><p>Desde la línea de comandos, navegar al directorio raíz del proyecto y ejecutar el siguiente comando para construir la imagen de Docker:</p></li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> nombre_de_la_imagen . </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>nombre_de_la_imagen</code> con un nombre significativo para tu imagen.</p>
+<ol start="10" type="1">
+<li>Una vez que la imagen se haya construido correctamente, puedes crear un contenedor basado en esa imagen:</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 8000:8000 nombre_de_la_imagen </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reemplaza <code>nombre_de_la_imagen</code> con el nombre de la imagen que creaste en el paso anterior.</p>
+<ol start="11" type="1">
+<li>Ahora, deberías poder acceder a tu aplicación Django desde tu navegador ingresando <code>http://localhost:8000</code>.</li>
+</ol>
+<p>Con estos pasos, habrás dockerizado exitosamente tu proyecto Django <strong>Blog</strong> y estará listo para ser desplegado en cualquier entorno que tenga Docker instalado.</p>
+</section>
+<section id="introducción-a-docker-compose" class="level2">
+<h2 class="anchored" data-anchor-id="introducción-a-docker-compose">Introducción a Docker Compose</h2>
+<p>Docker Compose es una herramienta que permite definir y gestionar aplicaciones multi-contenedor. Permite definir las dependencias, servicios, redes y volúmenes que componen una aplicación en un archivo YAML, lo que facilita la configuración y el despliegue de la aplicación en diferentes entornos.</p>
+<p>A diferencia de Docker, que se enfoca en la construcción y ejecución de contenedores individuales, Docker Compose se centra en la orquestación de múltiples contenedores y su interacción.</p>
+</section>
+<section id="ventajas-de-usar-docker-compose" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas-de-usar-docker-compose">Ventajas de usar Docker Compose</h2>
+<p>Definición clara de servicios: Con Docker Compose, podemos definir todos los servicios necesarios para nuestra aplicación en un solo archivo YAML, lo que facilita la gestión de la infraestructura de la aplicación.</p>
+<p>Configuración simplificada: Docker Compose permite establecer todas las configuraciones necesarias para cada servicio en un solo lugar, lo que facilita la gestión de la configuración y el despliegue en diferentes entornos.</p>
+<p>Interconexión de servicios: Docker Compose facilita la conexión de diferentes servicios y la comunicación entre ellos, lo que es especialmente útil para aplicaciones que requieren una arquitectura de microservicios.</p>
+<p>Escalabilidad: Docker Compose permite escalar servicios individuales según las necesidades de la aplicación, lo que facilita el escalado horizontal de la aplicación.</p>
+<section id="cómo-usar-docker-compose-en-nuestro-proyecto-django-blog" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-usar-docker-compose-en-nuestro-proyecto-django-blog">Cómo usar Docker Compose en nuestro proyecto Django “Blog”</h3>
+<p>Para utilizar Docker Compose en nuestro proyecto Django <strong>Blog</strong>, seguiremos los siguientes pasos:</p>
+<ol type="1">
+<li>Crear un archivo docker-compose.yml en el directorio raíz del proyecto.</li>
+<li>Este archivo contendrá la configuración de los servicios y contenedores de nuestra aplicación.</li>
+</ol>
+<p>En el archivo docker-compose.yml, definir los servicios necesarios para nuestra aplicación. Por ejemplo, podemos definir dos servicios: uno para el servidor de Django y otro para la base de datos.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">db</span><span class="kw">:</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> postgres</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_DB</span><span class="kw">:</span><span class="at"> blog</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_USER</span><span class="kw">:</span><span class="at"> myuser</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_PASSWORD</span><span class="kw">:</span><span class="at"> mypassword</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">web</span><span class="kw">:</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> python manage.py runserver 0.0.0.0:8000</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8000:8000"</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> db</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Guardar y cerrar el archivo docker-compose.yml.</p>
+<p>Desde la línea de comandos, navegar al directorio raíz del proyecto y ejecutar el siguiente comando para construir las imágenes de los servicios definidos en el archivo docker-compose.yml:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> build</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez que las imágenes se hayan construido correctamente, puedes ejecutar el siguiente comando para iniciar los contenedores definidos en el archivo docker-compose.yml:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora, deberías poder acceder a tu aplicación Django desde tu navegador ingresando <a href="http://localhost:8000" class="uri">http://localhost:8000</a>.</p>
+<p>Con estos pasos, habrás utilizado Docker Compose para gestionar los servicios y contenedores de tu aplicación Django “Blog”. Docker Compose simplifica el despliegue y la gestión de aplicaciones multi-contenedor, lo que lo convierte en una herramienta muy útil para el desarrollo de aplicaciones complejas y escalables.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../unidades/unidad3/unidad3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Módulo 3: Vistas y Plantillas.</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../license.html">License</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,338 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Docker 2023",
+    "section": "",
+    "text": "Curso de Docker"
+  },
+  {
+    "objectID": "index.html#qué-es-este-curso",
+    "href": "index.html#qué-es-este-curso",
+    "title": "Docker 2023",
+    "section": "¿Qué es este Curso?",
+    "text": "¿Qué es este Curso?"
+  },
+  {
+    "objectID": "index.html#a-quién-está-dirigido",
+    "href": "index.html#a-quién-está-dirigido",
+    "title": "Docker 2023",
+    "section": "¿A quién está dirigido?",
+    "text": "¿A quién está dirigido?"
+  },
+  {
+    "objectID": "index.html#cómo-contribuir",
+    "href": "index.html#cómo-contribuir",
+    "title": "Docker 2023",
+    "section": "¿Cómo contribuir?",
+    "text": "¿Cómo contribuir?"
+  },
+  {
+    "objectID": "unidades/unidad0.html#conceptos",
+    "href": "unidades/unidad0.html#conceptos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Conceptos:",
+    "text": "Conceptos:\n\nDocker: Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.\nContenedor: Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias."
+  },
+  {
+    "objectID": "unidades/unidad0.html#ejemplos",
+    "href": "unidades/unidad0.html#ejemplos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\n\nDescargar una imagen:\ndocker pull docker/getting-started\nEste comando descarga la imagen getting-started desde el registro público de Docker.\nCorrer un contenedor en el puerto 80:\ndocker run -d -p 80:80 docker/getting-started\nEste comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).\n\nPráctica:\nDescarga la imagen “nginx”:\ndocker pull nginx\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor en el puerto 8080:\ndocker run -d -p 8080:80 nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado:\nUtiliza los comandos para detener y eliminar un contenedor.\n\n\n\n\n\nResolución de la Actividad Práctica\n\n\nDescarga la imagen de Nginx.\ndocker pull nginx\nCrea y ejecuta un contenedor en el puerto 8080:\ndocker run -d -p 8080:80 nginx\nDetén y elimina el contenedor creado:\ndocker stop $(docker ps -q)\ndocker rm $(docker ps -a -q)\n\n\n\n\n\n\n\n\nTip\n\n\n\nCombinar banderas mejora la eficiencia en la ejecución de comandos."
+  },
+  {
+    "objectID": "unidades/unidad0.html#práctica",
+    "href": "unidades/unidad0.html#práctica",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Práctica:",
+    "text": "Práctica:\nDescarga la imagen “nginx”:\ndocker pull nginx\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor en el puerto 8080:\ndocker run -d -p 8080:80 nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado:\nUtiliza los comandos para detener y eliminar un contenedor."
+  },
+  {
+    "objectID": "unidades/unidad0.html#qué-aprendimos",
+    "href": "unidades/unidad0.html#qué-aprendimos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#objetivo",
+    "href": "unidades/ejercicios0.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nFamiliarizarse con los comandos básicos de Docker y atajos para gestionar contenedores de manera eficiente. Instrucciones:\n\nUtilizando el comando docker run, inicia un contenedor de la imagen “nginx” en segundo plano, mapeando el puerto 8080 del host al puerto 80 del contenedor.\nDetén y elimina el contenedor recién creado utilizando comandos Docker.\nCrea un nuevo contenedor con la imagen “alpine” y ejecuta un terminal interactivo dentro de él.\nDesde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.\nCrea una imagen llamada “alpine-curl” a partir de este contenedor modificado."
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#entregables",
+    "href": "unidades/ejercicios0.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nDocumento explicando los comandos utilizados.\nImagen Docker “alpine-curl” disponible localmente."
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios0.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nCorrecta ejecución de comandos: 6 puntos\nClara documentación: 4 puntos\nImagen “alpine-curl” creada correctamente: 10 puntos\n\n\n\nResolución de la Actividad Práctica\n\n\nIniciar un contenedor Nginx:\n\ndocker run -d -p 8080:80 --name my-nginx nginx\nDetener y eliminar el contenedor Nginx:\ndocker stop my-nginx\ndocker rm my-nginx\nCrear un contenedor Alpine interactivo:\ndocker run -it --name my-alpine alpine /bin/sh\nInstalar el paquete curl desde el contenedor Alpine:\napk add --no-cache curl\nCrear una nueva imagen “alpine-curl”:\ndocker commit my-alpine alpine-curl"
+  },
+  {
+    "objectID": "unidades/unidad1.html#conceptos",
+    "href": "unidades/unidad1.html#conceptos",
+    "title": "2: Trabajando con Volúmenes",
+    "section": "Conceptos:",
+    "text": "Conceptos:\nVolumes: Son mecanismos que permiten persistir datos más allá del ciclo de vida de un contenedor."
+  },
+  {
+    "objectID": "unidades/unidad1.html#ejemplos",
+    "href": "unidades/unidad1.html#ejemplos",
+    "title": "2: Trabajando con Volúmenes",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\nCrear un nuevo volumen:\ndocker volume create my_volume\nEste comando crea un volumen llamado “my_volume”.\nUsar un volumen al correr un contenedor:\ndocker run -v my_volume:/app -d node:18-alpine\nEste comando ejecuta un contenedor de Node.js y vincula el volumen “my_volume” al directorio “/app” dentro del contenedor."
+  },
+  {
+    "objectID": "unidades/unidad1.html#práctica",
+    "href": "unidades/unidad1.html#práctica",
+    "title": "2: Trabajando con Volúmenes",
+    "section": "Práctica:",
+    "text": "Práctica:\n\nCrea un volumen llamado data_volume.\nCrea un volumen llamado data_volume.\nEjecuta un contenedor de MySQL, utilizando el volumen creado.\n\n\n\nResolución de la Actividad Práctica\n\nCrea un volumen:\ndocker volume create data_volume\nEjecuta el contenedor MySQL con el volumen creado:\ndocker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mydb -v data_volume:/var/lib/mysql --network-alias mysql -d mysql:latest\n\n\n\n\n\n\n\nTip\n\n\n\nRecuerda la regla de oro: Si dos contenedores están en la misma red, podrán comunicarse."
+  },
+  {
+    "objectID": "unidades/unidad1.html#qué-aprendimos",
+    "href": "unidades/unidad1.html#qué-aprendimos",
+    "title": "2: Trabajando con Volúmenes",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\nAhora entendemos cómo trabajar con volúmenes para mantener la persistencia de datos en Docker.\nAprendimos sobre Named Volumes y cómo vincularlos a contenedores."
+  },
+  {
+    "objectID": "unidades/ejercicios1.html#objetivo",
+    "href": "unidades/ejercicios1.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nPracticar el uso de volúmenes en Docker para persistir datos entre contenedores."
+  },
+  {
+    "objectID": "unidades/ejercicios1.html#instrucciones",
+    "href": "unidades/ejercicios1.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nCrea un nuevo volumen llamado “mydata”.\nInicia un contenedor de la imagen “nginx” y vincula el volumen “mydata” al directorio “/usr/share/nginx/html” dentro del contenedor.\nCrea un archivo HTML dentro del volumen “mydata” con el mensaje “Hola, este es un archivo HTML persistente”.\nInicia otro contenedor de la imagen “nginx” y vincula el mismo volumen “mydata” al directorio “/usr/share/nginx/html” dentro de este segundo contenedor.\nVerifica que ambos contenedores comparten el mismo archivo HTML creado en el paso 3."
+  },
+  {
+    "objectID": "unidades/ejercicios1.html#entregables",
+    "href": "unidades/ejercicios1.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren la persistencia de datos entre contenedores."
+  },
+  {
+    "objectID": "unidades/ejercicios1.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios1.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación y vinculación de volúmenes: 6 puntos\nCreación y persistencia de archivos en el volumen: 8 puntos\nVerificación exitosa de la persistencia entre contenedores: 6 puntos\n\n\n\nResolución de la Actividad Práctica\n\nCrear un nuevo volumen:\ndocker volume create mydata\nIniciar el primer contenedor Nginx con el volumen:\ndocker run -d -p 8080:80 --name nginx-1 -v mydata:/usr/share/nginx/html nginx\nCrear un archivo HTML dentro del volumen:\ndocker exec -it nginx-1 sh -c \"echo 'Hola, este es un archivo HTML persistente' &gt; /usr/share/nginx/html/index.html\"\nIniciar el segundo contenedor Nginx con el mismo volumen:\ndocker run -d -p 8081:80 --name nginx-2 -v mydata:/usr/share/nginx/html nginx\nVerificar la persistencia del archivo HTML:\n\nAcceder a http://localhost:8080 en el navegador.\nAcceder a http://localhost:8081 en el navegador."
+  },
+  {
+    "objectID": "unidades/unidad2.html#conceptos",
+    "href": "unidades/unidad2.html#conceptos",
+    "title": "3: Dockerfile y Docker Compose",
+    "section": "Conceptos:",
+    "text": "Conceptos:\nDockerfile: Es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es como un plano para la construcción de imágenes.\nDocker Compose: Es una herramienta que permite definir y compartir aplicaciones multi-contenedor. Con un solo archivo (docker-compose.yml), puedes configurar y ejecutar tus servicios."
+  },
+  {
+    "objectID": "unidades/unidad2.html#ejemplos",
+    "href": "unidades/unidad2.html#ejemplos",
+    "title": "3: Dockerfile y Docker Compose",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\n\nCrear un Dockerfile para una aplicación Node.js:\n\nFROM node:14\nWORKDIR /app\nCOPY . .\nCMD [\"npm\", \"start\"]\nEste Dockerfile configura una imagen de Node.js, establece el directorio de trabajo, copia los archivos locales al contenedor y define el comando para ejecutar la aplicación.\n\nConfigurar Docker Compose para una aplicación Node.js:\n\n    version: '3'\n    services:\n      myapp:\n        build:\n          context: .\n          dockerfile: Dockerfile.node\n        image: my-node-app\nEste archivo docker-compose.yml define un servicio llamado “myapp” que construirá una imagen usando el Dockerfile “Dockerfile.node” y le asignará el nombre de “my-node-app”."
+  },
+  {
+    "objectID": "unidades/unidad2.html#práctica",
+    "href": "unidades/unidad2.html#práctica",
+    "title": "3: Dockerfile y Docker Compose",
+    "section": "Práctica:",
+    "text": "Práctica:\n\nCrea un Dockerfile para una aplicación Python simple:\nConfigura un archivo docker-compose.yml para ejecutar la aplicación:\n\n\nResolución de la Actividad Práctica\n\nEjemplo de Dockerfile (nombre: Dockerfile.python):\n\n\nFROM python:3.9\nWORKDIR /app\nCOPY . .\nCMD [\"python\", \"app.py\"]\nEjemplo de docker-compose.yml:\nversion: '3'\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.python\n    image: my-python-app\n\n\n\n\n\n\n\nTip\n\n\n\n\nCuando trabajas con Docker Compose, es útil conocer el comando docker-compose up con la opción -d para ejecutar los contenedores en segundo plano. Esto permite liberar la terminal para otras operaciones mientras tus servicios continúan ejecutándose en el fondo.\n\ndocker-compose up -d\n\nEste comando es especialmente útil en entornos de desarrollo donde deseas ejecutar múltiples servicios, pero aún así necesitas utilizar tu terminal para otras tareas. Además, puedes detener los servicios en segundo plano con:\n\ndocker-compose down\nEsto ayudará a liberar los recursos utilizados por los contenedores sin afectar tu entorno de desarrollo principal."
+  },
+  {
+    "objectID": "unidades/unidad2.html#qué-aprendimos",
+    "href": "unidades/unidad2.html#qué-aprendimos",
+    "title": "3: Dockerfile y Docker Compose",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\nHemos adquirido habilidades para crear imágenes personalizadas y gestionar aplicaciones multi-contenedor con Docker Compose.\nAhora comprendemos la importancia de organizar nuestras aplicaciones en contenedores y cómo Docker Compose simplifica la orquestación."
+  },
+  {
+    "objectID": "unidades/ejercicios2.html#objetivo",
+    "href": "unidades/ejercicios2.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+  },
+  {
+    "objectID": "unidades/ejercicios2.html#instrucciones",
+    "href": "unidades/ejercicios2.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+  },
+  {
+    "objectID": "unidades/ejercicios2.html#entregables",
+    "href": "unidades/ejercicios2.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación."
+  },
+  {
+    "objectID": "unidades/ejercicios2.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios2.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
+  },
+  {
+    "objectID": "unidades/unidad3.html#conceptos",
+    "href": "unidades/unidad3.html#conceptos",
+    "title": "4: Buenas Prácticas y Seguridad",
+    "section": "Conceptos:",
+    "text": "Conceptos:\nEscaneo de imagen: Después de construir una imagen, es buena práctica realizar un escaneo en busca de vulnerabilidades.\nCapas de la imagen: Cada imagen de Docker se construye en capas, permitiendo un nivel de abstracción independiente.\nMulti-Stage builds: Permiten separar dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción, reduciendo el tamaño de la imagen final."
+  },
+  {
+    "objectID": "unidades/unidad3.html#ejemplos",
+    "href": "unidades/unidad3.html#ejemplos",
+    "title": "4: Buenas Prácticas y Seguridad",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\nEscaneo de imagen con Snyk:\nsnyk container test &lt;IMAGE_NAME:TAG&gt;\nUtilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades.\nUso de Multi-Stage builds:\nFROM node:14 AS builder\nWORKDIR /app\n  COPY . .\n  RUN npm install\n  RUN npm run build\n\n  FROM nginx:alpine\n  COPY --from=builder /app/dist /usr/share/nginx/html\nEste Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx."
+  },
+  {
+    "objectID": "unidades/unidad3.html#práctica",
+    "href": "unidades/unidad3.html#práctica",
+    "title": "4: Buenas Prácticas y Seguridad",
+    "section": "Práctica:",
+    "text": "Práctica:\n\nRealiza un escaneo de vulnerabilidades en una imagen de tu elección:\nUtiliza Snyk para escanear una imagen de Docker.\nImplementa un Multi-Stage build en un Dockerfile:\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de imagen con Snyk:\nsnyk container test my-image:my-tag\nEjemplo de Multi-Stage Dockerfile:\n\nFROM node:14 AS builder\nWORKDIR /app\n  COPY . .\n  RUN npm install\n  RUN npm run build\n\n  FROM nginx:alpine\n  COPY --from=builder /app/dist /usr/share/nginx/html\n\n\n\n\n\n\n\nTip\n\n\n\nRecuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia"
+  },
+  {
+    "objectID": "unidades/unidad3.html#qué-aprendimos",
+    "href": "unidades/unidad3.html#qué-aprendimos",
+    "title": "4: Buenas Prácticas y Seguridad",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\nEntendemos la importancia de escanear imágenes en busca de vulnerabilidades.\nAhora sabemos cómo utilizar Multi-Stage builds para optimizar el tamaño de las imágenes."
+  },
+  {
+    "objectID": "unidades/ejercicios3.html#objetivo",
+    "href": "unidades/ejercicios3.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios3.html#instrucciones",
+    "href": "unidades/ejercicios3.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios3.html#entregables",
+    "href": "unidades/ejercicios3.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nCapturas de pantalla del escaneo de vulnerabilidades.\nPolítica de etiquetado para imágenes Docker.\nResultado de la verificación del archivo Docker Compose.\nDocumento explicando la implementación de la red de contenedores.\nArchivo “.dockerignore”."
+  },
+  {
+    "objectID": "unidades/ejercicios3.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios3.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nEscaneo de vulnerabilidades realizado con éxito: 4 puntos\nCorrecta implementación de la política de etiquetado: 4 puntos\nValidación exitosa del archivo Docker Compose: 4 puntos\nImplementación adecuada de la red de contenedores: 4 puntos\nCorrecta configuración del archivo “.dockerignore”: 4 puntos\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de vulnerabilidades:\nsnyk container test alpine:latest\nPolítica de etiquetado (ejemplo):\nSe etiquetarán las imágenes con el formato “versión-año-mes-día” (ejemplo: 1.0-20230115).\nVerificación del archivo Docker Compose:\ndocker-compose config\nImplementación de una red de contenedores:\ndocker network create my-network\nArchivo “.dockerignore” (ejemplo):\nnode_modules\n.git\n.env"
+  },
+  {
+    "objectID": "unidades/unidad4.html#conceptos",
+    "href": "unidades/unidad4.html#conceptos",
+    "title": "5. DevContainers",
+    "section": "Conceptos:",
+    "text": "Conceptos:\nDevContainers: DevContainers es una característica de Visual Studio Code que permite definir, configurar y compartir fácilmente entornos de desarrollo con contenedores de Docker. Con DevContainers, puedes especificar las herramientas, extensiones y configuraciones necesarias para tu proyecto, garantizando que todos los miembros del equipo utilicen el mismo entorno de desarrollo, independientemente de su sistema operativo.\nStack MEAN: El stack MEAN (MongoDB, Express.js, Angular, Node.js) es un conjunto de tecnologías ampliamente utilizado para el desarrollo web moderno. MongoDB es una base de datos NoSQL, Express.js es un marco web para Node.js, Angular es un framework para construir aplicaciones web de una sola página (SPA), y Node.js es un entorno de ejecución para JavaScript en el lado del servidor."
+  },
+  {
+    "objectID": "unidades/unidad4.html#ejemplos",
+    "href": "unidades/unidad4.html#ejemplos",
+    "title": "5. DevContainers",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\nConfiguración de DevContainers para el stack MEAN:\nCreación del archivo .devcontainer/devcontainer.json:\n{\n  \"name\": \"MEAN Stack\",\n  \"dockerComposeFile\": \"docker-compose.yml\",\n  \"service\": \"app\",\n  \"workspaceFolder\": \"/workspace\",\n  \"extensions\": [\n    \"ms-vscode.node-debug2\",\n    \"dbaeumer.vscode-eslint\"\n  ],\n  \"postCreateCommand\": \"npm install\"\n}\nCreación del archivo docker-compose.yml:\nversion: '3'\nservices:\n  app:\n    image: node:14\n    command: /bin/sh -c \"while sleep 1000; do :; done\"\n    volumes:\n      - ..:/workspace\nEstructura del proyecto:\n.\n├── .devcontainer\n│   └── devcontainer.json\n├── docker-compose.yml\n└── src\n    └── app.js\nArchivo app.js (Ejemplo de aplicación Node.js):\nconst express = require('express');\nconst app = express();\nconst port = 3000;\n\napp.get('/', (req, res) =&gt; res.send('Hola desde Express.js en un contenedor Docker!'));\n\napp.listen(port, () =&gt; console.log(`Aplicación escuchando en http://localhost:${port}`));"
+  },
+  {
+    "objectID": "unidades/unidad4.html#actividad-práctica",
+    "href": "unidades/unidad4.html#actividad-práctica",
+    "title": "5. DevContainers",
+    "section": "Actividad Práctica:",
+    "text": "Actividad Práctica:\nConfigurar un entorno de desarrollo MEAN con DevContainers en Visual Studio Code.\n\nClona un repositorio base que contenga la estructura mencionada y el código de ejemplo.\nAbre el proyecto en Visual Studio Code.\nVisualiza y comprende los archivos .devcontainer/devcontainer.json y docker-compose.yml.\nInicia el entorno de desarrollo con DevContainers.\nAccede a la aplicación en tu navegador utilizando el puerto especificado en el archivo app.js.\nRealiza modificaciones en el código de la aplicación y observa cómo se reflejan en tiempo real dentro del contenedor.\n\n\n\nResolución de la Actividad Práctica\n\nClonar el repositorio base:\ngit clone https://ejemplo-repositorio-mean.git\nAbrir el proyecto en Visual Studio Code:\ncode ejemplo-repositorio-mean\nIniciar el entorno de desarrollo con DevContainers:\nVisual Studio Code detectará automáticamente la configuración de DevContainers y te preguntará si deseas reabrir el proyecto en un contenedor.\nAcceder a la aplicación en el navegador:\nVisita http://localhost:3000 en tu navegador.\nRealizar modificaciones en el código:\nAbre el archivo src/app.js y realiza cambios en el mensaje de respuesta.\nObserva cómo los cambios se reflejan en tiempo real dentro del contenedor.\n\n\n\n\n\n\n\nTip\n\n\n\nSi experimentas problemas con la integración de DevContainers, asegúrate de tener Docker instalado y la extensión “Remote - Containers” habilitada en Visual Studio Code.\nAdemás, verifica que tu sistema cumple con los requisitos para DevContainers."
+  },
+  {
+    "objectID": "unidades/unidad4.html#qué-aprendimos",
+    "href": "unidades/unidad4.html#qué-aprendimos",
+    "title": "5. DevContainers",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\nAprendimos a configurar DevContainers en Visual Studio Code para un entorno de desarrollo MEAN.\nComprendimos cómo utilizar Docker Compose junto con DevContainers para definir la infraestructura del entorno de desarrollo.\nExploramos la posibilidad de realizar cambios en el código de la aplicación de manera eficiente gracias a la integración de DevContainers con Visual Studio Code."
+  },
+  {
+    "objectID": "unidades/ejercicios4.html#objetivo",
+    "href": "unidades/ejercicios4.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios4.html#instrucciones",
+    "href": "unidades/ejercicios4.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios4.html#entregables",
+    "href": "unidades/ejercicios4.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nCapturas de pantalla del escaneo de vulnerabilidades.\nPolítica de etiquetado para imágenes Docker.\nResultado de la verificación del archivo Docker Compose.\nDocumento explicando la implementación de la red de contenedores.\nArchivo “.dockerignore”."
+  },
+  {
+    "objectID": "unidades/ejercicios4.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios4.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nEscaneo de vulnerabilidades realizado con éxito: 4 puntos\nCorrecta implementación de la política de etiquetado: 4 puntos\nValidación exitosa del archivo Docker Compose: 4 puntos\nImplementación adecuada de la red de contenedores: 4 puntos\nCorrecta configuración del archivo “.dockerignore”: 4 puntos\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de vulnerabilidades:\nsnyk container test alpine:latest\nPolítica de etiquetado (ejemplo):\nSe etiquetarán las imágenes con el formato “versión-año-mes-día” (ejemplo: 1.0-20230115).\nVerificación del archivo Docker Compose:\ndocker-compose config\nImplementación de una red de contenedores:\ndocker network create my-network\nArchivo “.dockerignore” (ejemplo):\nnode_modules\n.git\n.env"
+  },
+  {
+    "objectID": "about.html#quién-soy",
+    "href": "about.html#quién-soy",
+    "title": "Sobre mí",
+    "section": "¿Quién soy?",
+    "text": "¿Quién soy?\n\n\n\n\nDiego Saavedra\n\n\n\n\nSoy candidato a doctorado en Informática con una sólida formación en esta área y una profunda pasión por el desarrollo avanzado de software e investigación.\nMi trayectoria abarca tanto la enseñanza de Ciencias de la Computación como la investigación en áreas fundamentales como Desarrollo de Software e Inteligencia Artificial.\nHe acumulado habilidades técnicas en un amplio espectro de tecnologías y lenguajes de programación, incluyendo Python (junto con sus frameworks Django, Flask y Fast API), JavaScript (con Express, Next y Astro), así como el desarrollo de aplicaciones móviles en Android y Flutter.\nAdemás, he trabajado extensamente con diversas bases de datos, abarcando tanto bases de datos relacionales como PostgreSQL, MySQL y MariaDB, como bases de datos no relacionales como MongoDB y Firebase.\nMi experiencia se extiende más allá de los lenguajes de programación y las bases de datos, ya que tengo experiencia con diversas arquitecturas de software, incluyendo microservicios y arquitecturas basadas en la nube (Azure, AWS) utilizando Docker y Kubernetes. Esta comprensión me ha permitido diseñar y desarrollar sistemas escalables y de alto rendimiento.\nComo profesional, mi enfoque ha sido la creación de software de alta calidad y el liderazgo efectivo de equipos ágiles. Mis fuertes habilidades de comunicación son esenciales para una colaboración productiva con colegas y clientes. Además, mi capacidad para analizar y resolver problemas complejos me ha capacitado para abordar con confianza desafíos técnicos. Además, mis habilidades de gestión del tiempo y los recursos han sido fundamentales para cumplir con los plazos y lograr resultados tanto en proyectos de desarrollo como de investigación dentro del entorno académico.\nEn resumen, como candidato a doctorado en Informática, mi compromiso radica en alcanzar la excelencia en el desarrollo de software e investigar en tecnologías de vanguardia. Mi experiencia y competencia técnica, combinadas con mi apasionado interés por la innovación y la educación, me posicionan como un profesional versátil e invaluable en el campo de la ciencia de la computación."
+  },
+  {
+    "objectID": "license.html#uso-permitido",
+    "href": "license.html#uso-permitido",
+    "title": "Licencia",
+    "section": "Uso Permitido",
+    "text": "Uso Permitido\nPuedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje."
+  },
+  {
+    "objectID": "license.html#restricciones",
+    "href": "license.html#restricciones",
+    "title": "Licencia",
+    "section": "Restricciones",
+    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
+  },
+  {
+    "objectID": "license.html#atribución",
+    "href": "license.html#atribución",
+    "title": "Licencia",
+    "section": "Atribución",
+    "text": "Atribución\nSi compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía]."
+  },
+  {
+    "objectID": "license.html#cambios-en-la-licencia",
+    "href": "license.html#cambios-en-la-licencia",
+    "title": "Licencia",
+    "section": "Cambios en la Licencia",
+    "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
+  }
+]
