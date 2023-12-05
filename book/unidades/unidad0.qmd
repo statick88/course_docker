@@ -1,76 +1,106 @@
 # 1. Comandos Básicos y Atajos
 
 ## Conceptos:
-::: justify
-**Docker:** Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.
 
-**Contenedor:** Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.
+::: justify
+::: center
+### Docker
+
+![](images/docker_image.png)
+:::
+
+Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.
+
+::: center
+### Contenedor
+
+![](images/docker_container.png)
+:::
+
+Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.
 :::
 
 ## Ejemplos:
+
 ::: justify
 Descargar una imagen:
 
-```bash
+``` bash
 docker pull docker/getting-started
 ```
+::: center
+![](images/paste-2.png)
+:::
 
 Este comando descarga la imagen **getting-started** desde el registro público de Docker.
 
 Correr un contenedor en el puerto 80:
 
-```bash
+``` bash
 docker run -d -p 80:80 docker/getting-started
 ```
+
+::: center
+![](images/paste-1.png)
+:::
+
 Este comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).
 
 ## Práctica:
 
 Descarga la imagen "nginx":
 
-```bash
+``` bash
 docker pull nginx
 ```
+
 Descarga la imagen de Nginx desde el registro público.
 
 Crea y ejecuta un contenedor en el puerto 8080:
 
-```bash
+``` bash
 docker run -d -p 8080:80 nginx
 ```
-- Crea y ejecuta un contenedor de Nginx en el puerto 8080.
-- Detén y elimina el contenedor creado:
-- Utiliza los comandos para detener y eliminar un contenedor.
+
+-   Crea y ejecuta un contenedor de Nginx en el puerto 8080.
+-   Detén y elimina el contenedor creado:
+-   Utiliza los comandos para detener y eliminar un contenedor.
 :::
 
 <details>
-  <summary>Resolución de la Actividad Práctica</summary>
+
+<summary>Resolución de la Actividad Práctica</summary>
+
 ::: justify
 Descarga la imagen de **Nginx**.
 
-```bash
+``` bash
 docker pull nginx
 ```
+
 Crea y ejecuta un contenedor en el puerto 8080:
 
-```bash
+``` bash
 docker run -d -p 8080:80 nginx
 ```
+
 Detén y elimina el contenedor creado:
 
-```bash
+``` bash
 docker stop $(docker ps -q)
 docker rm $(docker ps -a -q)
 ```
 :::
+
 </details>
 
-:::{.callout-tip}
+::: callout-tip
 Combinar banderas mejora la eficiencia en la ejecución de comandos.
 :::
 
 ## ¿Qué Aprendimos?
+
 ::: justify
-- Aprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.
-- Entendimos la importancia de las banderas en los comandos Docker.
+-   Aprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.
+-   Entendimos la importancia de las banderas en los comandos Docker.
 :::

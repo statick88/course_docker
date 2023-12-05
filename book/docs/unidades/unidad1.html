@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Curso de Docker</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -220,7 +220,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/unidad4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. DevContainers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidades/ejercicios4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
       </ul>
@@ -291,13 +311,6 @@ Resolución de la Actividad Práctica
 <p>Ejecuta el contenedor MySQL con el volumen creado:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> MYSQL_ROOT_PASSWORD=root <span class="at">-e</span> MYSQL_DATABASE=mydb <span class="at">-v</span> data_volume:/var/lib/mysql <span class="at">--network-alias</span> mysql <span class="at">-d</span> mysql:latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</section>
-<section id="qué-aprendimos" class="level2">
-<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
-<ul>
-<li>Ahora entendemos cómo trabajar con volúmenes para mantener la persistencia de datos en Docker.</li>
-<li>Aprendimos sobre Named Volumes y cómo vincularlos a contenedores.</li>
-</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -311,6 +324,13 @@ Tip
 <p><strong>Recuerda la regla de oro:</strong> Si dos contenedores están en la misma red, podrán comunicarse.</p>
 </div>
 </div>
+</section>
+<section id="qué-aprendimos" class="level2">
+<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
+<ul>
+<li>Ahora entendemos cómo trabajar con volúmenes para mantener la persistencia de datos en Docker.</li>
+<li>Aprendimos sobre Named Volumes y cómo vincularlos a contenedores.</li>
+</ul>
 
 
 </section>
