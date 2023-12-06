@@ -1,4 +1,4 @@
-# 6: Despliegue de Aplicaciones con Docker Compose
+# 7: Despliegue de Aplicaciones con Docker Compose
 
 ## Conceptos:
 

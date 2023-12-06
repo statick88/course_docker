@@ -93,21 +93,21 @@
   {
     "objectID": "unidades/unidad1.html#conceptos",
     "href": "unidades/unidad1.html#conceptos",
-    "title": "2: Trabajando con Volúmenes",
+    "title": "3: Trabajando con Volúmenes",
     "section": "Conceptos:",
     "text": "Conceptos:\n\nVolumes (Volúmenes)\nLos volúmenes en Docker son mecanismos para persistir y compartir datos entre contenedores. Hay varios tipos, pero los más comunes son Named Volumes y Bind Volumes.\n\n\nNamed Volumes (Volúmenes Nombrados)\nSon volúmenes con nombres asignados explícitamente. Se utilizan para almacenar y compartir datos entre contenedores.\n\n\nBind Volumes (Volúmenes de Enlace)\nPermiten vincular directorios o archivos desde el sistema de archivos del host al contenedor. Son útiles para desarrollo y pruebas."
   },
   {
     "objectID": "unidades/unidad1.html#ejemplos",
     "href": "unidades/unidad1.html#ejemplos",
-    "title": "2: Trabajando con Volúmenes",
+    "title": "3: Trabajando con Volúmenes",
     "section": "Ejemplos:",
     "text": "Ejemplos:\nCrear un nuevo volumen:\ndocker volume create myvolume\nListar los volúmenes creados:\ndocker volume ls\nInspeccionar un volumen específico:\ndocker volume inspect myvolume\nUsar un volumen al correr un contenedor:\ndocker run -v myvolume:/app myimage\nBind Volumes - Vincular volúmenes:\ndocker run -v \"$(pwd):/app\" myimage"
   },
   {
     "objectID": "unidades/unidad1.html#práctica",
     "href": "unidades/unidad1.html#práctica",
-    "title": "2: Trabajando con Volúmenes",
+    "title": "3: Trabajando con Volúmenes",
     "section": "Práctica:",
     "text": "Práctica:\n\nCrea un nuevo volumen llamado “data_volume”.\nInspecciona el volumen para obtener más detalles.\nEjecuta un contenedor de Nginx vinculando el volumen “data_volume” al directorio “/usr/share/nginx/html”.\nVerifica que los datos persistan después de detener y eliminar el contenedor.\n\n\n\nResolución de la Actividad Práctica\n\nCrear un nuevo volumen:\ndocker volume create data_volume\nInspeccionar el volumen:\ndocker volume inspect data_volume\nEjecutar un contenedor de Nginx vinculando el volumen:\ndocker run -d -v data_volume:/usr/share/nginx/html -p 8080:80 nginx\nVerificar la persistencia de datos:\nAcceder a http://localhost:8080 en el navegador.\nDetener y eliminar el contenedor:\ndocker stop $(docker ps -q)\ndocker rm $(docker ps -a -q)\nVolver a ejecutar un contenedor de Nginx vinculando el mismo volumen:\ndocker run -d -v data_volume:/usr/share/nginx/html -p 8080:80 nginx\nVerificar que los datos persistan en http://localhost:8080.\n\n¿Qué Aprendimos?\n\nAprendimos a crear, listar e inspeccionar volúmenes en Docker.\nComprendimos la diferencia entre Named Volumes y Bind Volumes.\nPracticamos el uso de volúmenes para persistir datos entre contenedores y verificar su persistencia."
   },
@@ -1227,28 +1227,28 @@
   {
     "objectID": "unidades/unidad2.html#conceptos",
     "href": "unidades/unidad2.html#conceptos",
-    "title": "3. Dockerfile y Docker Compose",
+    "title": "2. Dockerfile y Docker Compose",
     "section": "Conceptos:",
-    "text": "Conceptos:\n\nDockerfile\nUn Dockerfile es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es esencialmente un script que define cómo se construirá la imagen.\n\n\nDocker Compose\nDocker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y volúmenes en un archivo YAML."
+    "text": "Conceptos:\n\nDockerfile\nUn Dockerfile es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es esencialmente un script que define cómo se construirá la imagen.\n\n\nDocker Compose\nK Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y Kvolúmenes en un archivo YAML."
   },
   {
     "objectID": "unidades/unidad2.html#ejemplos",
     "href": "unidades/unidad2.html#ejemplos",
-    "title": "3. Dockerfile y Docker Compose",
+    "title": "2. Dockerfile y Docker Compose",
     "section": "Ejemplos:",
     "text": "Ejemplos:\nCrear un Dockerfile para una aplicación Node.js:\nFROM node:14\nWORKDIR /app\nCOPY . .\nCMD [\"npm\", \"start\"]\nEste Dockerfile configura una imagen de Node.js, establece el directorio de trabajo, copia los archivos locales al contenedor y define el comando para ejecutar la aplicación.\nConfigurar Docker Compose para una aplicación Node.js:\nversion: '3'\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.node\n    image: my-node-app\nEste archivo docker-compose.yml define un servicio llamado “myapp” que construirá una imagen usando el Dockerfile “Dockerfile.node” y le asignará el nombre de “my-node-app”."
   },
   {
     "objectID": "unidades/unidad2.html#práctica",
     "href": "unidades/unidad2.html#práctica",
-    "title": "3. Dockerfile y Docker Compose",
+    "title": "2. Dockerfile y Docker Compose",
     "section": "Práctica:",
     "text": "Práctica:\n\nCrea un Dockerfile para una aplicación Python simple.\nConfigura un archivo docker-compose.yml para ejecutar la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de Dockerfile (nombre: Dockerfile.python):\nFROM python:3.9\nWORKDIR /app\nCOPY . .\nCMD [\"python\", \"app.py\"]\nEjemplo de docker-compose.yml:\nversion: '3'\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.python\n    image: my-python-app"
   },
   {
     "objectID": "unidades/unidad2.html#qué-aprendimos",
     "href": "unidades/unidad2.html#qué-aprendimos",
-    "title": "3. Dockerfile y Docker Compose",
+    "title": "2. Dockerfile y Docker Compose",
     "section": "¿Qué Aprendimos?",
     "text": "¿Qué Aprendimos?\n\nAprendimos a crear un Dockerfile para personalizar una imagen Docker.\nEntendimos cómo usar Docker Compose para orquestar servicios en un entorno multi-contenedor.\nPracticamos la configuración básica de un Dockerfile y un archivo docker-compose.yml."
   },
@@ -1430,21 +1430,21 @@
   {
     "objectID": "unidades/unidad6.html#conceptos",
     "href": "unidades/unidad6.html#conceptos",
-    "title": "6: Despliegue de Aplicaciones con Docker Compose",
+    "title": "7: Despliegue de Aplicaciones con Docker Compose",
     "section": "Conceptos:",
     "text": "Conceptos:\n\nDocker Compose para Despliegues Complejos\nDocker Compose no solo es útil para el desarrollo local; también se puede usar para definir y desplegar aplicaciones en entornos de producción.\n\n\nVariables de Entorno en Docker Compose\nPermite gestionar configuraciones específicas del entorno, facilitando la portabilidad de la aplicación entre diferentes contextos."
   },
   {
     "objectID": "unidades/unidad6.html#ejemplos",
     "href": "unidades/unidad6.html#ejemplos",
-    "title": "6: Despliegue de Aplicaciones con Docker Compose",
+    "title": "7: Despliegue de Aplicaciones con Docker Compose",
     "section": "Ejemplos:",
     "text": "Ejemplos:\nDefinir un Servicio con Docker Compose:\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\nEste archivo docker-compose.yml define un servicio llamado “web” que utiliza la imagen de Nginx y mapea el puerto 8080."
   },
   {
     "objectID": "unidades/unidad6.html#práctica",
     "href": "unidades/unidad6.html#práctica",
-    "title": "6: Despliegue de Aplicaciones con Docker Compose",
+    "title": "7: Despliegue de Aplicaciones con Docker Compose",
     "section": "Práctica:",
     "text": "Práctica:\n\nDesplegar una Aplicación Compleja con Docker Compose\nCrea un archivo docker-compose.yml para una aplicación de varios servicios.\nDespliega la aplicación en tu entorno local.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de docker-compose.yml:\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: example\nDesplegar con Docker Compose:\ndocker-compose up -d\n\n\n\n\n\n\n\nTip\n\n\n\nOptimiza tus despliegues de aplicaciones utilizando Docker Compose y configura variables de entorno según sea necesario."
   },

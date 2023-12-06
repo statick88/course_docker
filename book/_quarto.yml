@@ -38,10 +38,10 @@ book:
       chapters: 
         - unidades/unidad0.qmd
         - unidades/ejercicios0.qmd
-        - unidades/unidad1.qmd
-        - unidades/ejercicios1.qmd
         - unidades/unidad2.qmd
         - unidades/ejercicios2.qmd
+        - unidades/unidad1.qmd
+        - unidades/ejercicios1.qmd
         - unidades/unidad3.qmd
         - unidades/ejercicios3.qmd
         - unidades/unidad4.qmd

@@ -1,4 +1,4 @@
-# 3. Dockerfile y Docker Compose
+# 2. Dockerfile y Docker Compose
 
 ## Conceptos:
 
@@ -7,8 +7,8 @@
 Un Dockerfile es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es esencialmente un script que define cómo se construirá la imagen.
 
 ### Docker Compose
-
-Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y volúmenes en un archivo YAML.
+K
+Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y Kvolúmenes en un archivo YAML.
 
 ## Ejemplos:
 
