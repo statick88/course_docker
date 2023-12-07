@@ -142,28 +142,28 @@
   {
     "objectID": "unidades/unidad1.html#conceptos",
     "href": "unidades/unidad1.html#conceptos",
-    "title": "Creación de un servidor web con Docker y Nginx",
+    "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "Conceptos",
     "text": "Conceptos\nDocker es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un contenedor es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.\nNginx es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript."
   },
   {
     "objectID": "unidades/unidad1.html#ejemplos",
     "href": "unidades/unidad1.html#ejemplos",
-    "title": "Creación de un servidor web con Docker y Nginx",
+    "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "Ejemplos",
     "text": "Ejemplos\nUn ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web ."
   },
   {
     "objectID": "unidades/unidad1.html#actividad-práctica",
     "href": "unidades/unidad1.html#actividad-práctica",
-    "title": "Creación de un servidor web con Docker y Nginx",
+    "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "Actividad Práctica",
     "text": "Actividad Práctica\n\nCrea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.\nCrea un Dockerfile como el del ejemplo anterior.\nConstruye una imagen Docker a partir del Dockerfile con el comando docker build -t my-nginx-image ..\nCrea y ejecuta un contenedor a partir de la imagen con el comando docker run -it --rm -dp 8080:80 -v ${PWD}/web:/usr/share/nginx/html --name web my-nginx-image .\n\n\n\nResolución de la Actividad Práctica\n\nSi has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080."
   },
   {
     "objectID": "unidades/unidad1.html#qué-aprendimos",
     "href": "unidades/unidad1.html#qué-aprendimos",
-    "title": "Creación de un servidor web con Docker y Nginx",
+    "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "¿Qué aprendimos?",
     "text": "¿Qué aprendimos?\nEn este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web."
   },
