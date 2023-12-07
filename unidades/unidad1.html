@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - 3: Trabajando con Volúmenes</title>
+<title>Docker 2023 - Creación de un servidor web con Docker y Nginx</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad1.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">3: Trabajando con Volúmenes</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad1.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Creación de un servidor web con Docker y Nginx</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3: Trabajando con Volúmenes</span></a>
+  <a href="../unidades/unidad1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Creación de un servidor web con Docker y Nginx</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,14 +275,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
-  <ul class="collapse">
-  <li><a href="#volumes-volúmenes" id="toc-volumes-volúmenes" class="nav-link" data-scroll-target="#volumes-volúmenes">Volumes (Volúmenes)</a></li>
-  <li><a href="#named-volumes-volúmenes-nombrados" id="toc-named-volumes-volúmenes-nombrados" class="nav-link" data-scroll-target="#named-volumes-volúmenes-nombrados">Named Volumes (Volúmenes Nombrados)</a></li>
-  <li><a href="#bind-volumes-volúmenes-de-enlace" id="toc-bind-volumes-volúmenes-de-enlace" class="nav-link" data-scroll-target="#bind-volumes-volúmenes-de-enlace">Bind Volumes (Volúmenes de Enlace)</a></li>
-  </ul></li>
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
-  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos</a></li>
+  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos</a></li>
+  <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica</a></li>
+  <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué aprendimos?</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad1.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -291,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">3: Trabajando con Volúmenes</span></h1>
+<h1 class="title"><span class="chapter-title">Creación de un servidor web con Docker y Nginx</span></h1>
 </div>
 
 
@@ -307,66 +303,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="conceptos" class="level2">
-<h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<section id="volumes-volúmenes" class="level3">
-<h3 class="anchored" data-anchor-id="volumes-volúmenes">Volumes (Volúmenes)</h3>
-<p>Los volúmenes en Docker son mecanismos para persistir y compartir datos entre contenedores. Hay varios tipos, pero los más comunes son Named Volumes y Bind Volumes.</p>
-</section>
-<section id="named-volumes-volúmenes-nombrados" class="level3">
-<h3 class="anchored" data-anchor-id="named-volumes-volúmenes-nombrados">Named Volumes (Volúmenes Nombrados)</h3>
-<p>Son volúmenes con nombres asignados explícitamente. Se utilizan para almacenar y compartir datos entre contenedores.</p>
-</section>
-<section id="bind-volumes-volúmenes-de-enlace" class="level3">
-<h3 class="anchored" data-anchor-id="bind-volumes-volúmenes-de-enlace">Bind Volumes (Volúmenes de Enlace)</h3>
-<p>Permiten vincular directorios o archivos desde el sistema de archivos del host al contenedor. Son útiles para desarrollo y pruebas.</p>
-</section>
+<h2 class="anchored" data-anchor-id="conceptos">Conceptos</h2>
+<p><strong>Docker</strong> es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un <strong>contenedor</strong> es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.</p>
+<p><strong>Nginx</strong> es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.</p>
 </section>
 <section id="ejemplos" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
-<p>Crear un nuevo volumen:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume create myvolume</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Listar los volúmenes creados:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Inspeccionar un volumen específico:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume inspect myvolume</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Usar un volumen al correr un contenedor:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> myvolume:/app myimage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Bind Volumes - Vincular volúmenes:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="st">"</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">:/app"</span> myimage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos</h2>
+<p>Un ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an official nginx image as a parent image</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:latest</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the working directory in the container to /usr/share/nginx/html</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/share/nginx/html</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="práctica" class="level2">
-<h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
-<ul>
-<li>Crea un nuevo volumen llamado “data_volume”.</li>
-<li>Inspecciona el volumen para obtener más detalles.</li>
-<li>Ejecuta un contenedor de Nginx vinculando el volumen “data_volume” al directorio “/usr/share/nginx/html”.</li>
-<li>Verifica que los datos persistan después de detener y eliminar el contenedor.</li>
-</ul>
+<section id="actividad-práctica" class="level2">
+<h2 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica</h2>
+<ol type="1">
+<li>Crea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.</li>
+<li>Crea un Dockerfile como el del ejemplo anterior.</li>
+<li>Construye una imagen Docker a partir del Dockerfile con el comando docker <code>build -t my-nginx-image</code> ..</li>
+<li>Crea y ejecuta un contenedor a partir de la imagen con el comando <code>docker run -it --rm -dp 8080:80 -v ${PWD}/web:/usr/share/nginx/html --name web my-nginx-image .</code></li>
+</ol>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Crear un nuevo volumen:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume create data_volume</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Inspeccionar el volumen:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume inspect data_volume</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ejecutar un contenedor de Nginx vinculando el volumen:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-v</span> data_volume:/usr/share/nginx/html <span class="at">-p</span> 8080:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Verificar la persistencia de datos:</p>
-<p>Acceder a <a href="http://localhost:8080">http://localhost:8080</a> en el navegador.</p>
-<p>Detener y eliminar el contenedor:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop <span class="va">$(</span><span class="ex">docker</span> ps <span class="at">-q</span><span class="va">)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="va">$(</span><span class="ex">docker</span> ps <span class="at">-a</span> <span class="at">-q</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Volver a ejecutar un contenedor de Nginx vinculando el mismo volumen:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-v</span> data_volume:/usr/share/nginx/html <span class="at">-p</span> 8080:80 nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Verificar que los datos persistan en <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+Si has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080.
 </details>
-<p>¿Qué Aprendimos?</p>
-<ul>
-<li>Aprendimos a crear, listar e inspeccionar volúmenes en Docker.</li>
-<li>Comprendimos la diferencia entre Named Volumes y Bind Volumes.</li>
-<li>Practicamos el uso de volúmenes para persistir datos entre contenedores y verificar su persistencia.</li>
-</ul>
+</section>
+<section id="qué-aprendimos" class="level2">
+<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué aprendimos?</h2>
+<p>En este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web.</p>
 
 
 </section>
