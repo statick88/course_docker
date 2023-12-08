@@ -332,7 +332,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Construye una imagen Docker a partir del Dockerfile</p>
+<div class="justify">
+<p><strong>Proyecto Web con Docker y Nginx</strong></p>
+<p>Este proyecto utiliza Docker y Nginx para servir una aplicación web estática.</p>
+<p><strong>Creación del Dockerfile</strong></p>
+<p>Crea un archivo llamado <code>Dockerfile</code> en la raíz del proyecto con el siguiente contenido:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an official nginx image as a parent image</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:latest</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -341,10 +345,17 @@ Resolución de la Actividad Práctica
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Construcción de la imagen Docker</strong></p>
+<p>Para construir una imagen Docker a partir del Dockerfile, ejecuta el siguiente comando en la terminal:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-nginx-image .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Crea y ejecuta un contenedor a partir de la imagen</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-dp</span> 8080:80 <span class="at">-v</span> <span class="va">${PWD}</span>/web:/usr/share/nginx/html <span class="at">--name</span> web my-nginx-image .<span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080.</p>
+<p>Este comando crea una nueva imagen Docker llamada <strong>my-nginx-imag</strong>e a partir del Dockerfile.</p>
+<p><strong>Creación del contenedor Docker.</strong></p>
+<p>Para crear y ejecutar un contenedor a partir de la imagen que acabas de crear, ejecuta el siguiente comando en la terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-dp</span> 8080:80 <span class="at">-v</span> <span class="va">${pwd}</span>/web:/usr/share/nginx/html <span class="at">--name</span> web my-nginx-image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando crea y ejecuta un nuevo contenedor Docker llamado <strong>web</strong> a partir de la imagen <strong>my-nginx-image</strong>.</p>
+<p>El contenedor sirve la aplicación web en el puerto 8080 y monta el directorio <strong>web</strong> de tu máquina local en el directorio <strong>/usr/share/nginx/html</strong> del contenedor.</p>
+<p>Esto significa que cualquier cambio que hagas en los archivos de tu directorio <strong>web</strong> local se reflejará en vivo en el contenedor.</p>
+</div>
 </details>
 </section>
 <section id="qué-aprendimos" class="level2">
