@@ -196,6 +196,62 @@
     "text": "Rubrica de Evaluación:\n\nCorrecta creación y vinculación de volúmenes: 6 puntos\nCreación y persistencia de archivos en el volumen: 8 puntos\nVerificación exitosa de la persistencia entre contenedores: 6 puntos"
   },
   {
+    "objectID": "unidades/unidad22.html#introducción",
+    "href": "unidades/unidad22.html#introducción",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "Introducción",
+    "text": "Introducción\nDocker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos."
+  },
+  {
+    "objectID": "unidades/unidad22.html#qué-es-docker",
+    "href": "unidades/unidad22.html#qué-es-docker",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "¿Qué es Docker?",
+    "text": "¿Qué es Docker?\nDocker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código. Creando un Dockerfile para una Aplicación Django\nUn Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:\n\n# Usa una imagen oficial de Python como base\nFROM python:3.12\n\n# Establece el directorio de trabajo en el contenedor\nWORKDIR /app\n\n# Copia los archivos de requerimientos y el código de la aplicación\nCOPY requirements.txt .\n\n# Instala las dependencias\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copia el resto de la aplicación\nCOPY . .\n\n# Expone el puerto en el que se ejecutará la aplicación\nEXPOSE 8000\n\n# Comando para ejecutar la aplicación Django\nCMD [\"python\", \"manage.py\", \"runserver\", \"0.0.0.0:8000\"]\nEste Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000. Docker Compose para Orquestar Contenedores\nDocker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:\nversion: '3'\nservices:\n  web:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    image: my-django-app\n    ports:\n      - \"8000:8000\"\n    volumes:\n      - .:/app\n    depends_on:\n      - db\n  db:\n    image: postgres:latest\n    environment:\n      POSTGRES_DB: mydatabase\n      POSTGRES_USER: myuser\n      POSTGRES_PASSWORD: mypassword\nEste archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django."
+  },
+  {
+    "objectID": "unidades/unidad22.html#actividad-práctica",
+    "href": "unidades/unidad22.html#actividad-práctica",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "Actividad Práctica",
+    "text": "Actividad Práctica\n\nCrea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.\nInicia el entorno de desarrollo ejecutando docker-compose up -d.\nAccede a la aplicación Django en http://localhost:8000 en tu navegador.\nRealiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.\n\n\n\nResolución de la Actividad Práctica\n\n\nCrea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.\n\nAbre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:\ndocker-compose up -d\nEsto construirá la imagen y ejecutará los contenedores en segundo plano.\nAccede a la aplicación Django en tu navegador ingresando a http://localhost:8000. Deberías ver la aplicación en ejecución.\nRealiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml."
+  },
+  {
+    "objectID": "unidades/unidad22.html#qué-aprendimo",
+    "href": "unidades/unidad22.html#qué-aprendimo",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "¿Qué aprendimo?",
+    "text": "¿Qué aprendimo?\nEn este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!"
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#objetivo",
+    "href": "unidades/ejercicios22.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#instrucciones",
+    "href": "unidades/ejercicios22.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#entregables",
+    "href": "unidades/ejercicios22.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios22.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos"
+  },
+  {
     "objectID": "unidades/unidad3.html#conceptos",
     "href": "unidades/unidad3.html#conceptos",
     "title": "4: Buenas Prácticas y Seguridad",
