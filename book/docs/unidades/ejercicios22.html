@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - 4: Buenas Prácticas y Seguridad</title>
+<title>Docker 2023 - Actividad Práctica</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/ejercicios3.html" rel="next">
-<link href="../unidades/ejercicios22.html" rel="prev">
+<link href="../unidades/unidad3.html" rel="next">
+<link href="../unidades/unidad22.html" rel="prev">
 <link href="..//images/docker.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/ejercicios22.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Actividad Práctica</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -230,12 +230,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  <a href="../unidades/ejercicios22.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
+  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,24 +285,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
-  <ul class="collapse">
-  <li><a href="#escaneo-de-imagen" id="toc-escaneo-de-imagen" class="nav-link" data-scroll-target="#escaneo-de-imagen">Escaneo de imagen:</a></li>
-  <li><a href="#capas-de-la-imagen" id="toc-capas-de-la-imagen" class="nav-link" data-scroll-target="#capas-de-la-imagen">Capas de la imagen:</a></li>
-  <li><a href="#multi-stage-builds" id="toc-multi-stage-builds" class="nav-link" data-scroll-target="#multi-stage-builds">Multi-Stage builds:</a></li>
-  </ul></li>
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
-  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
-  <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo:</a></li>
+  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones:</a></li>
+  <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables:</a></li>
+  <li><a href="#rubrica-de-evaluación" id="toc-rubrica-de-evaluación" class="nav-link" data-scroll-target="#rubrica-de-evaluación">Rubrica de Evaluación:</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad3.qmd" class="toc-action">View source</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/ejercicios22.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/ejercicios22.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></h1>
+<h1 class="title"><span class="chapter-title">Actividad Práctica</span></h1>
 </div>
 
 
@@ -317,78 +312,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="conceptos" class="level2">
-<h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<section id="escaneo-de-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="escaneo-de-imagen">Escaneo de imagen:</h3>
-<p>Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como Snyk, que examinan la imagen en busca de posibles problemas de seguridad.</p>
+<section id="objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo:</h2>
+<p>Practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.</p>
 </section>
-<section id="capas-de-la-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="capas-de-la-imagen">Capas de la imagen:</h3>
-<p>Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción.</p>
-</section>
-<section id="multi-stage-builds" class="level3">
-<h3 class="anchored" data-anchor-id="multi-stage-builds">Multi-Stage builds:</h3>
-<p>Las Multi-Stage builds son una práctica recomendada para construir imágenes Docker. Permiten separar las dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción. Al hacerlo, se reduce significativamente el tamaño de la imagen final. Un ejemplo común es construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx para la producción.</p>
-</section>
-</section>
-<section id="ejemplos" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
-<p>Escaneo de imagen con Snyk:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades. Esto es esencial para identificar y abordar posibles riesgos de seguridad antes de implementar la aplicación.</p>
-<p>Uso de Multi-Stage builds:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx. Este enfoque no solo facilita el proceso de construcción sino que también resulta en imágenes más eficientes y seguras.</p>
-</section>
-<section id="práctica" class="level2">
-<h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
+<section id="instrucciones" class="level2">
+<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h2>
 <ul>
-<li>Realiza un escaneo de vulnerabilidades en una imagen de tu elección utilizando Snyk.</li>
-<li>Implementa un Multi-Stage build en un Dockerfile para una aplicación de tu preferencia.</li>
+<li>Crea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.</li>
+<li>Construye la imagen a partir del Dockerfile.</li>
+<li>Utilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.</li>
+<li>Inicia el servicio con Docker Compose.</li>
+<li>Accede a la aplicación en <a href="http://localhost:5000">http://localhost:5000</a> y verifica que imprime “Hola, Docker”.</li>
+</ul>
+</section>
+<section id="entregables" class="level2">
+<h2 class="anchored" data-anchor-id="entregables">Entregables:</h2>
+<ul>
+<li>Dockerfile para la aplicación Python.</li>
+<li>Archivo Docker Compose.</li>
+<li>Documento explicando los comandos utilizados.</li>
+<li>Capturas de pantalla que demuestren el acceso a la aplicación.</li>
 </ul>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Escaneo de imagen con Snyk:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test my-image:my-tag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ejemplo de Multi-Stage Dockerfile:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia.</p>
-</div>
-</div>
-</section>
-<section id="qué-aprendimos" class="level2">
-<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
+<p>Dockerfile para la aplicación Python:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"-c"</span>, <span class="st">"print('Hola, Docker')"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Construir la imagen:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-python-app .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Archivo Docker Compose (docker-compose.yml):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">myapp</span><span class="kw">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-python-app</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"5000:5000"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Iniciar el servicio con Docker Compose:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Verificar el acceso a la aplicación:</p>
+<p>Acceder a <a href="http://localhost:5000">http://localhost:5000</a> en el navegador.</p>
+</details></section>
+<section id="rubrica-de-evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="rubrica-de-evaluación">Rubrica de Evaluación:</h2>
 <ul>
-<li>Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.</li>
-<li>Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.</li>
+<li>Correcta creación del Dockerfile: 6 puntos</li>
+<li>Imagen construida correctamente: 4 puntos</li>
+<li>Configuración adecuada en Docker Compose: 6 puntos</li>
+<li>Acceso exitoso a la aplicación: 4 puntos</li>
 </ul>
 
 
@@ -761,13 +734,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/ejercicios22.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span>
+      <a href="../unidades/unidad22.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/ejercicios3.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidades/unidad3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

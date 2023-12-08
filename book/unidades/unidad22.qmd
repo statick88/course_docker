@@ -1,0 +1,92 @@
+# 4. Dockerizando un Ambiente de Desarrollo con Python y Django
+
+## Introducción
+
+Docker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos.
+
+## ¿Qué es Docker?
+
+Docker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código.
+Creando un Dockerfile para una Aplicación Django
+
+Un Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:
+
+```dockerfile
+
+# Usa una imagen oficial de Python como base
+FROM python:3.12
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia los archivos de requerimientos y el código de la aplicación
+COPY requirements.txt .
+
+# Instala las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia el resto de la aplicación
+COPY . .
+
+# Expone el puerto en el que se ejecutará la aplicación
+EXPOSE 8000
+
+# Comando para ejecutar la aplicación Django
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
+Este Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000.
+Docker Compose para Orquestar Contenedores
+
+Docker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:
+
+```yaml
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-django-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+```
+Este archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django.
+
+## Actividad Práctica
+
+- Crea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.
+- Inicia el entorno de desarrollo ejecutando docker-compose up -d.
+- Accede a la aplicación Django en http://localhost:8000 en tu navegador.
+- Realiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.
+
+<details>
+<summary>Resolución de la Actividad Práctica</summary>
+
+- Crea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.
+
+Abre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:
+
+```bash
+docker-compose up -d
+```
+Esto construirá la imagen y ejecutará los contenedores en segundo plano.
+
+Accede a la aplicación Django en tu navegador ingresando a [http://localhost:8000](http://localhost:8000). Deberías ver la aplicación en ejecución.
+
+Realiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml.
+
+</details>
+
+## ¿Qué aprendimo?
+
+En este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!

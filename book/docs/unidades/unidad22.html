@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - 4: Buenas Prácticas y Seguridad</title>
+<title>Docker 2023 - 4. Dockerizando un Ambiente de Desarrollo con Python y Django</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/ejercicios3.html" rel="next">
-<link href="../unidades/ejercicios22.html" rel="prev">
+<link href="../unidades/ejercicios22.html" rel="next">
+<link href="../unidades/ejercicios1.html" rel="prev">
 <link href="..//images/docker.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad22.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></a>
+  <a href="../unidades/unidad22.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
+  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,24 +285,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
-  <ul class="collapse">
-  <li><a href="#escaneo-de-imagen" id="toc-escaneo-de-imagen" class="nav-link" data-scroll-target="#escaneo-de-imagen">Escaneo de imagen:</a></li>
-  <li><a href="#capas-de-la-imagen" id="toc-capas-de-la-imagen" class="nav-link" data-scroll-target="#capas-de-la-imagen">Capas de la imagen:</a></li>
-  <li><a href="#multi-stage-builds" id="toc-multi-stage-builds" class="nav-link" data-scroll-target="#multi-stage-builds">Multi-Stage builds:</a></li>
-  </ul></li>
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
-  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
-  <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#qué-es-docker" id="toc-qué-es-docker" class="nav-link" data-scroll-target="#qué-es-docker">¿Qué es Docker?</a></li>
+  <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica</a></li>
+  <li><a href="#qué-aprendimo" id="toc-qué-aprendimo" class="nav-link" data-scroll-target="#qué-aprendimo">¿Qué aprendimo?</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad3.qmd" class="toc-action">View source</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad22.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad22.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></h1>
+<h1 class="title"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></h1>
 </div>
 
 
@@ -317,79 +312,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="conceptos" class="level2">
-<h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<section id="escaneo-de-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="escaneo-de-imagen">Escaneo de imagen:</h3>
-<p>Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como Snyk, que examinan la imagen en busca de posibles problemas de seguridad.</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Docker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos.</p>
 </section>
-<section id="capas-de-la-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="capas-de-la-imagen">Capas de la imagen:</h3>
-<p>Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción.</p>
+<section id="qué-es-docker" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-docker">¿Qué es Docker?</h2>
+<p>Docker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código. Creando un Dockerfile para una Aplicación Django</p>
+<p>Un Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Usa una imagen oficial de Python como base</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.12</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Establece el directorio de trabajo en el contenedor</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copia los archivos de requerimientos y el código de la aplicación</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> requirements.txt .</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Instala las dependencias</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">-r</span> requirements.txt</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Copia el resto de la aplicación</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Expone el puerto en el que se ejecutará la aplicación</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 8000</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Comando para ejecutar la aplicación Django</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"manage.py"</span>, <span class="st">"runserver"</span>, <span class="st">"0.0.0.0:8000"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000. Docker Compose para Orquestar Contenedores</p>
+<p>Docker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">web</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dockerfile</span><span class="kw">:</span><span class="at"> Dockerfile</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-django-app</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8000:8000"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/app</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> db</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">db</span><span class="kw">:</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> postgres:latest</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_DB</span><span class="kw">:</span><span class="at"> mydatabase</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_USER</span><span class="kw">:</span><span class="at"> myuser</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_PASSWORD</span><span class="kw">:</span><span class="at"> mypassword</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django.</p>
 </section>
-<section id="multi-stage-builds" class="level3">
-<h3 class="anchored" data-anchor-id="multi-stage-builds">Multi-Stage builds:</h3>
-<p>Las Multi-Stage builds son una práctica recomendada para construir imágenes Docker. Permiten separar las dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción. Al hacerlo, se reduce significativamente el tamaño de la imagen final. Un ejemplo común es construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx para la producción.</p>
-</section>
-</section>
-<section id="ejemplos" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
-<p>Escaneo de imagen con Snyk:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test <span class="op">&lt;</span>IMAGE_NAME:TAG<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades. Esto es esencial para identificar y abordar posibles riesgos de seguridad antes de implementar la aplicación.</p>
-<p>Uso de Multi-Stage builds:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx. Este enfoque no solo facilita el proceso de construcción sino que también resulta en imágenes más eficientes y seguras.</p>
-</section>
-<section id="práctica" class="level2">
-<h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
+<section id="actividad-práctica" class="level2">
+<h2 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica</h2>
 <ul>
-<li>Realiza un escaneo de vulnerabilidades en una imagen de tu elección utilizando Snyk.</li>
-<li>Implementa un Multi-Stage build en un Dockerfile para una aplicación de tu preferencia.</li>
+<li>Crea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.</li>
+<li>Inicia el entorno de desarrollo ejecutando docker-compose up -d.</li>
+<li>Accede a la aplicación Django en http://localhost:8000 en tu navegador.</li>
+<li>Realiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.</li>
 </ul>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Escaneo de imagen con Snyk:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snyk</span> container test my-image:my-tag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ejemplo de Multi-Stage Dockerfile:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14 <span class="kw">AS</span> builder</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> run build</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:alpine</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /usr/share/nginx/html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia.</p>
-</div>
-</div>
-</section>
-<section id="qué-aprendimos" class="level2">
-<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
 <ul>
-<li>Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.</li>
-<li>Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.</li>
+<li>Crea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.</li>
 </ul>
+<p>Abre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto construirá la imagen y ejecutará los contenedores en segundo plano.</p>
+<p>Accede a la aplicación Django en tu navegador ingresando a <a href="http://localhost:8000">http://localhost:8000</a>. Deberías ver la aplicación en ejecución.</p>
+<p>Realiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml.</p>
+</details>
+</section>
+<section id="qué-aprendimo" class="level2">
+<h2 class="anchored" data-anchor-id="qué-aprendimo">¿Qué aprendimo?</h2>
+<p>En este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!</p>
 
 
 </section>
@@ -761,12 +760,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/ejercicios22.html" class="pagination-link">
+      <a href="../unidades/ejercicios1.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/ejercicios3.html" class="pagination-link">
+      <a href="../unidades/ejercicios22.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
