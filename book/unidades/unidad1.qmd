@@ -1,7 +1,7 @@
 # 3. Creación de un servidor web con Docker y Nginx
 
 ## Conceptos
-
+::: justify
 **Docker** es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un **contenedor** es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.
 
 **Nginx** es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.
@@ -20,18 +20,40 @@ WORKDIR /usr/share/nginx/html
 # Copy the 'web' directory (at your Dockerfile's location) into the container
 COPY web .
 ```
+:::
 ## Actividad Práctica
+
 1. Crea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.
 2. Crea un Dockerfile como el del ejemplo anterior.
-3. Construye una imagen Docker a partir del Dockerfile con el comando docker `build -t my-nginx-image` ..
-4. Crea y ejecuta un contenedor a partir de la imagen con el comando `docker run -it --rm -dp 8080:80 -v ${PWD}/web:/usr/share/nginx/html --name web my-nginx-image .`
+3. Construye una imagen Docker a partir del Dockerfile
+4. Crea y ejecuta un contenedor a partir de la imagen
 
 <details>
     <summary>Resolución de la Actividad Práctica</summary>
+Construye una imagen Docker a partir del Dockerfile
 
+```Dockerfile
+# Use an official nginx image as a parent image
+FROM nginx:latest
+
+# Set the working directory in the container to /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
+
+# Copy the 'web' directory (at your Dockerfile's location) into the container
+COPY web .
+```
+```bash
+docker build -t my-nginx-image .
+```
+Crea y ejecuta un contenedor a partir de la imagen
+```bash
+docker run -it --rm -dp 8080:80 -v ${PWD}/web:/usr/share/nginx/html --name web my-nginx-image .`
+```
 Si has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080.
+
 </details>
 
 ## ¿Qué aprendimos?
-
+::: justify
 En este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web.
+:::

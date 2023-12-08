@@ -276,7 +276,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos</a></li>
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos</a></li>
   <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica</a></li>
   <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué aprendimos?</a></li>
   </ul>
@@ -304,9 +303,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="conceptos" class="level2">
 <h2 class="anchored" data-anchor-id="conceptos">Conceptos</h2>
+<div class="justify">
 <p><strong>Docker</strong> es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un <strong>contenedor</strong> es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.</p>
 <p><strong>Nginx</strong> es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.</p>
-</section>
 <section id="ejemplos" class="level2">
 <h2 class="anchored" data-anchor-id="ejemplos">Ejemplos</h2>
 <p>Un ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:</p>
@@ -319,24 +318,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</div>
+</section>
 <section id="actividad-práctica" class="level2">
 <h2 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica</h2>
 <ol type="1">
 <li>Crea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.</li>
 <li>Crea un Dockerfile como el del ejemplo anterior.</li>
-<li>Construye una imagen Docker a partir del Dockerfile con el comando docker <code>build -t my-nginx-image</code> ..</li>
-<li>Crea y ejecuta un contenedor a partir de la imagen con el comando <code>docker run -it --rm -dp 8080:80 -v ${PWD}/web:/usr/share/nginx/html --name web my-nginx-image .</code></li>
+<li>Construye una imagen Docker a partir del Dockerfile</li>
+<li>Crea y ejecuta un contenedor a partir de la imagen</li>
 </ol>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-Si has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080.
+<p>Construye una imagen Docker a partir del Dockerfile</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an official nginx image as a parent image</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:latest</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the working directory in the container to /usr/share/nginx/html</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/share/nginx/html</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-nginx-image .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Crea y ejecuta un contenedor a partir de la imagen</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-dp</span> 8080:80 <span class="at">-v</span> <span class="va">${PWD}</span>/web:/usr/share/nginx/html <span class="at">--name</span> web my-nginx-image .<span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si has seguido los pasos correctamente, deberías tener un servidor web Nginx ejecutándose en un contenedor Docker y sirviendo los archivos de tu directorio web. Puedes verificar esto abriendo un navegador web y yendo a http://localhost:8080.</p>
 </details>
 </section>
 <section id="qué-aprendimos" class="level2">
 <h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué aprendimos?</h2>
+<div class="justify">
 <p>En este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web.</p>
+</div>
 
 
 </section>
