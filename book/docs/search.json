@@ -37,28 +37,28 @@
   {
     "objectID": "unidades/unidad0.html#ejemplos",
     "href": "unidades/unidad0.html#ejemplos",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "1. Docker",
     "section": "Ejemplos:",
     "text": "Ejemplos:\n\nDescargar una imagen:\ndocker pull docker/getting-started\n\n\n\nEste comando descarga la imagen getting-started desde el registro público de Docker.\nCorrer un contenedor en el puerto 80:\ndocker run -d -p 80:80 docker/getting-started\n\n\n\nEste comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).\nDescargar una imagen desde un registro.\ndocker pull &lt;IMAGE_NAME:TAG&gt;\nListar las imágenes descargadas.\ndocker images\nListar contenedores en ejecución.\ndocker ps\nListar todos los contenedores, incluyendo los detenidos.\ndocker ps -a\nEjecutar un contenedor a partir de una imagen.\ndocker run -d -p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt; &lt;IMAGE_NAME:TAG&gt;\nDetener un contenedor en ejecución.\ndocker stop &lt;CONTAINER_ID&gt;\nIniciar un contenedor detenio.\ndocker start &lt;CONTAINER_ID&gt;\nEliminar un contenedor.\ndocker rm &lt;CONTAINER_ID&gt;\nEliminar una imagen.\ndocker rmi &lt;IMAGE_NAME:TAG&gt;\n\nAtajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d\n\n\nPráctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor.\n\n\n\n\n\nResolución de la Actividad Práctica\n\n\nAbre tu terminal o línea de comandos.\nDescarga la imagen de Nginx desde el registro público de Docker:\n\ndocker pull nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080:\n\ndocker run -d -p 8080:80 nginx\nElige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.\n\nVerifica que el contenedor esté en ejecución:\n\ndocker ps\n\nSi el contenedor está en ejecución, detenlo utilizando el siguiente comando:\n\ndocker stop &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor que obtuviste en el paso anterior.\n\nElimina el contenedor detenido:\n\ndocker rm &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor.\n\n\n\n\n\n\n\nTip\n\n\n\nCombina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente.\n¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!"
   },
   {
     "objectID": "unidades/unidad0.html#atajos-y-comandos-adicionales",
     "href": "unidades/unidad0.html#atajos-y-comandos-adicionales",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "1. Docker",
     "section": "Atajos y Comandos Adicionales:",
     "text": "Atajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d"
   },
   {
     "objectID": "unidades/unidad0.html#práctica",
     "href": "unidades/unidad0.html#práctica",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "1. Docker",
     "section": "Práctica:",
     "text": "Práctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor."
   },
   {
     "objectID": "unidades/unidad0.html#qué-aprendimos",
     "href": "unidades/unidad0.html#qué-aprendimos",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "1. Docker",
     "section": "¿Qué Aprendimos?",
     "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker."
   },
@@ -66,8 +66,8 @@
     "objectID": "unidades/ejercicios0.html#objetivo",
     "href": "unidades/ejercicios0.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nFamiliarizarse con los comandos básicos de Docker y atajos para gestionar contenedores de manera eficiente. Instrucciones:\n\nUtilizando el comando docker run, inicia un contenedor de la imagen “nginx” en segundo plano, mapeando el puerto 8080 del host al puerto 80 del contenedor.\nDetén y elimina el contenedor recién creado utilizando comandos Docker.\nCrea un nuevo contenedor con la imagen “alpine” y ejecuta un terminal interactivo dentro de él.\nDesde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.\nCrea una imagen llamada “alpine-curl” a partir de este contenedor modificado."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es familiarizarse con los comandos básicos de Docker y aprender a gestionar contenedores de manera eficiente."
   },
   {
     "objectID": "unidades/ejercicios0.html#entregables",
@@ -115,15 +115,15 @@
     "objectID": "unidades/ejercicios2.html#objetivo",
     "href": "unidades/ejercicios2.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
   },
   {
     "objectID": "unidades/ejercicios2.html#instrucciones",
     "href": "unidades/ejercicios2.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse. Asegúrate de que tu aplicación esté configurada para escuchar en el puerto 5000.\nConstruye la imagen a partir del Dockerfile utilizando el comando docker build.\nCrea un archivo docker-compose.yml. Dentro de este archivo, define un servicio que utilice la imagen que acabas de crear. Asegúrate de mapear el puerto 5000 del host al puerto 5000 del contenedor.\nInicia el servicio con Docker Compose utilizando el comando docker-compose up.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”.\n\nRecuerda que puedes consultar la documentación de Docker y Docker Compose si necesitas ayuda con los comandos."
   },
   {
     "objectID": "unidades/ejercicios2.html#entregables",
@@ -171,15 +171,15 @@
     "objectID": "unidades/ejercicios1.html#objetivo",
     "href": "unidades/ejercicios1.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar el uso de volúmenes en Docker para persistir datos entre contenedores."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es practicar el uso de volúmenes en Docker para persistir datos entre contenedores."
   },
   {
     "objectID": "unidades/ejercicios1.html#instrucciones",
     "href": "unidades/ejercicios1.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un nuevo volumen llamado “mydata”.\nInicia un contenedor de la imagen “nginx” y vincula el volumen “mydata” al directorio “/usr/share/nginx/html” dentro del contenedor.\nCrea un archivo HTML dentro del volumen “mydata” con el mensaje “Hola, este es un archivo HTML persistente”.\nInicia otro contenedor de la imagen “nginx” y vincula el mismo volumen “mydata” al directorio “/usr/share/nginx/html” dentro de este segundo contenedor.\nVerifica que ambos contenedores comparten el mismo archivo HTML creado en el paso 3."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nCrea un nuevo volumen llamado “mydata” utilizando el comando docker volume create.\nInicia un contenedor de la imagen “nginx” y vincula el volumen “mydata” al directorio “/usr/share/nginx/html” dentro del contenedor utilizando el comando docker run.\nCrea un archivo HTML dentro del volumen “mydata” con el mensaje “Hola, este es un archivo HTML persistente”. Puedes hacer esto iniciando un contenedor temporal que tenga acceso al volumen y utilizando un editor de texto para crear el archivo.\nInicia otro contenedor de la imagen “nginx” y vincula el mismo volumen “mydata” al directorio “/usr/share/nginx/html” dentro de este segundo contenedor. Verifica que puedes ver el archivo HTML que creaste en el paso 3.\n\nRecuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos."
   },
   {
     "objectID": "unidades/ejercicios1.html#entregables",
@@ -235,14 +235,14 @@
     "href": "unidades/ejercicios22.html#instrucciones",
     "title": "Actividad Práctica",
     "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”.# Actividad Práctica"
   },
   {
     "objectID": "unidades/ejercicios22.html#entregables",
     "href": "unidades/ejercicios22.html#entregables",
     "title": "Actividad Práctica",
-    "section": "Entregables:",
-    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
+    "section": "Entregables",
+    "text": "Entregables\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\nRecuerda que puedes consultar la documentación de Docker y Docker Compose si necesitas ayuda con los comandos.\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
   },
   {
     "objectID": "unidades/ejercicios22.html#rubrica-de-evaluación",
@@ -283,15 +283,15 @@
     "objectID": "unidades/ejercicios3.html#objetivo",
     "href": "unidades/ejercicios3.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es aplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
   },
   {
     "objectID": "unidades/ejercicios3.html#instrucciones",
     "href": "unidades/ejercicios3.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nUtiliza la herramienta Snyk para escanear la imagen “alpine:latest” en busca de vulnerabilidades.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas. Por ejemplo, podrías incluir información sobre la versión del software y la fecha de creación en las etiquetas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez de tu archivo Docker Compose. Asegúrate de corregir cualquier advertencia o error que encuentres.\nImplementa una red de contenedores utilizando el comando docker network create. Asegúrate de que solo los contenedores que necesitan comunicarse entre sí tengan acceso a esta red.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker. Esto puede ayudar a reducir el tamaño de tus imágenes y a evitar la inclusión accidental de información sensible.\n\nRecuerda que puedes consultar la documentación de Docker y Snyk si necesitas ayuda con los comandos."
   },
   {
     "objectID": "unidades/ejercicios3.html#entregables",
@@ -339,15 +339,15 @@
     "objectID": "unidades/ejercicios4.html#objetivo",
     "href": "unidades/ejercicios4.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es aplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
   },
   {
     "objectID": "unidades/ejercicios4.html#instrucciones",
     "href": "unidades/ejercicios4.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nUtiliza la herramienta Snyk para escanear la imagen “alpine:latest” en busca de vulnerabilidades.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas. Por ejemplo, podrías incluir información sobre la versión del software y la fecha de creación en las etiquetas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez de tu archivo Docker Compose. Asegúrate de corregir cualquier advertencia o error que encuentres.\nImplementa una red de contenedores utilizando el comando docker network create. Asegúrate de que solo los contenedores que necesitan comunicarse entre sí tengan acceso a esta red.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker. Esto puede ayudar a reducir el tamaño de tus imágenes y a evitar la inclusión accidental de información sensible.\n\nRecuerda que puedes consultar la documentación de Docker y Snyk si necesitas ayuda con los comandos."
   },
   {
     "objectID": "unidades/ejercicios4.html#entregables",
@@ -388,15 +388,15 @@
     "objectID": "unidades/ejercicios5.html#objetivo",
     "href": "unidades/ejercicios5.html#objetivo",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nConfigurar un clúster de Docker Swarm con un nodo manager y varios nodos workers."
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers."
   },
   {
     "objectID": "unidades/ejercicios5.html#instrucciones",
     "href": "unidades/ejercicios5.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\nInicializa el Swarm en el Nodo Manager ejecutando el siguiente comando:\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO_MANAGER&gt;\nSustituye  con la dirección IP del nodo que actuará como manager.\nÚnete a un Nodo al Swarm ejecutando el siguiente comando en cada Nodo Worker:\ndocker swarm join --token &lt;TOKEN_GENERADO&gt; &lt;IP_DEL_NODO_MANAGER&gt;:&lt;PUERTO&gt;\nReemplaza  con el token proporcionado en el paso anterior y  con la dirección IP del nodo manager."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nEn el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:\n\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO_MANAGER&gt;\n\nBasándome en el fragmento de código que proporcionaste de tu archivo [`ejercicios5.qmd`](command:_github.copilot.openRelativePath?%5B%22book%2Funidades%2Fejercicios5.qmd%22%5D \"book\\unidades\\ejercicios5.qmd\"), parece que estás proporcionando instrucciones para una actividad práctica relacionada con Docker Swarm. Aquí hay algunas sugerencias para mejorar la claridad y la legibilidad de tus instrucciones:\n\n```quarto\n# Actividad Práctica\n\n## Objetivo\n\nEl objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.\n\n## Instrucciones\n\n1. En el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:\n\n```bash\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO_MANAGER&gt;\nSustituye &lt;IP_DEL_NODO_MANAGER&gt; con la dirección IP del nodo manager.\n\nUna vez que hayas inicializado el Swarm, Docker generará un comando docker swarm join que puedes usar para conectar los nodos workers al clúster. Ejecuta este comando en cada uno de tus nodos workers.\nVerifica el estado de tu clúster ejecutando el comando docker node ls en el nodo manager. Deberías ver una lista de todos tus nodos con sus roles y estados.\n\nRecuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos."
   },
   {
     "objectID": "unidades/unidad6.html#conceptos",
@@ -480,7 +480,7 @@
     "href": "license.html#restricciones",
     "title": "Licencia",
     "section": "Restricciones",
-    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
+    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de Diego Saavedra. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio. No está permitido compartir el curso con otros fuera de tu hogar o aula sin el permiso explícito de Diego Saavedra."
   },
   {
     "objectID": "license.html#atribución",
@@ -593,5 +593,33 @@
     "title": "1. Comandos Básicos y Atajos",
     "section": "¿Qué Aprendimos?",
     "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker."
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#instrucciones",
+    "href": "unidades/ejercicios0.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nInicia un contenedor de la imagen “nginx” en segundo plano utilizando el comando docker run. Asegúrate de mapear el puerto 8080 del host al puerto 80 del contenedor.\nDetén y elimina el contenedor que acabas de crear utilizando los comandos Docker apropiados.\nCrea un nuevo contenedor con la imagen “alpine” y ejecuta un terminal interactivo dentro de él.\nDesde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.\nCrea una imagen llamada “alpine-curl” a partir de este contenedor modificado.\n\nRecuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos."
+  },
+  {
+    "objectID": "license.html#contacto",
+    "href": "license.html#contacto",
+    "title": "Licencia",
+    "section": "Contacto",
+    "text": "Contacto\nSi deseas obtener permiso para usos comerciales o para compartir el curso con otros, por favor contacta a Diego Medardo Saavedra Garcia a través de dsaavedra88@gmail.com."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#objetivo-1",
+    "href": "unidades/ejercicios22.html#objetivo-1",
+    "title": "Actividad Práctica",
+    "section": "Objetivo",
+    "text": "Objetivo\nEl objetivo de esta actividad es practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#instrucciones-1",
+    "href": "unidades/ejercicios22.html#instrucciones-1",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse. Asegúrate de que tu aplicación esté configurada para escuchar en el puerto 5000.\nConstruye la imagen a partir del Dockerfile utilizando el comando docker build.\nCrea un archivo docker-compose.yml. Dentro de este archivo, define un servicio que utilice la imagen que acabas de crear. Asegúrate de mapear el puerto 5000 del host al puerto 5000 del contenedor.\nInicia el servicio con Docker Compose utilizando el comando docker-compose up.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
   }
 ]

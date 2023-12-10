@@ -1,6 +1,6 @@
 # Licencia
 
-Este curso y su contenido están protegidos por derechos de autor y son propiedad de [Nombre de la Compañía]. El contenido de este curso se proporciona con el propósito de educación y aprendizaje.
+Este curso y su contenido están protegidos por derechos de autor y son propiedad de Diego Saavedra. El contenido de este curso se proporciona con el propósito de educación y aprendizaje.
 
 ## Uso Permitido
 
@@ -8,15 +8,8 @@ Puedes utilizar el contenido de este curso con fines educativos y personales. Pu
 
 ## Restricciones
 
-No tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio.
+No tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de Diego Saavedra. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio. No está permitido compartir el curso con otros fuera de tu hogar o aula sin el permiso explícito de Diego Saavedra.
 
-## Atribución
+## Contacto
 
-Si compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía].
-
-## Cambios en la Licencia
-
-[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.
-
-Gracias por respetar nuestros derechos de autor y por tu comprensión.
-
+Si deseas obtener permiso para usos comerciales o para compartir el curso con otros, por favor contacta a Diego Medardo Saavedra Garcia a través de `dsaavedra88@gmail.com`.

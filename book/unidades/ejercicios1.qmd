@@ -1,16 +1,17 @@
 # Actividad Práctica
 
-## Objetivo:
+## Objetivo
 
-Practicar el uso de volúmenes en Docker para persistir datos entre contenedores.
+El objetivo de esta actividad es practicar el uso de volúmenes en Docker para persistir datos entre contenedores.
 
-## Instrucciones:
+## Instrucciones
 
-- Crea un nuevo volumen llamado "mydata".
-- Inicia un contenedor de la imagen "nginx" y vincula el volumen "mydata" al directorio "/usr/share/nginx/html" dentro del contenedor.
-- Crea un archivo HTML dentro del volumen "mydata" con el mensaje "Hola, este es un archivo HTML persistente".
-- Inicia otro contenedor de la imagen "nginx" y vincula el mismo volumen "mydata" al directorio "/usr/share/nginx/html" dentro de este segundo contenedor.
-- Verifica que ambos contenedores comparten el mismo archivo HTML creado en el paso 3.
+1. Crea un nuevo volumen llamado "mydata" utilizando el comando `docker volume create`.
+2. Inicia un contenedor de la imagen "nginx" y vincula el volumen "mydata" al directorio "/usr/share/nginx/html" dentro del contenedor utilizando el comando `docker run`.
+3. Crea un archivo HTML dentro del volumen "mydata" con el mensaje "Hola, este es un archivo HTML persistente". Puedes hacer esto iniciando un contenedor temporal que tenga acceso al volumen y utilizando un editor de texto para crear el archivo.
+4. Inicia otro contenedor de la imagen "nginx" y vincula el mismo volumen "mydata" al directorio "/usr/share/nginx/html" dentro de este segundo contenedor. Verifica que puedes ver el archivo HTML que creaste en el paso 3.
+
+Recuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.
 
 ## Entregables:
 

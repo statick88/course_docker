@@ -1,15 +1,18 @@
 # Actividad Práctica
 
-## Objetivo:
+## Objetivo
 
-Familiarizarse con los comandos básicos de Docker y atajos para gestionar contenedores de manera eficiente.
-Instrucciones:
+El objetivo de esta actividad es familiarizarse con los comandos básicos de Docker y aprender a gestionar contenedores de manera eficiente.
 
-- Utilizando el comando docker run, inicia un contenedor de la imagen "nginx" en segundo plano, mapeando el puerto 8080 del host al puerto 80 del contenedor.
-- Detén y elimina el contenedor recién creado utilizando comandos Docker.
-- Crea un nuevo contenedor con la imagen "alpine" y ejecuta un terminal interactivo dentro de él.
-- Desde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.
-- Crea una imagen llamada "alpine-curl" a partir de este contenedor modificado.
+## Instrucciones
+
+1. Inicia un contenedor de la imagen "nginx" en segundo plano utilizando el comando `docker run`. Asegúrate de mapear el puerto 8080 del host al puerto 80 del contenedor.
+2. Detén y elimina el contenedor que acabas de crear utilizando los comandos Docker apropiados.
+3. Crea un nuevo contenedor con la imagen "alpine" y ejecuta un terminal interactivo dentro de él.
+4. Desde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.
+5. Crea una imagen llamada "alpine-curl" a partir de este contenedor modificado.
+
+Recuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.
 
 ## Entregables:
 

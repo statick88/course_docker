@@ -4,54 +4,15 @@
 
 ### Docker Swarm
 
-Es una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker.
+[Docker Swarm](https://docs.docker.com/engine/swarm/) es una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker. Por ejemplo, puedes usar el comando `docker swarm init` para inicializar un nuevo clúster de Docker Swarm.
 
 ### Nodos y Servicios
 
-En el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos.
+En el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos. Puedes usar el comando `docker node ls` para listar los nodos en tu clúster y `docker service create` para crear un nuevo servicio.
 
-## Ejemplos:
+## ¿Qué Aprendimos?
+- Comprendemos la importancia de Docker Swarm para la orquestación de contenedores.
+- Aprendimos cómo gestionar nodos y servicios en un clúster de Docker Swarm.
 
-Inicializando un Swarm:
-
-``` bash
-docker swarm init
-```
-Este comando inicia un clúster de Swarm en el nodo actual.
-
-Creando un Servicio:
-
-``` bash
-docker service create --replicas 3 -p 8080:80 --name web nginx
-```
-Aquí estamos creando un servicio llamado "web" que ejecuta tres replicas del contenedor Nginx.
-
-## Práctica:
-
-- Configurar un Clúster de Docker Swarm:
-- Inicia un clúster de Docker Swarm con dos nodos.
-- Crea un servicio distribuido que ejecute una aplicación de ejemplo en el clúster.
-
-<details>
-  <summary>Resolución de la Actividad Práctica</summary>
-
-Inicializar el Swarm:
-
-``` bash
-docker swarm init --advertise-addr <IP_DEL_NODO>
-```
-Unirse a un Nodo al Swarm:
-
-``` bash
-docker swarm join --token <TOKEN> <IP_DEL_MANAGER>:<PUERTO>
-```
-Crear un Servicio:
-
-``` bash
-docker service create --replicas 3 -p 8080:80 --name web nginx
-```
-</details>
-
-:::{.callout-tip}
-Utiliza Docker Swarm para mejorar la escalabilidad y la administración de tus aplicaciones en contenedores.
-:::
+## Resumen
+En esta unidad, aprendimos sobre Docker Swarm, una herramienta de orquestación de contenedores incorporada en Docker. Estas técnicas son esenciales para gestionar y escalar aplicaciones en un clúster de Docker.

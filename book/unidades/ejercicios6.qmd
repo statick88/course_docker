@@ -1,36 +1,43 @@
-# Actividad Práctica
+# Despliegue de Servicios con Docker Swarm
 
-## Objetivo:
+## Objetivo
 
-Crear un servicio distribuido con varias réplicas utilizando Docker Swarm.
+El objetivo de esta actividad es desplegar un servicio en un clúster de Docker Swarm.
 
-## Instrucciones:
+## Instrucciones
 
-Crea un servicio llamado "web" que ejecute tres replicas del contenedor Nginx con el siguiente comando:
+1. Crea un servicio llamado "web" que utilice la imagen "nginx". Configura el servicio para que tenga 3 réplicas y que escuche en el puerto 8080 del host y redirija el tráfico al puerto 80 del contenedor. Puedes hacer esto con el siguiente comando:
 
-``` bash
+```bash
 docker service create --replicas 3 -p 8080:80 --name web nginx
 ```
 
-Despliegue de Aplicaciones con Docker Compose
+Basándome en el fragmento de código que proporcionaste de tu archivo [`ejercicios6.qmd`](command:_github.copilot.openRelativePath?%5B%22book%2Funidades%2Fejercicios6.qmd%22%5D "book\unidades\ejercicios6.qmd"), parece que estás proporcionando instrucciones para una actividad práctica relacionada con Docker Swarm y Docker Compose. Aquí hay algunas sugerencias para mejorar la claridad y la legibilidad de tus instrucciones:
 
----
+```quarto
+# Despliegue de Servicios con Docker Swarm
 
-# Desplegar una Aplicación Compleja con Docker Compose
+## Objetivo
 
-## Objetivo:
+El objetivo de esta actividad es desplegar un servicio en un clúster de Docker Swarm.
 
-Desplegar una aplicación compuesta por servicios web y de base de datos utilizando Docker Compose.
+## Instrucciones
 
-## Instrucciones:
+1. Crea un servicio llamado "web" que utilice la imagen "nginx". Configura el servicio para que tenga 3 réplicas y que escuche en el puerto 8080 del host y redirija el tráfico al puerto 80 del contenedor. Puedes hacer esto con el siguiente comando:
 
-- Crea un archivo llamado docker-compose.yml con el contenido proporcionado.
-- Despliega la aplicación ejecutando el siguiente comando:
-
-``` bash
-docker-compose up -d
+```bash
+docker service create --replicas 3 -p 8080:80 --name web nginx
 ```
-- Utiliza el flag -d para realizar el despliegue en segundo plano.
+
+# Despliegue de Aplicaciones con Docker Compose
+
+## Objetivo
+
+El objetivo de esta actividad es desplegar una aplicación compuesta por varios servicios utilizando Docker Compose.
+
+## Instrucciones
+
+Recuerda que puedes consultar la documentación de Docker y Docker Compose si necesitas ayuda con los comandos.
 
 <details>
   <summary>Resolución de la Actividad Práctica</summary>

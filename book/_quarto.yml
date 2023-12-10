@@ -32,26 +32,27 @@ book:
       - text: "License"
         href: license.qmd
         
+  # Este archivo define la estructura del libro.
+
   chapters:
     - index.qmd
     - part: "Curso Docker"
       chapters: 
+        # Unidad 0
         - unidades/unidad0.qmd
         - unidades/ejercicios0.qmd
-        - unidades/unidad2.qmd
-        - unidades/ejercicios2.qmd
+        # Unidad 1
         - unidades/unidad1.qmd
         - unidades/ejercicios1.qmd
-        - unidades/unidad22.qmd
-        - unidades/ejercicios22.qmd
+        # Unidad 2
+        - unidades/unidad2.qmd
+        - unidades/ejercicios2.qmd
+        # Unidad 3
         - unidades/unidad3.qmd
         - unidades/ejercicios3.qmd
-        - unidades/unidad6.qmd
-        - unidades/ejercicios6.qmd
-        - unidades/unidad4.qmd
-        - unidades/ejercicios4.qmd
-        - unidades/unidad5.qmd
-        - unidades/ejercicios5.qmd
+        # Unidad 22
+        - unidades/unidad22.qmd
+        - unidades/ejercicios22.qmd
 
 bibliography: references.bib
 biblio-style: "apalike"

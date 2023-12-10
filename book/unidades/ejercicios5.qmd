@@ -1,21 +1,37 @@
 # Actividad Práctica
 
-## Objetivo:
+## Objetivo
 
-Configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.
+El objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.
 
-## Instrucciones:
+## Instrucciones
 
-Inicializa el Swarm en el Nodo Manager ejecutando el siguiente comando:
+1. En el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:
 
-``` bash
+```bash
+docker swarm init --advertise-addr <IP_DEL_NODO_MANAGER>
+
+Basándome en el fragmento de código que proporcionaste de tu archivo [`ejercicios5.qmd`](command:_github.copilot.openRelativePath?%5B%22book%2Funidades%2Fejercicios5.qmd%22%5D "book\unidades\ejercicios5.qmd"), parece que estás proporcionando instrucciones para una actividad práctica relacionada con Docker Swarm. Aquí hay algunas sugerencias para mejorar la claridad y la legibilidad de tus instrucciones:
+
+```quarto
+# Actividad Práctica
+
+## Objetivo
+
+El objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.
+
+## Instrucciones
+
+1. En el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:
+
+```bash
 docker swarm init --advertise-addr <IP_DEL_NODO_MANAGER>
 ```
-Sustituye <IP_DEL_NODO_MANAGER> con la dirección IP del nodo que actuará como manager.
 
-Únete a un Nodo al Swarm ejecutando el siguiente comando en cada Nodo Worker:
+   Sustituye `<IP_DEL_NODO_MANAGER>` con la dirección IP del nodo manager.
 
-``` bash
-docker swarm join --token <TOKEN_GENERADO> <IP_DEL_NODO_MANAGER>:<PUERTO>
-```
-Reemplaza <TOKEN_GENERADO> con el token proporcionado en el paso anterior y <IP_DEL_NODO_MANAGER> con la dirección IP del nodo manager.
+2. Una vez que hayas inicializado el Swarm, Docker generará un comando `docker swarm join` que puedes usar para conectar los nodos workers al clúster. Ejecuta este comando en cada uno de tus nodos workers.
+
+3. Verifica el estado de tu clúster ejecutando el comando `docker node ls` en el nodo manager. Deberías ver una lista de todos tus nodos con sus roles y estados.
+
+Recuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.

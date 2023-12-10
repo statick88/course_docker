@@ -1,28 +1,26 @@
-# 1. Comandos Básicos y Atajos
-
-## Conceptos:
-
-::: justify
-
 ::: center
-### Docker
+
+### 1. Docker
 
 ![](images/docker_image.png)
 :::
 
-Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.
+Docker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen, que es una especie de "plantilla" que contiene todo lo necesario para ejecutar una aplicación.
+
+::: center
+
+![](images/docker_image.png)
+:::
+
+Una imagen Docker es una plantilla inmutable que contiene un conjunto de instrucciones para crear un contenedor Docker. Las imágenes son portátiles y pueden ser compartidas, almacenadas y actualizadas.
 
 ::: center
 
 
-### Contenedor
-
 ![](images/docker_container.png)
 :::
 
-Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.
-
-:::
+Un contenedor Docker es una instancia ejecutable de una imagen Docker. Se ejecuta de manera aislada y contiene todo lo necesario para ejecutar la aplicación, incluyendo el código, las dependencias, el entorno de ejecución, las bibliotecas y los archivos de configuración.
 
 ## Ejemplos:
 

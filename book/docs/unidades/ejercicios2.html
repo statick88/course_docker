@@ -285,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo:</a></li>
-  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones:</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones</a></li>
   <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables:</a></li>
   <li><a href="#rubrica-de-evaluación" id="toc-rubrica-de-evaluación" class="nav-link" data-scroll-target="#rubrica-de-evaluación">Rubrica de Evaluación:</a></li>
   </ul>
@@ -313,18 +313,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo:</h2>
-<p>Practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.</p>
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>El objetivo de esta actividad es practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.</p>
 </section>
 <section id="instrucciones" class="level2">
-<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h2>
-<ul>
-<li>Crea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.</li>
-<li>Construye la imagen a partir del Dockerfile.</li>
-<li>Utilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.</li>
-<li>Inicia el servicio con Docker Compose.</li>
+<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones</h2>
+<ol type="1">
+<li>Crea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse. Asegúrate de que tu aplicación esté configurada para escuchar en el puerto 5000.</li>
+<li>Construye la imagen a partir del Dockerfile utilizando el comando <code>docker build</code>.</li>
+<li>Crea un archivo <code>docker-compose.yml</code>. Dentro de este archivo, define un servicio que utilice la imagen que acabas de crear. Asegúrate de mapear el puerto 5000 del host al puerto 5000 del contenedor.</li>
+<li>Inicia el servicio con Docker Compose utilizando el comando <code>docker-compose up</code>.</li>
 <li>Accede a la aplicación en <a href="http://localhost:5000">http://localhost:5000</a> y verifica que imprime “Hola, Docker”.</li>
-</ul>
+</ol>
+<p>Recuerda que puedes consultar la documentación de Docker y Docker Compose si necesitas ayuda con los comandos.</p>
 </section>
 <section id="entregables" class="level2">
 <h2 class="anchored" data-anchor-id="entregables">Entregables:</h2>

@@ -1,16 +1,18 @@
 # Actividad Práctica
 
-## Objetivo:
+## Objetivo
 
-Aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.
+El objetivo de esta actividad es aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.
 
-## Instrucciones:
+## Instrucciones
 
-- Escanea la imagen "alpine:latest" en busca de vulnerabilidades utilizando la herramienta Snyk.
-- Implementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.
-- Utiliza la herramienta "docker-compose lint" para verificar la validez del archivo Docker Compose.
-- Implementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.
-- Crea un archivo ".dockerignore" para excluir archivos y directorios innecesarios en la construcción de imágenes Docker.
+1. Utiliza la herramienta Snyk para escanear la imagen "alpine:latest" en busca de vulnerabilidades.
+2. Implementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas. Por ejemplo, podrías incluir información sobre la versión del software y la fecha de creación en las etiquetas.
+3. Utiliza la herramienta "docker-compose lint" para verificar la validez de tu archivo Docker Compose. Asegúrate de corregir cualquier advertencia o error que encuentres.
+4. Implementa una red de contenedores utilizando el comando `docker network create`. Asegúrate de que solo los contenedores que necesitan comunicarse entre sí tengan acceso a esta red.
+5. Crea un archivo ".dockerignore" para excluir archivos y directorios innecesarios en la construcción de imágenes Docker. Esto puede ayudar a reducir el tamaño de tus imágenes y a evitar la inclusión accidental de información sensible.
+
+Recuerda que puedes consultar la documentación de Docker y Snyk si necesitas ayuda con los comandos.
 
 ## Entregables:
 

@@ -285,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo:</a></li>
-  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones:</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones</a></li>
   <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables:</a></li>
   <li><a href="#rubrica-de-evaluación" id="toc-rubrica-de-evaluación" class="nav-link" data-scroll-target="#rubrica-de-evaluación">Rubrica de Evaluación:</a></li>
   </ul>
@@ -313,18 +313,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo:</h2>
-<p>Aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.</p>
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>El objetivo de esta actividad es aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.</p>
 </section>
 <section id="instrucciones" class="level2">
-<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h2>
-<ul>
-<li>Escanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.</li>
-<li>Implementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.</li>
-<li>Utiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.</li>
-<li>Implementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.</li>
-<li>Crea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker.</li>
-</ul>
+<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones</h2>
+<ol type="1">
+<li>Utiliza la herramienta Snyk para escanear la imagen “alpine:latest” en busca de vulnerabilidades.</li>
+<li>Implementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas. Por ejemplo, podrías incluir información sobre la versión del software y la fecha de creación en las etiquetas.</li>
+<li>Utiliza la herramienta “docker-compose lint” para verificar la validez de tu archivo Docker Compose. Asegúrate de corregir cualquier advertencia o error que encuentres.</li>
+<li>Implementa una red de contenedores utilizando el comando <code>docker network create</code>. Asegúrate de que solo los contenedores que necesitan comunicarse entre sí tengan acceso a esta red.</li>
+<li>Crea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker. Esto puede ayudar a reducir el tamaño de tus imágenes y a evitar la inclusión accidental de información sensible.</li>
+</ol>
+<p>Recuerda que puedes consultar la documentación de Docker y Snyk si necesitas ayuda con los comandos.</p>
 </section>
 <section id="entregables" class="level2">
 <h2 class="anchored" data-anchor-id="entregables">Entregables:</h2>

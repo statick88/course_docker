@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Comandos Básicos y Atajos</span></a>
+  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Docker</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
+  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Despliegue de Servicios con Docker Swarm</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -284,8 +284,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo:</a></li>
-  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones:</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/ejercicios5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/ejercicios5.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -310,17 +310,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo:</h2>
-<p>Configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.</p>
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>El objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.</p>
 </section>
 <section id="instrucciones" class="level2">
-<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h2>
-<p>Inicializa el Swarm en el Nodo Manager ejecutando el siguiente comando:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm init <span class="at">--advertise-addr</span> <span class="op">&lt;</span>IP_DEL_NODO_MANAGER<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sustituye <ip_del_nodo_manager> con la dirección IP del nodo que actuará como manager.</ip_del_nodo_manager></p>
-<p>Únete a un Nodo al Swarm ejecutando el siguiente comando en cada Nodo Worker:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm join <span class="at">--token</span> <span class="op">&lt;</span>TOKEN_GENERADO<span class="op">&gt;</span> <span class="op">&lt;</span>IP_DEL_NODO_MANAGER<span class="op">&gt;</span>:<span class="op">&lt;</span>PUERTO<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Reemplaza <token_generado> con el token proporcionado en el paso anterior y <ip_del_nodo_manager> con la dirección IP del nodo manager.</ip_del_nodo_manager></token_generado></p>
+<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones</h2>
+<ol type="1">
+<li>En el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm init <span class="at">--advertise-addr</span> <span class="op">&lt;</span>IP_DEL_NODO_MANAGER<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Basándome</span> en el fragmento de código que proporcionaste de tu archivo <span class="pp">[</span><span class="ss">`ejercicios5.qmd`</span><span class="pp">]</span><span class="er">(</span><span class="ex">command:_github.copilot.openRelativePath?%5B%22book%2Funidades%2Fejercicios5.qmd%22%5D</span> <span class="st">"book\unidades\ejercicios5.qmd"</span><span class="kw">)</span><span class="ex">,</span> parece que estás proporcionando instrucciones para una actividad práctica relacionada con Docker Swarm. Aquí hay algunas sugerencias para mejorar la claridad y la legibilidad de tus instrucciones:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="ex">quarto</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Actividad Práctica</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Objetivo</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">El</span> objetivo de esta actividad es configurar un clúster de Docker Swarm con un nodo manager y varios nodos workers.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Instrucciones</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">1.</span> En el nodo que actuará como manager, inicializa el Swarm ejecutando el siguiente comando:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span>bash</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm init <span class="at">--advertise-addr</span> <span class="op">&lt;</span>IP_DEL_NODO_MANAGER<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sustituye <code>&lt;IP_DEL_NODO_MANAGER&gt;</code> con la dirección IP del nodo manager.</p>
+<ol start="2" type="1">
+<li><p>Una vez que hayas inicializado el Swarm, Docker generará un comando <code>docker swarm join</code> que puedes usar para conectar los nodos workers al clúster. Ejecuta este comando en cada uno de tus nodos workers.</p></li>
+<li><p>Verifica el estado de tu clúster ejecutando el comando <code>docker node ls</code> en el nodo manager. Deberías ver una lista de todos tus nodos con sus roles y estados.</p></li>
+</ol>
+<p>Recuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.</p>
 
 
 </section>

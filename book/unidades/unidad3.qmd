@@ -1,74 +1,18 @@
 # 4: Buenas Prácticas y Seguridad
-
 ## Conceptos:
-
 ### Escaneo de imagen:
-
-Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como Snyk, que examinan la imagen en busca de posibles problemas de seguridad.
+Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como [Snyk](https://snyk.io/), que examinan la imagen en busca de posibles problemas de seguridad. Por ejemplo, puedes usar el comando `snyk test` para escanear tu imagen.
 
 ### Capas de la imagen:
-
-Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción.
+Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción. Puedes usar el comando `docker history <image>` para ver las capas de una imagen.
 
 ### Multi-Stage builds:
-
-Las Multi-Stage builds son una práctica recomendada para construir imágenes Docker. Permiten separar las dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción. Al hacerlo, se reduce significativamente el tamaño de la imagen final. Un ejemplo común es construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx para la producción.
-
-## Ejemplos:
-
-Escaneo de imagen con Snyk:
-
-``` bash
-snyk container test <IMAGE_NAME:TAG>
-```
-Utilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades. Esto es esencial para identificar y abordar posibles riesgos de seguridad antes de implementar la aplicación.
-
-Uso de Multi-Stage builds:
-
-``` dockerfile
-FROM node:14 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
-
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-```
-Este Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx. Este enfoque no solo facilita el proceso de construcción sino que también resulta en imágenes más eficientes y seguras.
-
-## Práctica:
-
-- Realiza un escaneo de vulnerabilidades en una imagen de tu elección utilizando Snyk.
-- Implementa un Multi-Stage build en un Dockerfile para una aplicación de tu preferencia.
-
-<details>
-  <summary>Resolución de la Actividad Práctica</summary>
-
-Escaneo de imagen con Snyk:
-
-``` bash
-snyk container test my-image:my-tag
-```
-Ejemplo de Multi-Stage Dockerfile:
-
-``` dockerfile
-FROM node:14 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
-
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-```
-</details>
-
-:::{.callout-tip}
-Recuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia.
-:::
+[Multi-Stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) es una técnica que te permite usar múltiples etapas de construcción en un solo Dockerfile, lo que te permite crear imágenes más pequeñas y más eficientes.
 
 ## ¿Qué Aprendimos?
-
 - Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.
 - Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.
+- Entendimos cómo Docker utiliza un sistema de archivos en capas para optimizar el almacenamiento y la construcción de imágenes.
+
+## Resumen
+En esta unidad, aprendimos sobre varias buenas prácticas y técnicas de seguridad en Docker, incluyendo el escaneo de imagen, el uso de capas de imagen y la implementación de Multi-Stage builds. Estas técnicas son esenciales para construir y mantener imágenes de Docker seguras y eficientes.
