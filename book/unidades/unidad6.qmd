@@ -1,60 +1,161 @@
-# 7: Despliegue de Aplicaciones con Docker Compose
+# 5. Dockerfile y Docker Compose
 
-## Conceptos:
+## 5.1. Dockerfile y su uso en la creación de imágenes Docker
 
-### Docker Compose para Despliegues Complejos
+### Conceptos
 
-Docker Compose no solo es útil para el desarrollo local; también se puede usar para definir y desplegar aplicaciones en entornos de producción.
+::: jutify
+Un Dockerfile es un archivo de texto que contiene las instrucciones para construir una imagen Docker. Se puede considerar como una especie de script que automatiza los comandos que normalmente se ejecutarían manualmente para construir una imagen.
+:::
 
-### Variables de Entorno en Docker Compose
+### Ejemplo
 
-Permite gestionar configuraciones específicas del entorno, facilitando la portabilidad de la aplicación entre diferentes contextos.
+Aquí hay un ejemplo de cómo se ve un Dockerfile:
 
-## Ejemplos:
+``` Dockerfile
+# Dockerfile
+FROM python:3.8
 
-Definir un Servicio con Docker Compose:
+ENV PYTHONUNBUFFERED 1
 
-``` yaml
-version: '3'
-services:
-  web:
-    image: nginx
-    ports:
-      - "8080:80"
+WORKDIR /app
+
+COPY requirements.txt /app/
+
+RUN pip install -r requirements.txt
+
+COPY . /app/
 ```
-Este archivo docker-compose.yml define un servicio llamado "web" que utiliza la imagen de Nginx y mapea el puerto 8080.
 
-## Práctica:
+Este Dockerfile realiza las siguientes acciones:
 
-- Desplegar una Aplicación Compleja con Docker Compose
-- Crea un archivo docker-compose.yml para una aplicación de varios servicios.
-- Despliega la aplicación en tu entorno local.
+- Utiliza la imagen `python:3.8` como base.
+- Establece la variable de entorno `PYTHONUNBUFFERED` en `1`.
+- Establece `/app` como el directorio de trabajo dentro del contenedor.
+- Copia el archivo `requirements.txt` al directorio de trabajo en el contenedor.
+- Ejecuta `pip install -r requirements.txt` para instalar las dependencias especificadas en `requirements.txt`.
+- Copia el directorio actual (es decir, todos los demás archivos y subdirectorios) al directorio de trabajo en el contenedor.
+
+Para construir una imagen a partir de este Dockerfile, se utiliza el comando `docker build`.
+
+### Actividad Práctica
+
+Crea un Dockerfile para una aplicación que utilice la imagen de Docker `node:14` como base, establezca `/usr/src/app` como el directorio de trabajo, copie el archivo `package.json` al directorio de trabajo, ejecute `npm install` para instalar las dependencias y copie el directorio actual al directorio de trabajo.
 
 <details>
-  <summary>Resolución de la Actividad Práctica</summary>
+  <sumary>Resolución de la Actividad Práctica</sumary>
 
-Ejemplo de docker-compose.yml:
+Aquí está la solución a la actividad práctica:
 
-``` yaml
-version: '3'
+``` Dockerfile
+# Dockerfile
+FROM node:14
+
+WORKDIR /usr/src/app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+```
+
+### ¿Qué aprendimos?
+
+- Aprendimos qué es un Dockerfile y cómo se utiliza para automatizar la construcción de imágenes Docker. 
+- También aprendimos cómo leer y escribir un Dockerfile y cómo construir una imagen a partir de él.
+
+---
+
+## 7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones
+
+### Conceptos
+
+Docker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.
+
+En el archivo `docker-compose.yml` proporcionado, se definen dos servicios: `db` y `web`.
+
+- `db`: Este servicio utiliza la imagen de Docker `postgres` para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario `postgres` se establece como `postgres`.
+
+- `web`: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en `/app` dentro del contenedor, expone el puerto 8000 y depende del servicio `db`.
+
+### Ejemplos
+
+Aquí hay un ejemplo de cómo se ve un archivo `docker-compose.yml`:
+
+``` docker-compose.yml
+version: '3.8'
+
 services:
-  web:
-    image: nginx
-    ports:
-      - "8080:80"
-
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
 ```
-Desplegar con Docker Compose:
 
-``` bash
-docker-compose up -d
+Para iniciar los servicios definidos en este archivo, se utiliza el comando `docker-compose up`.
+
+### Actividad Práctica
+
+Crea un archivo `docker-compose.yml` para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker `nginx`.
+
+<details>
+  <sumary>Resolución de la Actividad Práctica</sumary>
+
+Aquí está la solución a la actividad práctica:
+
+``` docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 ```
+Aquí está la solución al problema:
+
+```dockercompose
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+```
+
+En este archivo `docker-compose.yml`, hemos definido dos servicios: `db` y `web`.
+
+- `db`: Este servicio utiliza la imagen de Docker `postgres` para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario `postgres` se establece como `postgres`.
+
+- `web`: Este servicio utiliza la imagen de Docker `nginx` para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio `db`, lo que significa que el servicio `db` se iniciará antes que el servicio `web`.
 </details>
 
-:::{.callout-tip}
-Optimiza tus despliegues de aplicaciones utilizando Docker Compose y configura variables de entorno según sea necesario.
-:::
+### ¿Qué aprendimos?
+
+- Aprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor. 
+- También aprendimos cómo leer y escribir un archivo `docker-compose.yml` y cómo iniciar los servicios definidos en él.

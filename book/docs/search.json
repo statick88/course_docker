@@ -196,6 +196,62 @@
     "text": "Rubrica de Evaluación:\n\nCorrecta creación y vinculación de volúmenes: 6 puntos\nCreación y persistencia de archivos en el volumen: 8 puntos\nVerificación exitosa de la persistencia entre contenedores: 6 puntos"
   },
   {
+    "objectID": "unidades/unidad22.html#introducción",
+    "href": "unidades/unidad22.html#introducción",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "Introducción",
+    "text": "Introducción\nDocker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos."
+  },
+  {
+    "objectID": "unidades/unidad22.html#qué-es-docker",
+    "href": "unidades/unidad22.html#qué-es-docker",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "¿Qué es Docker?",
+    "text": "¿Qué es Docker?\nDocker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código. Creando un Dockerfile para una Aplicación Django\nUn Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:\n\n# Usa una imagen oficial de Python como base\nFROM python:3.12\n\n# Establece el directorio de trabajo en el contenedor\nWORKDIR /app\n\n# Copia los archivos de requerimientos y el código de la aplicación\nCOPY requirements.txt .\n\n# Instala las dependencias\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copia el resto de la aplicación\nCOPY . .\n\n# Expone el puerto en el que se ejecutará la aplicación\nEXPOSE 8000\n\n# Comando para ejecutar la aplicación Django\nCMD [\"python\", \"manage.py\", \"runserver\", \"0.0.0.0:8000\"]\nEste Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000. Docker Compose para Orquestar Contenedores\nDocker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:\nversion: '3'\nservices:\n  web:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    image: my-django-app\n    ports:\n      - \"8000:8000\"\n    volumes:\n      - .:/app\n    depends_on:\n      - db\n  db:\n    image: postgres:latest\n    environment:\n      POSTGRES_DB: mydatabase\n      POSTGRES_USER: myuser\n      POSTGRES_PASSWORD: mypassword\nEste archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django."
+  },
+  {
+    "objectID": "unidades/unidad22.html#actividad-práctica",
+    "href": "unidades/unidad22.html#actividad-práctica",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "Actividad Práctica",
+    "text": "Actividad Práctica\n\nCrea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.\nInicia el entorno de desarrollo ejecutando docker-compose up -d.\nAccede a la aplicación Django en http://localhost:8000 en tu navegador.\nRealiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.\n\n\n\nResolución de la Actividad Práctica\n\n\nCrea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.\n\nAbre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:\ndocker-compose up -d\nEsto construirá la imagen y ejecutará los contenedores en segundo plano.\nAccede a la aplicación Django en tu navegador ingresando a http://localhost:8000. Deberías ver la aplicación en ejecución.\nRealiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml."
+  },
+  {
+    "objectID": "unidades/unidad22.html#qué-aprendimo",
+    "href": "unidades/unidad22.html#qué-aprendimo",
+    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "section": "¿Qué aprendimo?",
+    "text": "¿Qué aprendimo?\nEn este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!"
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#objetivo",
+    "href": "unidades/ejercicios22.html#objetivo",
+    "title": "Actividad Práctica",
+    "section": "Objetivo:",
+    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#instrucciones",
+    "href": "unidades/ejercicios22.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones:",
+    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#entregables",
+    "href": "unidades/ejercicios22.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
+  },
+  {
+    "objectID": "unidades/ejercicios22.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios22.html#rubrica-de-evaluación",
+    "title": "Actividad Práctica",
+    "section": "Rubrica de Evaluación:",
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos"
+  },
+  {
     "objectID": "unidades/unidad3.html#conceptos",
     "href": "unidades/unidad3.html#conceptos",
     "title": "4: Buenas Prácticas y Seguridad",
@@ -310,21 +366,21 @@
   {
     "objectID": "unidades/unidad5.html#conceptos",
     "href": "unidades/unidad5.html#conceptos",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
+    "title": "7. Orquestación de Contenedores con Docker Swarm",
     "section": "Conceptos:",
     "text": "Conceptos:\n\nDocker Swarm\nEs una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker.\n\n\nNodos y Servicios\nEn el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos."
   },
   {
     "objectID": "unidades/unidad5.html#ejemplos",
     "href": "unidades/unidad5.html#ejemplos",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
+    "title": "7. Orquestación de Contenedores con Docker Swarm",
     "section": "Ejemplos:",
     "text": "Ejemplos:\nInicializando un Swarm:\ndocker swarm init\nEste comando inicia un clúster de Swarm en el nodo actual.\nCreando un Servicio:\ndocker service create --replicas 3 -p 8080:80 --name web nginx\nAquí estamos creando un servicio llamado “web” que ejecuta tres replicas del contenedor Nginx."
   },
   {
     "objectID": "unidades/unidad5.html#práctica",
     "href": "unidades/unidad5.html#práctica",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
+    "title": "7. Orquestación de Contenedores con Docker Swarm",
     "section": "Práctica:",
     "text": "Práctica:\n\nConfigurar un Clúster de Docker Swarm:\nInicia un clúster de Docker Swarm con dos nodos.\nCrea un servicio distribuido que ejecute una aplicación de ejemplo en el clúster.\n\n\n\nResolución de la Actividad Práctica\n\nInicializar el Swarm:\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO&gt;\nUnirse a un Nodo al Swarm:\ndocker swarm join --token &lt;TOKEN&gt; &lt;IP_DEL_MANAGER&gt;:&lt;PUERTO&gt;\nCrear un Servicio:\ndocker service create --replicas 3 -p 8080:80 --name web nginx\n\n\n\n\n\n\n\nTip\n\n\n\nUtiliza Docker Swarm para mejorar la escalabilidad y la administración de tus aplicaciones en contenedores."
   },
@@ -345,16 +401,16 @@
   {
     "objectID": "unidades/unidad6.html#conceptos",
     "href": "unidades/unidad6.html#conceptos",
-    "title": "7: Despliegue de Aplicaciones con Docker Compose",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nDocker Compose para Despliegues Complejos\nDocker Compose no solo es útil para el desarrollo local; también se puede usar para definir y desplegar aplicaciones en entornos de producción.\n\n\nVariables de Entorno en Docker Compose\nPermite gestionar configuraciones específicas del entorno, facilitando la portabilidad de la aplicación entre diferentes contextos."
+    "title": "7: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
+    "section": "Conceptos",
+    "text": "Conceptos\nDocker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.\nEn el archivo docker-compose.yml proporcionado, se definen dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en /app dentro del contenedor, expone el puerto 8000 y depende del servicio db."
   },
   {
     "objectID": "unidades/unidad6.html#ejemplos",
     "href": "unidades/unidad6.html#ejemplos",
-    "title": "7: Despliegue de Aplicaciones con Docker Compose",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\nDefinir un Servicio con Docker Compose:\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\nEste archivo docker-compose.yml define un servicio llamado “web” que utiliza la imagen de Nginx y mapea el puerto 8080."
+    "title": "7.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "section": "Ejemplos",
+    "text": "Ejemplos\nAquí hay un ejemplo de cómo se ve un archivo docker-compose.yml:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    build: .\n    command: python manage.py runserver 0.0.0.0:8000\n    volumes:\n      - .:/app\n    ports:\n      - \"8000:8000\"\n    depends_on:\n      - db\n    environment:\n      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres\nPara iniciar los servicios definidos en este archivo, se utiliza el comando docker-compose up."
   },
   {
     "objectID": "unidades/unidad6.html#práctica",
@@ -441,59 +497,66 @@
     "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
   },
   {
-    "objectID": "unidades/ejercicios22.html#objetivo",
-    "href": "unidades/ejercicios22.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
-  },
-  {
-    "objectID": "unidades/ejercicios22.html#instrucciones",
-    "href": "unidades/ejercicios22.html#instrucciones",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
-  },
-  {
-    "objectID": "unidades/ejercicios22.html#entregables",
-    "href": "unidades/ejercicios22.html#entregables",
-    "title": "Actividad Práctica",
-    "section": "Entregables:",
-    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
-  },
-  {
-    "objectID": "unidades/ejercicios22.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios22.html#rubrica-de-evaluación",
-    "title": "Actividad Práctica",
-    "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos"
-  },
-  {
-    "objectID": "unidades/unidad22.html#introducción",
-    "href": "unidades/unidad22.html#introducción",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "Introducción",
-    "text": "Introducción\nDocker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos."
-  },
-  {
-    "objectID": "unidades/unidad22.html#qué-es-docker",
-    "href": "unidades/unidad22.html#qué-es-docker",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "¿Qué es Docker?",
-    "text": "¿Qué es Docker?\nDocker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código. Creando un Dockerfile para una Aplicación Django\nUn Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:\n\n# Usa una imagen oficial de Python como base\nFROM python:3.12\n\n# Establece el directorio de trabajo en el contenedor\nWORKDIR /app\n\n# Copia los archivos de requerimientos y el código de la aplicación\nCOPY requirements.txt .\n\n# Instala las dependencias\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copia el resto de la aplicación\nCOPY . .\n\n# Expone el puerto en el que se ejecutará la aplicación\nEXPOSE 8000\n\n# Comando para ejecutar la aplicación Django\nCMD [\"python\", \"manage.py\", \"runserver\", \"0.0.0.0:8000\"]\nEste Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000. Docker Compose para Orquestar Contenedores\nDocker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:\nversion: '3'\nservices:\n  web:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    image: my-django-app\n    ports:\n      - \"8000:8000\"\n    volumes:\n      - .:/app\n    depends_on:\n      - db\n  db:\n    image: postgres:latest\n    environment:\n      POSTGRES_DB: mydatabase\n      POSTGRES_USER: myuser\n      POSTGRES_PASSWORD: mypassword\nEste archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django."
-  },
-  {
-    "objectID": "unidades/unidad22.html#qué-aprendimo",
-    "href": "unidades/unidad22.html#qué-aprendimo",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "¿Qué aprendimo?",
-    "text": "¿Qué aprendimo?\nEn este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!"
-  },
-  {
-    "objectID": "unidades/unidad22.html#actividad-práctica",
-    "href": "unidades/unidad22.html#actividad-práctica",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
+    "objectID": "unidades/unidad6.html#actividad-práctica",
+    "href": "unidades/unidad6.html#actividad-práctica",
+    "title": "7: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
     "section": "Actividad Práctica",
-    "text": "Actividad Práctica\n\nCrea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.\nInicia el entorno de desarrollo ejecutando docker-compose up -d.\nAccede a la aplicación Django en http://localhost:8000 en tu navegador.\nRealiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.\n\n\n\nResolución de la Actividad Práctica\n\n\nCrea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.\n\nAbre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:\ndocker-compose up -d\nEsto construirá la imagen y ejecutará los contenedores en segundo plano.\nAccede a la aplicación Django en tu navegador ingresando a http://localhost:8000. Deberías ver la aplicación en ejecución.\nRealiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml."
+    "text": "Actividad Práctica\nCrea un archivo docker-compose.yml para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker nginx.\n\nResolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nAquí está la solución al problema:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nEn este archivo docker-compose.yml, hemos definido dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio utiliza la imagen de Docker nginx para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio db, lo que significa que el servicio db se iniciará antes que el servicio web."
+  },
+  {
+    "objectID": "unidades/unidad6.html#resolución-de-la-actividad-práctica",
+    "href": "unidades/unidad6.html#resolución-de-la-actividad-práctica",
+    "title": "7: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
+    "section": "Resolución de la Actividad Práctica",
+    "text": "Resolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\nversion: '3.8'\n\nservices:\n  db:\n    image: mysql\n    environment:\n      MYSQL_ROOT_PASSWORD: root\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db"
+  },
+  {
+    "objectID": "unidades/unidad6.html#qué-aprendimos",
+    "href": "unidades/unidad6.html#qué-aprendimos",
+    "title": "7: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
+    "section": "¿Qué aprendimos?",
+    "text": "¿Qué aprendimos?\n\nAprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor.\nTambién aprendimos cómo leer y escribir un archivo docker-compose.yml y cómo iniciar los servicios definidos en él."
+  },
+  {
+    "objectID": "unidades/unidad6.html",
+    "href": "unidades/unidad6.html",
+    "title": "7.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "section": "",
+    "text": "7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones"
+  },
+  {
+    "objectID": "unidades/unidad6.html#conceptos-1",
+    "href": "unidades/unidad6.html#conceptos-1",
+    "title": "7.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "section": "Conceptos",
+    "text": "Conceptos\nDocker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.\nEn el archivo docker-compose.yml proporcionado, se definen dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en /app dentro del contenedor, expone el puerto 8000 y depende del servicio db."
+  },
+  {
+    "objectID": "unidades/unidad6.html#actividad-práctica-1",
+    "href": "unidades/unidad6.html#actividad-práctica-1",
+    "title": "7.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "section": "Actividad Práctica",
+    "text": "Actividad Práctica\nCrea un archivo docker-compose.yml para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker nginx.\n\nResolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nAquí está la solución al problema:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nEn este archivo docker-compose.yml, hemos definido dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio utiliza la imagen de Docker nginx para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio db, lo que significa que el servicio db se iniciará antes que el servicio web."
+  },
+  {
+    "objectID": "unidades/unidad6.html#qué-aprendimos-1",
+    "href": "unidades/unidad6.html#qué-aprendimos-1",
+    "title": "7.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "section": "¿Qué aprendimos?",
+    "text": "¿Qué aprendimos?\n\nAprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor.\nTambién aprendimos cómo leer y escribir un archivo docker-compose.yml y cómo iniciar los servicios definidos en él."
+  },
+  {
+    "objectID": "unidades/unidad6.html#dockerfile-y-su-uso-en-la-creación-de-imágenes-docker",
+    "href": "unidades/unidad6.html#dockerfile-y-su-uso-en-la-creación-de-imágenes-docker",
+    "title": "5. Dockerfile y Docker Compose",
+    "section": "5.1. Dockerfile y su uso en la creación de imágenes Docker",
+    "text": "5.1. Dockerfile y su uso en la creación de imágenes Docker\n\nConceptos\n\nUn Dockerfile es un archivo de texto que contiene las instrucciones para construir una imagen Docker. Se puede considerar como una especie de script que automatiza los comandos que normalmente se ejecutarían manualmente para construir una imagen.\n\n\n\nEjemplo\nAquí hay un ejemplo de cómo se ve un Dockerfile:\n# Dockerfile\nFROM python:3.8\n\nENV PYTHONUNBUFFERED 1\n\nWORKDIR /app\n\nCOPY requirements.txt /app/\n\nRUN pip install -r requirements.txt\n\nCOPY . /app/\nEste Dockerfile realiza las siguientes acciones:\n\nUtiliza la imagen python:3.8 como base.\nEstablece la variable de entorno PYTHONUNBUFFERED en 1.\nEstablece /app como el directorio de trabajo dentro del contenedor.\nCopia el archivo requirements.txt al directorio de trabajo en el contenedor.\nEjecuta pip install -r requirements.txt para instalar las dependencias especificadas en requirements.txt.\nCopia el directorio actual (es decir, todos los demás archivos y subdirectorios) al directorio de trabajo en el contenedor.\n\nPara construir una imagen a partir de este Dockerfile, se utiliza el comando docker build.\n\n\nActividad Práctica\nCrea un Dockerfile para una aplicación que utilice la imagen de Docker node:14 como base, establezca /usr/src/app como el directorio de trabajo, copie el archivo package.json al directorio de trabajo, ejecute npm install para instalar las dependencias y copie el directorio actual al directorio de trabajo.\n\nResolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\n# Dockerfile\nFROM node:14\n\nWORKDIR /usr/src/app\n\nCOPY package.json .\n\nRUN npm install\n\nCOPY . .\n\n\n¿Qué aprendimos?\n\nAprendimos qué es un Dockerfile y cómo se utiliza para automatizar la construcción de imágenes Docker.\nTambién aprendimos cómo leer y escribir un Dockerfile y cómo construir una imagen a partir de él."
+  },
+  {
+    "objectID": "unidades/unidad6.html#clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones",
+    "href": "unidades/unidad6.html#clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones",
+    "title": "5. Dockerfile y Docker Compose",
+    "section": "7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
+    "text": "7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones\n\nConceptos\nDocker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.\nEn el archivo docker-compose.yml proporcionado, se definen dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en /app dentro del contenedor, expone el puerto 8000 y depende del servicio db.\n\n\n\nEjemplos\nAquí hay un ejemplo de cómo se ve un archivo docker-compose.yml:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    build: .\n    command: python manage.py runserver 0.0.0.0:8000\n    volumes:\n      - .:/app\n    ports:\n      - \"8000:8000\"\n    depends_on:\n      - db\n    environment:\n      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres\nPara iniciar los servicios definidos en este archivo, se utiliza el comando docker-compose up.\n\n\nActividad Práctica\nCrea un archivo docker-compose.yml para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker nginx.\n\nResolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nAquí está la solución al problema:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nEn este archivo docker-compose.yml, hemos definido dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio utiliza la imagen de Docker nginx para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio db, lo que significa que el servicio db se iniciará antes que el servicio web.\n\n\n\n\n¿Qué aprendimos?\n\nAprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor.\nTambién aprendimos cómo leer y escribir un archivo docker-compose.yml y cómo iniciar los servicios definidos en él."
   }
 ]

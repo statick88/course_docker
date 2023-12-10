@@ -46,12 +46,12 @@ book:
         - unidades/ejercicios22.qmd
         - unidades/unidad3.qmd
         - unidades/ejercicios3.qmd
+        - unidades/unidad6.qmd
+        - unidades/ejercicios6.qmd
         - unidades/unidad4.qmd
         - unidades/ejercicios4.qmd
         - unidades/unidad5.qmd
         - unidades/ejercicios5.qmd
-        - unidades/unidad6.qmd
-        - unidades/ejercicios6.qmd
 
 bibliography: references.bib
 biblio-style: "apalike"

@@ -1,4 +1,4 @@
-# 6: Orquestación de Contenedores con Docker Swarm
+# 7. Orquestación de Contenedores con Docker Swarm
 
 ## Conceptos:
 
