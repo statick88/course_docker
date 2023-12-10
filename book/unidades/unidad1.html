@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - 5. Dockerfile y Docker Compose</title>
+<title>Docker 2023 - 3. Creación de un servidor web con Docker y Nginx</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/ejercicios6.html" rel="next">
-<link href="../unidades/ejercicios3.html" rel="prev">
+<link href="../unidades/ejercicios1.html" rel="next">
+<link href="../unidades/ejercicios2.html" rel="prev">
 <link href="..//images/docker.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad6.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">5. Dockerfile y Docker Compose</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad00.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad1.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Comandos Básicos y Atajos</span></a>
+  <a href="../unidades/unidad00.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Comandos Básicos y Atajos</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></a>
+  <a href="../unidades/unidad1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">5. Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Dockerfile y Docker Compose</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,29 +285,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dockerfile-y-su-uso-en-la-creación-de-imágenes-docker" id="toc-dockerfile-y-su-uso-en-la-creación-de-imágenes-docker" class="nav-link active" data-scroll-target="#dockerfile-y-su-uso-en-la-creación-de-imágenes-docker">5.1. Dockerfile y su uso en la creación de imágenes Docker</a>
-  <ul class="collapse">
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link" data-scroll-target="#conceptos">Conceptos</a></li>
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo">Ejemplo</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos</a></li>
   <li><a href="#actividad-práctica" id="toc-actividad-práctica" class="nav-link" data-scroll-target="#actividad-práctica">Actividad Práctica</a></li>
   <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué aprendimos?</a></li>
-  </ul></li>
-  <li><a href="#clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones" id="toc-clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones" class="nav-link" data-scroll-target="#clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones">7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones</a>
-  <ul class="collapse">
-  <li><a href="#conceptos-1" id="toc-conceptos-1" class="nav-link" data-scroll-target="#conceptos-1">Conceptos</a></li>
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos</a></li>
-  <li><a href="#actividad-práctica-1" id="toc-actividad-práctica-1" class="nav-link" data-scroll-target="#actividad-práctica-1">Actividad Práctica</a></li>
-  <li><a href="#qué-aprendimos-1" id="toc-qué-aprendimos-1" class="nav-link" data-scroll-target="#qué-aprendimos-1">¿Qué aprendimos?</a></li>
-  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad6.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad6.qmd" class="toc-action">View source</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad1.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">5. Dockerfile y Docker Compose</span></h1>
+<h1 class="title"><span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></h1>
 </div>
 
 
@@ -322,149 +311,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="dockerfile-y-su-uso-en-la-creación-de-imágenes-docker" class="level2">
-<h2 class="anchored" data-anchor-id="dockerfile-y-su-uso-en-la-creación-de-imágenes-docker">5.1. Dockerfile y su uso en la creación de imágenes Docker</h2>
-<section id="conceptos" class="level3">
-<h3 class="anchored" data-anchor-id="conceptos">Conceptos</h3>
-<div class="jutify">
-<p>Un Dockerfile es un archivo de texto que contiene las instrucciones para construir una imagen Docker. Se puede considerar como una especie de script que automatiza los comandos que normalmente se ejecutarían manualmente para construir una imagen.</p>
+<section id="conceptos" class="level2">
+<h2 class="anchored" data-anchor-id="conceptos">Conceptos</h2>
+<div class="justify">
+<p><strong>Docker</strong> es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un <strong>contenedor</strong> es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.</p>
+<p><strong>Nginx</strong> es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.</p>
+<section id="ejemplos" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos</h2>
+<p>Un ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an official nginx image as a parent image</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:latest</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the working directory in the container to /usr/share/nginx/html</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/share/nginx/html</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </div>
 </section>
-<section id="ejemplo" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplo">Ejemplo</h3>
-<p>Aquí hay un ejemplo de cómo se ve un Dockerfile:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.8</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> PYTHONUNBUFFERED 1</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> requirements.txt /app/</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . /app/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este Dockerfile realiza las siguientes acciones:</p>
-<ul>
-<li>Utiliza la imagen <code>python:3.8</code> como base.</li>
-<li>Establece la variable de entorno <code>PYTHONUNBUFFERED</code> en <code>1</code>.</li>
-<li>Establece <code>/app</code> como el directorio de trabajo dentro del contenedor.</li>
-<li>Copia el archivo <code>requirements.txt</code> al directorio de trabajo en el contenedor.</li>
-<li>Ejecuta <code>pip install -r requirements.txt</code> para instalar las dependencias especificadas en <code>requirements.txt</code>.</li>
-<li>Copia el directorio actual (es decir, todos los demás archivos y subdirectorios) al directorio de trabajo en el contenedor.</li>
-</ul>
-<p>Para construir una imagen a partir de este Dockerfile, se utiliza el comando <code>docker build</code>.</p>
-</section>
-<section id="actividad-práctica" class="level3">
-<h3 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica</h3>
-<p>Crea un Dockerfile para una aplicación que utilice la imagen de Docker <code>node:14</code> como base, establezca <code>/usr/src/app</code> como el directorio de trabajo, copie el archivo <code>package.json</code> al directorio de trabajo, ejecute <code>npm install</code> para instalar las dependencias y copie el directorio actual al directorio de trabajo.</p>
+<section id="actividad-práctica" class="level2">
+<h2 class="anchored" data-anchor-id="actividad-práctica">Actividad Práctica</h2>
+<ol type="1">
+<li>Crea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.</li>
+<li>Crea un Dockerfile como el del ejemplo anterior.</li>
+<li>Construye una imagen Docker a partir del Dockerfile</li>
+<li>Crea y ejecuta un contenedor a partir de la imagen</li>
+</ol>
 <details>
-<p><sumary>Resolución de la Actividad Práctica</sumary></p>
-<p>Aquí está la solución a la actividad práctica:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:14</span>
+<summary>
+Resolución de la Actividad Práctica
+</summary>
+<div class="justify">
+<p><strong>Proyecto Web con Docker y Nginx</strong></p>
+<p>Este proyecto utiliza Docker y Nginx para servir una aplicación web estática.</p>
+<p><strong>Creación del Dockerfile</strong></p>
+<p>Crea un archivo llamado <code>Dockerfile</code> en la raíz del proyecto con el siguiente contenido:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an official nginx image as a parent image</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:latest</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/src/app</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> package.json .</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details></section>
-<section id="qué-aprendimos" class="level3">
-<h3 class="anchored" data-anchor-id="qué-aprendimos">¿Qué aprendimos?</h3>
-<ul>
-<li>Aprendimos qué es un Dockerfile y cómo se utiliza para automatizar la construcción de imágenes Docker.</li>
-<li>También aprendimos cómo leer y escribir un Dockerfile y cómo construir una imagen a partir de él.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones" class="level2">
-<h2 class="anchored" data-anchor-id="clase-docker-compose-y-su-uso-en-el-desarrollo-de-aplicaciones">7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones</h2>
-<section id="conceptos-1" class="level3">
-<h3 class="anchored" data-anchor-id="conceptos-1">Conceptos</h3>
-<p>Docker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.</p>
-<p>En el archivo <code>docker-compose.yml</code> proporcionado, se definen dos servicios: <code>db</code> y <code>web</code>.</p>
-<ul>
-<li><p><code>db</code>: Este servicio utiliza la imagen de Docker <code>postgres</code> para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario <code>postgres</code> se establece como <code>postgres</code>.</p></li>
-<li><p><code>web</code>: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en <code>/app</code> dentro del contenedor, expone el puerto 8000 y depende del servicio <code>db</code>.</p></li>
-</ul>
-</section>
-<section id="ejemplos" class="level3">
-<h3 class="anchored" data-anchor-id="ejemplos">Ejemplos</h3>
-<p>Aquí hay un ejemplo de cómo se ve un archivo <code>docker-compose.yml</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode docker-compose.yml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.8'</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">db</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> postgres</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_PASSWORD</span><span class="kw">:</span><span class="at"> postgres</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">web</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> .</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">command</span><span class="kw">:</span><span class="at"> python manage.py runserver 0.0.0.0:8000</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/app</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8000:8000"</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> db</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">DATABASE_URL</span><span class="kw">:</span><span class="at"> postgres://postgres:postgres@db:5432/postgres</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para iniciar los servicios definidos en este archivo, se utiliza el comando <code>docker-compose up</code>.</p>
-</section>
-<section id="actividad-práctica-1" class="level3">
-<h3 class="anchored" data-anchor-id="actividad-práctica-1">Actividad Práctica</h3>
-<p>Crea un archivo <code>docker-compose.yml</code> para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker <code>nginx</code>.</p>
-<details>
-<p><sumary>Resolución de la Actividad Práctica</sumary></p>
-<p>Aquí está la solución a la actividad práctica:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode docker-compose.yml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.8'</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">db</span><span class="kw">:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> postgres</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">POSTGRES_PASSWORD</span><span class="kw">:</span><span class="at"> postgres</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">web</span><span class="kw">:</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> nginx</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"8080:80"</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> db</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Aquí está la solución al problema:</p>
-<pre class="dockercompose"><code>version: '3.8'
-
-services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: postgres
-  web:
-    image: nginx
-    ports:
-      - "8080:80"
-    depends_on:
-      - db</code></pre>
-<p>En este archivo <code>docker-compose.yml</code>, hemos definido dos servicios: <code>db</code> y <code>web</code>.</p>
-<ul>
-<li><p><code>db</code>: Este servicio utiliza la imagen de Docker <code>postgres</code> para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario <code>postgres</code> se establece como <code>postgres</code>.</p></li>
-<li><p><code>web</code>: Este servicio utiliza la imagen de Docker <code>nginx</code> para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio <code>db</code>, lo que significa que el servicio <code>db</code> se iniciará antes que el servicio <code>web</code>.</p></li>
-</ul>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the working directory in the container to /usr/share/nginx/html</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/share/nginx/html</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the 'web' directory (at your Dockerfile's location) into the container</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> web .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Construcción de la imagen Docker</strong></p>
+<p>Para construir una imagen Docker a partir del Dockerfile, ejecuta el siguiente comando en la terminal:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-nginx-image .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando crea una nueva imagen Docker llamada <strong>my-nginx-imag</strong>e a partir del Dockerfile.</p>
+<p><strong>Creación del contenedor Docker.</strong></p>
+<p>Para crear y ejecutar un contenedor a partir de la imagen que acabas de crear, ejecuta el siguiente comando en la terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-dp</span> 8080:80 <span class="at">-v</span> <span class="va">${pwd}</span>/web:/usr/share/nginx/html <span class="at">--name</span> web my-nginx-image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando crea y ejecuta un nuevo contenedor Docker llamado <strong>web</strong> a partir de la imagen <strong>my-nginx-image</strong>.</p>
+<p>El contenedor sirve la aplicación web en el puerto 8080 y monta el directorio <strong>web</strong> de tu máquina local en el directorio <strong>/usr/share/nginx/html</strong> del contenedor.</p>
+<p>Esto significa que cualquier cambio que hagas en los archivos de tu directorio <strong>web</strong> local se reflejará en vivo en el contenedor.</p>
+</div>
 </details>
 </section>
-<section id="qué-aprendimos-1" class="level3">
-<h3 class="anchored" data-anchor-id="qué-aprendimos-1">¿Qué aprendimos?</h3>
-<ul>
-<li>Aprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor.</li>
-<li>También aprendimos cómo leer y escribir un archivo <code>docker-compose.yml</code> y cómo iniciar los servicios definidos en él.</li>
-</ul>
+<section id="qué-aprendimos" class="level2">
+<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué aprendimos?</h2>
+<div class="justify">
+<p>En este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web.</p>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -834,12 +744,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/ejercicios3.html" class="pagination-link">
+      <a href="../unidades/ejercicios2.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/ejercicios6.html" class="pagination-link">
+      <a href="../unidades/ejercicios1.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

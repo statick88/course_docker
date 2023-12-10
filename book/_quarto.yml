@@ -36,7 +36,7 @@ book:
     - index.qmd
     - part: "Curso Docker"
       chapters: 
-        - unidades/unidad00.qmd
+        - unidades/unidad0.qmd
         - unidades/ejercicios0.qmd
         - unidades/unidad2.qmd
         - unidades/ejercicios2.qmd

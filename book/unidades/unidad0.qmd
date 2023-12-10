@@ -13,6 +13,8 @@
 Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.
 
 ::: center
+
+
 ### Contenedor
 
 ![](images/docker_container.png)
