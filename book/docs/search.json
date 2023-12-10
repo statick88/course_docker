@@ -558,5 +558,40 @@
     "title": "5. Dockerfile y Docker Compose",
     "section": "7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones",
     "text": "7.2: Clase: Docker Compose y su uso en el desarrollo de aplicaciones\n\nConceptos\nDocker Compose es una herramienta que permite definir y administrar aplicaciones multi-contenedor con Docker. Utiliza archivos YAML para configurar los servicios de la aplicación, lo que permite iniciar todos los servicios con un solo comando.\nEn el archivo docker-compose.yml proporcionado, se definen dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio construye una imagen a partir del Dockerfile en el directorio actual, ejecuta el comando para iniciar el servidor Django, monta el directorio actual en /app dentro del contenedor, expone el puerto 8000 y depende del servicio db.\n\n\n\nEjemplos\nAquí hay un ejemplo de cómo se ve un archivo docker-compose.yml:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    build: .\n    command: python manage.py runserver 0.0.0.0:8000\n    volumes:\n      - .:/app\n    ports:\n      - \"8000:8000\"\n    depends_on:\n      - db\n    environment:\n      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres\nPara iniciar los servicios definidos en este archivo, se utiliza el comando docker-compose up.\n\n\nActividad Práctica\nCrea un archivo docker-compose.yml para una aplicación que incluya un servicio de base de datos PostgreSQL y un servicio web que utilice la imagen de Docker nginx.\n\nResolución de la Actividad Práctica\nAquí está la solución a la actividad práctica:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nAquí está la solución al problema:\nversion: '3.8'\n\nservices:\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: postgres\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n    depends_on:\n      - db\nEn este archivo docker-compose.yml, hemos definido dos servicios: db y web.\n\ndb: Este servicio utiliza la imagen de Docker postgres para crear un contenedor de base de datos PostgreSQL. La contraseña del usuario postgres se establece como postgres.\nweb: Este servicio utiliza la imagen de Docker nginx para crear un contenedor web. El puerto 8080 del host se mapea al puerto 80 del contenedor. Este servicio depende del servicio db, lo que significa que el servicio db se iniciará antes que el servicio web.\n\n\n\n\n¿Qué aprendimos?\n\nAprendimos qué es Docker Compose y cómo se utiliza para definir y administrar aplicaciones multi-contenedor.\nTambién aprendimos cómo leer y escribir un archivo docker-compose.yml y cómo iniciar los servicios definidos en él."
+  },
+  {
+    "objectID": "unidades/unidad00.html#conceptos",
+    "href": "unidades/unidad00.html#conceptos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Conceptos:",
+    "text": "Conceptos:\n\n\nDocker\n\n\nEs una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.\n\nContenedor\n\n\nEs una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias."
+  },
+  {
+    "objectID": "unidades/unidad00.html#ejemplos",
+    "href": "unidades/unidad00.html#ejemplos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Ejemplos:",
+    "text": "Ejemplos:\n\nDescargar una imagen:\ndocker pull docker/getting-started\n\n\n\nEste comando descarga la imagen getting-started desde el registro público de Docker.\nCorrer un contenedor en el puerto 80:\ndocker run -d -p 80:80 docker/getting-started\n\n\n\nEste comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).\nDescargar una imagen desde un registro.\ndocker pull &lt;IMAGE_NAME:TAG&gt;\nListar las imágenes descargadas.\ndocker images\nListar contenedores en ejecución.\ndocker ps\nListar todos los contenedores, incluyendo los detenidos.\ndocker ps -a\nEjecutar un contenedor a partir de una imagen.\ndocker run -d -p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt; &lt;IMAGE_NAME:TAG&gt;\nDetener un contenedor en ejecución.\ndocker stop &lt;CONTAINER_ID&gt;\nIniciar un contenedor detenio.\ndocker start &lt;CONTAINER_ID&gt;\nEliminar un contenedor.\ndocker rm &lt;CONTAINER_ID&gt;\nEliminar una imagen.\ndocker rmi &lt;IMAGE_NAME:TAG&gt;\n\nAtajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d\n\n\nPráctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor.\n\n\n\n\n\nResolución de la Actividad Práctica\n\n\nAbre tu terminal o línea de comandos.\nDescarga la imagen de Nginx desde el registro público de Docker:\n\ndocker pull nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080:\n\ndocker run -d -p 8080:80 nginx\nElige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.\n\nVerifica que el contenedor esté en ejecución:\n\ndocker ps\n\nSi el contenedor está en ejecución, detenlo utilizando el siguiente comando:\n\ndocker stop &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor que obtuviste en el paso anterior.\n\nElimina el contenedor detenido:\n\ndocker rm &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor.\n\n\n\n\n\n\n\nTip\n\n\n\nCombina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente.\n¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!"
+  },
+  {
+    "objectID": "unidades/unidad00.html#atajos-y-comandos-adicionales",
+    "href": "unidades/unidad00.html#atajos-y-comandos-adicionales",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Atajos y Comandos Adicionales:",
+    "text": "Atajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d"
+  },
+  {
+    "objectID": "unidades/unidad00.html#práctica",
+    "href": "unidades/unidad00.html#práctica",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "Práctica:",
+    "text": "Práctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor."
+  },
+  {
+    "objectID": "unidades/unidad00.html#qué-aprendimos",
+    "href": "unidades/unidad00.html#qué-aprendimos",
+    "title": "1. Comandos Básicos y Atajos",
+    "section": "¿Qué Aprendimos?",
+    "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker."
   }
 ]
