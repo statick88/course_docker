@@ -3,6 +3,7 @@
 ## Conceptos:
 
 ::: justify
+
 ::: center
 ### Docker
 
@@ -18,6 +19,7 @@ Es una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedor
 :::
 
 Es una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias.
+
 :::
 
 ## Ejemplos:
