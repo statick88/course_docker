@@ -8,7 +8,7 @@
 
 <meta name="description" content="¡Bienvenidos al Curso Completo de Docker! Este curso te llevará desde los conceptos fundamentales de Docker hasta el dominio de la plataforma líder en contenedores. Aprenderás a utilizar Docker para desarrollar, desplegar y escalar aplicaciones eficientemente. Este curso está diseñado para principiantes y aquellos que desean profundizar en Docker, ofreciendo una combinación de teoría y ejercicios prácticos. Contribuye, aprende y disfruta de este emocionante viaje en el mundo de Docker y los contenedores. ¡Esperamos que aproveches al máximo este curso!">
 
-<title>Docker 2023 - Actividad Práctica</title>
+<title>Docker 2023 - 7. Orquestación de Contenedores con Docker Swarm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/unidad3.html" rel="next">
-<link href="../unidades/unidad22.html" rel="prev">
+<link href="../unidades/ejercicios5.html" rel="next">
+<link href="../unidades/ejercicios4.html" rel="prev">
 <link href="..//images/docker.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad00.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/ejercicios22.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Actividad Práctica</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad0.html">Curso Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad5.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">7. Orquestación de Contenedores con Docker Swarm</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad00.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Comandos Básicos y Atajos</span></a>
+  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Comandos Básicos y Atajos</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios22.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Actividad Práctica</span></a>
+  <a href="../unidades/ejercicios22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Orquestación de Contenedores con Docker Swarm</span></a>
+  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">7. Orquestación de Contenedores con Docker Swarm</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,19 +285,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo:</a></li>
-  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link" data-scroll-target="#instrucciones">Instrucciones:</a></li>
-  <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables:</a></li>
-  <li><a href="#rubrica-de-evaluación" id="toc-rubrica-de-evaluación" class="nav-link" data-scroll-target="#rubrica-de-evaluación">Rubrica de Evaluación:</a></li>
+  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
+  <ul class="collapse">
+  <li><a href="#docker-swarm" id="toc-docker-swarm" class="nav-link" data-scroll-target="#docker-swarm">Docker Swarm</a></li>
+  <li><a href="#nodos-y-servicios" id="toc-nodos-y-servicios" class="nav-link" data-scroll-target="#nodos-y-servicios">Nodos y Servicios</a></li>
+  </ul></li>
+  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos">Ejemplos:</a></li>
+  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica:</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/ejercicios22.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/ejercicios22.qmd" class="toc-action">View source</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/statick88/course_docker/edit/main/book/unidades/unidad5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/statick88/course_docker/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/statick88/course_docker/blob/main/book/unidades/unidad5.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Actividad Práctica</span></h1>
+<h1 class="title"><span class="chapter-title">7. Orquestación de Contenedores con Docker Swarm</span></h1>
 </div>
 
 
@@ -312,57 +315,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo:</h2>
-<p>Practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.</p>
+<section id="conceptos" class="level2">
+<h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
+<section id="docker-swarm" class="level3">
+<h3 class="anchored" data-anchor-id="docker-swarm">Docker Swarm</h3>
+<p>Es una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker.</p>
 </section>
-<section id="instrucciones" class="level2">
-<h2 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h2>
-<ul>
-<li>Crea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.</li>
-<li>Construye la imagen a partir del Dockerfile.</li>
-<li>Utilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.</li>
-<li>Inicia el servicio con Docker Compose.</li>
-<li>Accede a la aplicación en <a href="http://localhost:5000">http://localhost:5000</a> y verifica que imprime “Hola, Docker”.</li>
-</ul>
+<section id="nodos-y-servicios" class="level3">
+<h3 class="anchored" data-anchor-id="nodos-y-servicios">Nodos y Servicios</h3>
+<p>En el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos.</p>
 </section>
-<section id="entregables" class="level2">
-<h2 class="anchored" data-anchor-id="entregables">Entregables:</h2>
+</section>
+<section id="ejemplos" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplos">Ejemplos:</h2>
+<p>Inicializando un Swarm:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este comando inicia un clúster de Swarm en el nodo actual.</p>
+<p>Creando un Servicio:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> service create <span class="at">--replicas</span> 3 <span class="at">-p</span> 8080:80 <span class="at">--name</span> web nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí estamos creando un servicio llamado “web” que ejecuta tres replicas del contenedor Nginx.</p>
+</section>
+<section id="práctica" class="level2">
+<h2 class="anchored" data-anchor-id="práctica">Práctica:</h2>
 <ul>
-<li>Dockerfile para la aplicación Python.</li>
-<li>Archivo Docker Compose.</li>
-<li>Documento explicando los comandos utilizados.</li>
-<li>Capturas de pantalla que demuestren el acceso a la aplicación.</li>
+<li>Configurar un Clúster de Docker Swarm:</li>
+<li>Inicia un clúster de Docker Swarm con dos nodos.</li>
+<li>Crea un servicio distribuido que ejecute una aplicación de ejemplo en el clúster.</li>
 </ul>
 <details>
 <summary>
 Resolución de la Actividad Práctica
 </summary>
-<p>Dockerfile para la aplicación Python:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"-c"</span>, <span class="st">"print('Hola, Docker')"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Construir la imagen:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-python-app .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Archivo Docker Compose (docker-compose.yml):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3'</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">myapp</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> my-python-app</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"5000:5000"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Iniciar el servicio con Docker Compose:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Verificar el acceso a la aplicación:</p>
-<p>Acceder a <a href="http://localhost:5000">http://localhost:5000</a> en el navegador.</p>
-</details></section>
-<section id="rubrica-de-evaluación" class="level2">
-<h2 class="anchored" data-anchor-id="rubrica-de-evaluación">Rubrica de Evaluación:</h2>
-<ul>
-<li>Correcta creación del Dockerfile: 6 puntos</li>
-<li>Imagen construida correctamente: 4 puntos</li>
-<li>Configuración adecuada en Docker Compose: 6 puntos</li>
-<li>Acceso exitoso a la aplicación: 4 puntos</li>
-</ul>
+<p>Inicializar el Swarm:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm init <span class="at">--advertise-addr</span> <span class="op">&lt;</span>IP_DEL_NODO<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unirse a un Nodo al Swarm:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> swarm join <span class="at">--token</span> <span class="op">&lt;</span>TOKEN<span class="op">&gt;</span> <span class="op">&lt;</span>IP_DEL_MANAGER<span class="op">&gt;</span>:<span class="op">&lt;</span>PUERTO<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Crear un Servicio:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> service create <span class="at">--replicas</span> 3 <span class="at">-p</span> 8080:80 <span class="at">--name</span> web nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Utiliza Docker Swarm para mejorar la escalabilidad y la administración de tus aplicaciones en contenedores.</p>
+</div>
+</div>
 
 
 </section>
@@ -734,13 +737,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad22.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></span>
+      <a href="../unidades/ejercicios4.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/unidad3.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidades/ejercicios5.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
