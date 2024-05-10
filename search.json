@@ -2,477 +2,431 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Docker 2023",
+    "title": "Curso de Docker",
     "section": "",
-    "text": "Curso de Docker"
+    "text": "Curso de Docker",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso de Docker</span>"
+    ]
   },
   {
     "objectID": "index.html#qué-es-este-curso",
     "href": "index.html#qué-es-este-curso",
-    "title": "Docker 2023",
+    "title": "Curso de Docker",
     "section": "¿Qué es este Curso?",
-    "text": "¿Qué es este Curso?"
+    "text": "¿Qué es este Curso?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso de Docker</span>"
+    ]
   },
   {
     "objectID": "index.html#a-quién-está-dirigido",
     "href": "index.html#a-quién-está-dirigido",
-    "title": "Docker 2023",
+    "title": "Curso de Docker",
     "section": "¿A quién está dirigido?",
-    "text": "¿A quién está dirigido?"
+    "text": "¿A quién está dirigido?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso de Docker</span>"
+    ]
   },
   {
     "objectID": "index.html#cómo-contribuir",
     "href": "index.html#cómo-contribuir",
-    "title": "Docker 2023",
+    "title": "Curso de Docker",
     "section": "¿Cómo contribuir?",
-    "text": "¿Cómo contribuir?"
+    "text": "¿Cómo contribuir?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso de Docker</span>"
+    ]
   },
   {
-    "objectID": "unidades/unidad0.html#conceptos",
-    "href": "unidades/unidad0.html#conceptos",
-    "title": "1. Comandos Básicos y Atajos",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\n\nDocker\n\n\nEs una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen.\n\nContenedor\n\n\nEs una instancia de una imagen que se ejecuta de manera aislada. Los contenedores son ligeros y portátiles, ya que incluyen todo lo necesario para ejecutar una aplicación, incluidas las bibliotecas y las dependencias."
+    "objectID": "unidades/unidad0.html",
+    "href": "unidades/unidad0.html",
+    "title": "Docker",
+    "section": "",
+    "text": "Ejemplos:",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad0.html#ejemplos",
     "href": "unidades/unidad0.html#ejemplos",
-    "title": "1. Comandos Básicos y Atajos",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\n\nDescargar una imagen:\ndocker pull docker/getting-started\n\n\n\nEste comando descarga la imagen getting-started desde el registro público de Docker.\nCorrer un contenedor en el puerto 80:\ndocker run -d -p 80:80 docker/getting-started\n\n\n\nEste comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).\nDescargar una imagen desde un registro.\ndocker pull &lt;IMAGE_NAME:TAG&gt;\nListar las imágenes descargadas.\ndocker images\nListar contenedores en ejecución.\ndocker ps\nListar todos los contenedores, incluyendo los detenidos.\ndocker ps -a\nEjecutar un contenedor a partir de una imagen.\ndocker run -d -p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt; &lt;IMAGE_NAME:TAG&gt;\nDetener un contenedor en ejecución.\ndocker stop &lt;CONTAINER_ID&gt;\nIniciar un contenedor detenio.\ndocker start &lt;CONTAINER_ID&gt;\nEliminar un contenedor.\ndocker rm &lt;CONTAINER_ID&gt;\nEliminar una imagen.\ndocker rmi &lt;IMAGE_NAME:TAG&gt;\n\nAtajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d\n\n\nPráctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor.\n\n\n\n\n\nResolución de la Actividad Práctica\n\n\nAbre tu terminal o línea de comandos.\nDescarga la imagen de Nginx desde el registro público de Docker:\n\ndocker pull nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080:\n\ndocker run -d -p 8080:80 nginx\nElige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.\n\nVerifica que el contenedor esté en ejecución:\n\ndocker ps\n\nSi el contenedor está en ejecución, detenlo utilizando el siguiente comando:\n\ndocker stop &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor que obtuviste en el paso anterior.\n\nElimina el contenedor detenido:\n\ndocker rm &lt;CONTAINER_ID&gt;\nReemplaza &lt;CONTAINER_ID&gt; con el ID real del contenedor.\n\n\n\n\n\n\n\nTip\n\n\n\nCombina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente.\n¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!"
+    "title": "Docker",
+    "section": "Comandos básicos de Docker:",
+    "text": "Descargar una imagen:\ndocker pull docker/getting-started\n\n\n\nEste comando descarga la imagen getting-started desde el registro público de Docker.\nCorrer un contenedor en el puerto 80:\ndocker run -d -p 80:80 docker/getting-started\n\n\n\nEste comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).\nDescargar una imagen desde un registro.\n\n\n\n\n\n\nTip\n\n\n\nEl comando -p se utiliza para mapear los puertos de la máquina host al contenedor, muchas personas consideran que significa “puerto”. Sin embargo en realidad significa “publicar” o “publicar puerto”.\n\n\n\nComandos básicos de Docker:\nDescargar una imagen desde un registro.\ndocker pull &lt;IMAGE_NAME:TAG&gt;\nListar las imágenes descargadas.\ndocker images\nListar contenedores en ejecución.\ndocker ps\nListar todos los contenedores, incluyendo los detenidos.\ndocker ps -a\nEjecutar un contenedor a partir de una imagen.\ndocker run -d -p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt; &lt;IMAGE_NAME:TAG&gt;\nDetener un contenedor en ejecución.\ndocker stop &lt;CONTAINER_ID&gt;\nIniciar un contenedor detenio.\ndocker start &lt;CONTAINER_ID&gt;\nEliminar un contenedor.\ndocker rm &lt;CONTAINER_ID&gt;\nEliminar una imagen.\ndocker rmi &lt;IMAGE_NAME:TAG&gt;\n\n\nAtajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d\n\n\nPráctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor.\n\n\n\n\n\nResolución de la Actividad Práctica\n\n\nAbre tu terminal o línea de comandos.\nDescarga la imagen de Nginx desde el registro público de Docker:\n\ndocker pull nginx\n\nCrea y ejecuta un contenedor de Nginx en el puerto 8080:\n\ndocker run -d -p 8080:80 nginx\nElige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.\n\nVerifica que el contenedor esté en ejecución:\n\ndocker ps\n\nSi el contenedor está en ejecución, detenlo utilizando el siguiente comando:\n\ndocker stop &lt;CONTAINER_ID&gt;\nReemplaza  con el ID real del contenedor que obtuviste en el paso anterior.\n\nElimina el contenedor detenido:\n\ndocker rm &lt;CONTAINER_ID&gt;\nReemplaza  con el ID real del contenedor.\n\n\n\n\n\n\n\nTip\n\n\n\n\nCombina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente.\n¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad0.html#comandos-básicos-de-docker",
+    "href": "unidades/unidad0.html#comandos-básicos-de-docker",
+    "title": "Docker",
+    "section": "",
+    "text": "Descargar una imagen desde un registro.\ndocker pull &lt;IMAGE_NAME:TAG&gt;\nListar las imágenes descargadas.\ndocker images\nListar contenedores en ejecución.\ndocker ps\nListar todos los contenedores, incluyendo los detenidos.\ndocker ps -a\nEjecutar un contenedor a partir de una imagen.\ndocker run -d -p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt; &lt;IMAGE_NAME:TAG&gt;\nDetener un contenedor en ejecución.\ndocker stop &lt;CONTAINER_ID&gt;\nIniciar un contenedor detenio.\ndocker start &lt;CONTAINER_ID&gt;\nEliminar un contenedor.\ndocker rm &lt;CONTAINER_ID&gt;\nEliminar una imagen.\ndocker rmi &lt;IMAGE_NAME:TAG&gt;",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad0.html#atajos-y-comandos-adicionales",
     "href": "unidades/unidad0.html#atajos-y-comandos-adicionales",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "Docker",
     "section": "Atajos y Comandos Adicionales:",
-    "text": "Atajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d"
+    "text": "Atajos y Comandos Adicionales:\nEjecutar comandos dentro de un contenedor en ejecución.\ndocker exec -it &lt;CONTAINER_ID&gt; /bin/bash\nObtener detalles sobre un contenedor o imagen.\ndocker inspect &lt;CONTAINER_ID or IMAGE_NAME:TAG&gt;\nVer los logs de un contenedor.\ndocker logs &lt;CONTAINER_ID&gt;\nUtilizar Docker Compose para gestionar aplicaciones multi-contenedor.\ndocker-compose up -d",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad0.html#práctica",
     "href": "unidades/unidad0.html#práctica",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "Docker",
     "section": "Práctica:",
-    "text": "Práctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor."
+    "text": "Práctica:\n\nDescarga la imagen de Nginx desde el registro público.\nCrea y ejecuta un contenedor de Nginx en el puerto 8080.\nDetén y elimina el contenedor creado\nUtiliza los comandos para detener y eliminar un contenedor.",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad0.html#qué-aprendimos",
     "href": "unidades/unidad0.html#qué-aprendimos",
-    "title": "1. Comandos Básicos y Atajos",
+    "title": "Docker",
     "section": "¿Qué Aprendimos?",
-    "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker."
+    "text": "¿Qué Aprendimos?\n\n\nAprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.\nEntendimos la importancia de las banderas en los comandos Docker.\nPracticamos la creación y gestión de contenedores Docker.",
+    "crumbs": [
+      "Unidad 1: Introducción a Docker",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Docker</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios0.html#objetivo",
-    "href": "unidades/ejercicios0.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nFamiliarizarse con los comandos básicos de Docker y atajos para gestionar contenedores de manera eficiente. Instrucciones:\n\nUtilizando el comando docker run, inicia un contenedor de la imagen “nginx” en segundo plano, mapeando el puerto 8080 del host al puerto 80 del contenedor.\nDetén y elimina el contenedor recién creado utilizando comandos Docker.\nCrea un nuevo contenedor con la imagen “alpine” y ejecuta un terminal interactivo dentro de él.\nDesde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.\nCrea una imagen llamada “alpine-curl” a partir de este contenedor modificado."
+    "objectID": "unidades/unidad2.html",
+    "href": "unidades/unidad2.html",
+    "title": "Dockerfile y Docker Compose",
+    "section": "",
+    "text": "Introducción\nDockerfile y Docker Compose son herramientas esenciales para la construcción y gestión de aplicaciones Docker. Un Dockerfile es un archivo de texto que define cómo se construirá una imagen Docker, mientras que Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. En esta lección, aprenderemos cómo usar Dockerfile y Docker Compose para personalizar imágenes Docker y orquestar servicios en un entorno multi-contenedor.\nA continuación veremos algunos conceptos básicos sobre Dockerfile y Docker Compose.",
+    "crumbs": [
+      "Unidad 2: Dockerfile y Docker Compose",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dockerfile y Docker Compose</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios0.html#entregables",
-    "href": "unidades/ejercicios0.html#entregables",
-    "title": "Actividad Práctica",
-    "section": "Entregables:",
-    "text": "Entregables:\n\nDocumento explicando los comandos utilizados.\nImagen Docker “alpine-curl” disponible localmente.\n\n\n\nResolución de la Actividad Práctica\n\n\nIniciar un contenedor Nginx:\n\ndocker run -d -p 8080:80 --name my-nginx nginx\nDetener y eliminar el contenedor Nginx:\ndocker stop my-nginx\ndocker rm my-nginx\nCrear un contenedor Alpine interactivo:\ndocker run -it --name my-alpine alpine /bin/sh\nInstalar el paquete curl desde el contenedor Alpine:\napk add --no-cache curl\nCrear una nueva imagen “alpine-curl”:\ndocker commit my-alpine alpine-curl"
-  },
-  {
-    "objectID": "unidades/ejercicios0.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios0.html#rubrica-de-evaluación",
-    "title": "Actividad Práctica",
-    "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nCorrecta ejecución de comandos: 6 puntos\nClara documentación: 4 puntos\nImagen “alpine-curl” creada correctamente: 10 puntos"
-  },
-  {
-    "objectID": "unidades/unidad2.html#conceptos",
-    "href": "unidades/unidad2.html#conceptos",
-    "title": "2. Dockerfile y Docker Compose",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nDockerfile\nUn Dockerfile es un archivo de texto que contiene instrucciones para construir una imagen Docker. Es esencialmente un script que define cómo se construirá la imagen.\n\n\nDocker Compose\nK Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir la configuración de servicios, redes y Kvolúmenes en un archivo YAML."
+    "objectID": "unidades/unidad2.html#introducción",
+    "href": "unidades/unidad2.html#introducción",
+    "title": "Dockerfile y Docker Compose",
+    "section": "",
+    "text": "Dockerfile\nUn Dockerfile es un archivo de texto que contiene una serie de instrucciones para construir una imagen Docker. Estas instrucciones incluyen la configuración del sistema operativo base, la instalación de paquetes y dependencias, la configuración de variables de entorno y la definición de comandos para ejecutar la aplicación.\n\n\nDocker Compose\nDocker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir servicios, redes y volúmenes en un archivo YAML y orquestar la ejecución de los contenedores en un entorno de desarrollo o producción.",
+    "crumbs": [
+      "Unidad 2: Dockerfile y Docker Compose",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dockerfile y Docker Compose</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad2.html#ejemplos",
     "href": "unidades/unidad2.html#ejemplos",
-    "title": "2. Dockerfile y Docker Compose",
+    "title": "Dockerfile y Docker Compose",
     "section": "Ejemplos:",
-    "text": "Ejemplos:\nCrear un Dockerfile para una aplicación Node.js:\nFROM node:14\nWORKDIR /app\nCOPY . .\nCMD [\"npm\", \"start\"]\nEste Dockerfile configura una imagen de Node.js, establece el directorio de trabajo, copia los archivos locales al contenedor y define el comando para ejecutar la aplicación.\nConfigurar Docker Compose para una aplicación Node.js:\nversion: '3'\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.node\n    image: my-node-app\nEste archivo docker-compose.yml define un servicio llamado “myapp” que construirá una imagen usando el Dockerfile “Dockerfile.node” y le asignará el nombre de “my-node-app”."
+    "text": "Ejemplos:\nEn este ejemplo vamos a dockerizar una aplicación nodejs con un servidor sencillo en express.\nEmpezamos por el código de nuestra aplicación:\nPara ello creamos un nuevo proyecto nodejs con el siguiente comando:\nnpm init -y\nInstalamos el paquete express con el siguiente comando:\nnpm install express\nCreamos los siguientes archivos:\n\nserver.js\npackage.json\nDockerfile\ndocker-compose.yml\n\n\nserver.js\nconst express = require('express');\nconst app = express();\nconst port = 3000;\n\napp.get('/', (req, res) =&gt; {\n  res.send('Hello, World!');\n});\n\napp.listen(port, () =&gt; {\n  console.log(`Server running at http://localhost:${port}/`);\n});\n\n\nDockerfile\n# Use the official Node.js 14 image\nFROM node:14\n\n# Set the working directory in the container\nWORKDIR /app\n\n# Copy the dependencies file to the working directory\nCOPY package.json .\n\n# Install dependencies\nRUN npm install\n\n# Copy the app code to the working directory\nCOPY . .\n\n# Expose the port the app runs on\nEXPOSE 3000\n\n# Serve the app\nCMD [\"node\", \"server.js\"]\n\n\ndocker-compose.yml\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    ports:\n      - \"3000:3000\"\n    volumes:\n      - .:/app\nEn este ejemplo, el Dockerfile define una imagen Docker para una aplicación Node.js. El archivo docker-compose.yml define un servicio llamado myapp que utiliza el Dockerfile.nodejs para construir la imagen y expone el puerto 3000 para acceder a la aplicación.\n\n\n\n\n\n\nTip\n\n\n\nEl puerto del lado izquierdo de los 2 puntos en el archivo docker-compose.yml es el puerto en el host, mientras que el puerto del lado derecho es el puerto en el contenedor.\n\n\nPara probar nuestro ejemplo, ejecutamos el siguiente comando:\ndocker-compose up -d\nEsto construirá la imagen Docker y ejecutará el contenedor en segundo plano. Podemos acceder a la aplicación en http://localhost:3000.\nPara verificar que el contenedor está en ejecución, ejecutamos el siguiente comando:\ndocker ps\nPodemos utilizar una aplicación como Thunder Client o Postman para enviar una solicitud HTTP a la aplicación y ver la respuesta.\nPara detener y eliminar el contenedor, ejecutamos el siguiente comando:\ndocker-compose down\n\n\n\n\n\n\nTip\n\n\n\nRecuerda: La imagen que se crea a partir del Dockerfile se almacena en el caché local de Docker. Si realizas cambios en el Dockerfile y deseas reconstruir la imagen, puedes usar el comando\ndocker-compose up --build",
+    "crumbs": [
+      "Unidad 2: Dockerfile y Docker Compose",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dockerfile y Docker Compose</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad2.html#práctica",
     "href": "unidades/unidad2.html#práctica",
-    "title": "2. Dockerfile y Docker Compose",
+    "title": "Dockerfile y Docker Compose",
     "section": "Práctica:",
-    "text": "Práctica:\n\nCrea un Dockerfile para una aplicación Python simple.\nConfigura un archivo docker-compose.yml para ejecutar la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de Dockerfile (nombre: Dockerfile.python):\nFROM python:3.9\nWORKDIR /app\nCOPY . .\nCMD [\"python\", \"app.py\"]\nEjemplo de docker-compose.yml:\nversion: '3'\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.python\n    image: my-python-app"
+    "text": "Práctica:\n\nCrea un Dockerfile para una aplicación Python simple.\nConfigura un archivo docker-compose.yml para ejecutar la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de aplicación Python simple:\n# app.py\nprint(\"Hello, World!\")\nEjemplo de Dockerfile:\nFROM python:3.12\nWORKDIR /app\nCOPY . .\nCMD [\"python\", \"app.py\"]\nEjemplo de docker-compose.yml:\nservices:\n  myapp:\n    build:\n      context: .\n      dockerfile: Dockerfile.python\n    image: my-python-app",
+    "crumbs": [
+      "Unidad 2: Dockerfile y Docker Compose",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dockerfile y Docker Compose</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad2.html#qué-aprendimos",
     "href": "unidades/unidad2.html#qué-aprendimos",
-    "title": "2. Dockerfile y Docker Compose",
+    "title": "Dockerfile y Docker Compose",
     "section": "¿Qué Aprendimos?",
-    "text": "¿Qué Aprendimos?\n\nAprendimos a crear un Dockerfile para personalizar una imagen Docker.\nEntendimos cómo usar Docker Compose para orquestar servicios en un entorno multi-contenedor.\nPracticamos la configuración básica de un Dockerfile y un archivo docker-compose.yml."
+    "text": "¿Qué Aprendimos?\n\nAprendimos a crear un Dockerfile para personalizar una imagen Docker.\nEntendimos cómo usar Docker Compose para orquestar servicios en un entorno multi-contenedor.\nPracticamos la configuración básica de un Dockerfile y un archivo docker-compose.yml.",
+    "crumbs": [
+      "Unidad 2: Dockerfile y Docker Compose",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dockerfile y Docker Compose</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios2.html#objetivo",
-    "href": "unidades/ejercicios2.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
-  },
-  {
-    "objectID": "unidades/ejercicios2.html#instrucciones",
-    "href": "unidades/ejercicios2.html#instrucciones",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
-  },
-  {
-    "objectID": "unidades/ejercicios2.html#entregables",
-    "href": "unidades/ejercicios2.html#entregables",
-    "title": "Actividad Práctica",
-    "section": "Entregables:",
-    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
-  },
-  {
-    "objectID": "unidades/ejercicios2.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios2.html#rubrica-de-evaluación",
-    "title": "Actividad Práctica",
-    "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos"
+    "objectID": "unidades/unidad1.html",
+    "href": "unidades/unidad1.html",
+    "title": "3. Creación de un servidor web con Docker y Nginx",
+    "section": "",
+    "text": "Conceptos",
+    "crumbs": [
+      "Unidad 3: Servidores en Docker",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>3. Creación de un servidor web con Docker y Nginx</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad1.html#conceptos",
     "href": "unidades/unidad1.html#conceptos",
     "title": "3. Creación de un servidor web con Docker y Nginx",
-    "section": "Conceptos",
-    "text": "Conceptos\n\nDocker es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un contenedor es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro.\nNginx es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.\n\nEjemplos\nUn ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web ."
+    "section": "Ejemplos",
+    "text": "Docker es una plataforma que permite a los desarrolladores empaquetar aplicaciones en contenedores. Un contenedor es una unidad estándar de software que empaqueta el código y todas sus dependencias para que la aplicación se ejecute de manera rápida y confiable de un entorno informático a otro. Nginx es un servidor web que puede usarse para servir contenido estático, como archivos HTML, CSS y JavaScript.\n\nEjemplos\nUn ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web .",
+    "crumbs": [
+      "Unidad 3: Servidores en Docker",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>3. Creación de un servidor web con Docker y Nginx</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad1.html#ejemplos",
     "href": "unidades/unidad1.html#ejemplos",
     "title": "3. Creación de un servidor web con Docker y Nginx",
-    "section": "Ejemplos",
-    "text": "Ejemplos\nUn ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web ."
+    "section": "",
+    "text": "Un ejemplo de un Dockerfile para un servidor web Nginx es el siguiente:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web .",
+    "crumbs": [
+      "Unidad 3: Servidores en Docker",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>3. Creación de un servidor web con Docker y Nginx</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad1.html#actividad-práctica",
     "href": "unidades/unidad1.html#actividad-práctica",
     "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "Actividad Práctica",
-    "text": "Actividad Práctica\n\nCrea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.\nCrea un Dockerfile como el del ejemplo anterior.\nConstruye una imagen Docker a partir del Dockerfile\nCrea y ejecuta un contenedor a partir de la imagen\n\n\n\nResolución de la Actividad Práctica\n\n\nProyecto Web con Docker y Nginx\nEste proyecto utiliza Docker y Nginx para servir una aplicación web estática.\nCreación del Dockerfile\nCrea un archivo llamado Dockerfile en la raíz del proyecto con el siguiente contenido:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web .\nConstrucción de la imagen Docker\nPara construir una imagen Docker a partir del Dockerfile, ejecuta el siguiente comando en la terminal:\ndocker build -t my-nginx-image .\nEste comando crea una nueva imagen Docker llamada my-nginx-image a partir del Dockerfile.\nCreación del contenedor Docker.\nPara crear y ejecutar un contenedor a partir de la imagen que acabas de crear, ejecuta el siguiente comando en la terminal:\ndocker run -it --rm -dp 8080:80 -v ${pwd}/web:/usr/share/nginx/html --name web my-nginx-image\nEste comando crea y ejecuta un nuevo contenedor Docker llamado web a partir de la imagen my-nginx-image.\nEl contenedor sirve la aplicación web en el puerto 8080 y monta el directorio web de tu máquina local en el directorio /usr/share/nginx/html del contenedor.\nEsto significa que cualquier cambio que hagas en los archivos de tu directorio web local se reflejará en vivo en el contenedor."
+    "text": "Actividad Práctica\n\nCrea un directorio llamado web y añade algunos archivos HTML, CSS y JavaScript.\nCrea un Dockerfile como el del ejemplo anterior.\nConstruye una imagen Docker a partir del Dockerfile\nCrea y ejecuta un contenedor a partir de la imagen\n\n\n\nResolución de la Actividad Práctica\n\n\nProyecto Web con Docker y Nginx\nEste proyecto utiliza Docker y Nginx para servir una aplicación web estática.\nCreación del Dockerfile\nCrea un archivo llamado Dockerfile en la raíz del proyecto con el siguiente contenido:\n# Use an official nginx image as a parent image\nFROM nginx:latest\n\n# Set the working directory in the container to /usr/share/nginx/html\nWORKDIR /usr/share/nginx/html\n\n# Copy the 'web' directory (at your Dockerfile's location) into the container\nCOPY web .\nConstrucción de la imagen Docker\nPara construir una imagen Docker a partir del Dockerfile, ejecuta el siguiente comando en la terminal:\ndocker build -t my-nginx-image .\nEste comando crea una nueva imagen Docker llamada my-nginx-image a partir del Dockerfile.\nCreación del contenedor Docker.\nPara crear y ejecutar un contenedor a partir de la imagen que acabas de crear, ejecuta el siguiente comando en la terminal:\ndocker run -it --rm -dp 8080:80 -v ${pwd}/web:/usr/share/nginx/html --name web my-nginx-image\nEste comando crea y ejecuta un nuevo contenedor Docker llamado web a partir de la imagen my-nginx-image.\nEl contenedor sirve la aplicación web en el puerto 8080 y monta el directorio web de tu máquina local en el directorio /usr/share/nginx/html del contenedor.\nEsto significa que cualquier cambio que hagas en los archivos de tu directorio web local se reflejará en vivo en el contenedor.",
+    "crumbs": [
+      "Unidad 3: Servidores en Docker",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>3. Creación de un servidor web con Docker y Nginx</span>"
+    ]
   },
   {
     "objectID": "unidades/unidad1.html#qué-aprendimos",
     "href": "unidades/unidad1.html#qué-aprendimos",
     "title": "3. Creación de un servidor web con Docker y Nginx",
     "section": "¿Qué aprendimos?",
-    "text": "¿Qué aprendimos?\n\nEn este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web."
+    "text": "¿Qué aprendimos?\n\nEn este tutorial, aprendimos cómo usar Docker y Nginx para crear un servidor web que sirve contenido estático. Aprendimos cómo crear un Dockerfile, cómo construir una imagen Docker a partir de un Dockerfile, y cómo crear y ejecutar un contenedor a partir de una imagen Docker. También aprendimos cómo montar un directorio de nuestra máquina local en un contenedor Docker para poder ver los cambios en vivo en nuestro servidor web.",
+    "crumbs": [
+      "Unidad 3: Servidores en Docker",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>3. Creación de un servidor web con Docker y Nginx</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios1.html#objetivo",
-    "href": "unidades/ejercicios1.html#objetivo",
+    "objectID": "unidades/ejercicios0.html",
+    "href": "unidades/ejercicios0.html",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar el uso de volúmenes en Docker para persistir datos entre contenedores."
+    "section": "",
+    "text": "Objetivo\nEl objetivo de esta actividad es familiarizarse con los comandos básicos de Docker y aprender a gestionar contenedores de manera eficiente.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#instrucciones",
+    "href": "unidades/ejercicios0.html#instrucciones",
+    "title": "Actividad Práctica",
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nInicia un contenedor de la imagen “nginx” en segundo plano utilizando el comando docker run. Asegúrate de mapear el puerto 8080 del host al puerto 80 del contenedor.\nDetén y elimina el contenedor que acabas de crear utilizando los comandos Docker apropiados.\nCrea un nuevo contenedor con la imagen “alpine” y ejecuta un terminal interactivo dentro de él.\nDesde el contenedor alpine, instala el paquete curl utilizando el gestor de paquetes apk.\nCrea una imagen llamada “alpine-curl” a partir de este contenedor modificado.\n\nRecuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/ejercicios0.html#entregables",
+    "href": "unidades/ejercicios0.html#entregables",
+    "title": "Actividad Práctica",
+    "section": "Entregables:",
+    "text": "Entregables:\n\nImagen Docker “alpine-curl” disponible localmente.\n\n\n\nResolución de la Actividad Práctica\n\n\nIniciar un contenedor Nginx:\n\ndocker run -d -p 8080:80 --name my-nginx nginx\nDetener y eliminar el contenedor Nginx:\ndocker stop my-nginx\ndocker rm my-nginx\nCrear un contenedor Alpine interactivo:\ndocker run -it --name my-alpine alpine /bin/sh\nInstalar el paquete curl desde el contenedor Alpine:\napk add --no-cache curl\nCrear una nueva imagen “alpine-curl”:\ndocker commit my-alpine alpine-curl",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/ejercicios1.html",
+    "href": "unidades/ejercicios1.html",
+    "title": "Actividad Práctica",
+    "section": "",
+    "text": "Objetivo\nEl objetivo de esta actividad es practicar el uso de volúmenes en Docker para persistir datos entre contenedores.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios1.html#instrucciones",
     "href": "unidades/ejercicios1.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un nuevo volumen llamado “mydata”.\nInicia un contenedor de la imagen “nginx” y vincula el volumen “mydata” al directorio “/usr/share/nginx/html” dentro del contenedor.\nCrea un archivo HTML dentro del volumen “mydata” con el mensaje “Hola, este es un archivo HTML persistente”.\nInicia otro contenedor de la imagen “nginx” y vincula el mismo volumen “mydata” al directorio “/usr/share/nginx/html” dentro de este segundo contenedor.\nVerifica que ambos contenedores comparten el mismo archivo HTML creado en el paso 3."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nCrea un nuevo volumen llamado “mydata” utilizando el comando docker volume create.\nInicia un contenedor de la imagen “nginx” y vincula el volumen “mydata” al directorio “/usr/share/nginx/html” dentro del contenedor utilizando el comando docker run.\nCrea un archivo HTML dentro del volumen “mydata” con el mensaje “Hola, este es un archivo HTML persistente”. Puedes hacer esto iniciando un contenedor temporal que tenga acceso al volumen y utilizando un editor de texto para crear el archivo.\nInicia otro contenedor de la imagen “nginx” y vincula el mismo volumen “mydata” al directorio “/usr/share/nginx/html” dentro de este segundo contenedor. Verifica que puedes ver el archivo HTML que creaste en el paso 3.\n\nRecuerda que puedes consultar la documentación de Docker si necesitas ayuda con los comandos.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios1.html#entregables",
     "href": "unidades/ejercicios1.html#entregables",
     "title": "Actividad Práctica",
     "section": "Entregables:",
-    "text": "Entregables:\n\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren la persistencia de datos entre contenedores.\n\n\n\nResolución de la Actividad Práctica\n\nCrear un nuevo volumen:\ndocker volume create mydata\nIniciar el primer contenedor Nginx con el volumen:\ndocker run -d -p 8080:80 --name nginx-1 -v mydata:/usr/share/nginx/html nginx\nCrear un archivo HTML dentro del volumen:\ndocker exec -it nginx-1 sh -c \"echo 'Hola, este es un archivo HTML persistente' &gt; /usr/share/nginx/html/index.html\"\nIniciar el segundo contenedor Nginx con el mismo volumen:\ndocker run -d -p 8081:80 --name nginx-2 -v mydata:/usr/share/nginx/html nginx\nVerificar la persistencia del archivo HTML:\n\nAcceder a http://localhost:8080 en el navegador.\nAcceder a http://localhost:8081 en el navegador."
+    "text": "Entregables:\n\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren la persistencia de datos entre contenedores.\n\n\n\nResolución de la Actividad Práctica\n\nCrear un nuevo volumen:\ndocker volume create mydata\nIniciar el primer contenedor Nginx con el volumen:\ndocker run -d -p 8080:80 --name nginx-1 -v mydata:/usr/share/nginx/html nginx\nCrear un archivo HTML dentro del volumen:\ndocker exec -it nginx-1 sh -c \"echo 'Hola, este es un archivo HTML persistente' &gt; /usr/share/nginx/html/index.html\"\nIniciar el segundo contenedor Nginx con el mismo volumen:\ndocker run -d -p 8081:80 --name nginx-2 -v mydata:/usr/share/nginx/html nginx\nVerificar la persistencia del archivo HTML:\n\nAcceder a http://localhost:8080 en el navegador.\nAcceder a http://localhost:8081 en el navegador.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios1.html#rubrica-de-evaluación",
     "href": "unidades/ejercicios1.html#rubrica-de-evaluación",
     "title": "Actividad Práctica",
     "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nCorrecta creación y vinculación de volúmenes: 6 puntos\nCreación y persistencia de archivos en el volumen: 8 puntos\nVerificación exitosa de la persistencia entre contenedores: 6 puntos"
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación y vinculación de volúmenes: 6 puntos\nCreación y persistencia de archivos en el volumen: 8 puntos\nVerificación exitosa de la persistencia entre contenedores: 6 puntos",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/unidad22.html#introducción",
-    "href": "unidades/unidad22.html#introducción",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "Introducción",
-    "text": "Introducción\nDocker ha revolucionado la forma en que desarrollamos, entregamos y ejecutamos aplicaciones. En este tutorial, exploraremos cómo dockerizar un ambiente de desarrollo para una aplicación Python utilizando el framework Django. Docker simplifica la creación de entornos aislados y reproducibles, lo que facilita el desarrollo y la colaboración en equipos."
-  },
-  {
-    "objectID": "unidades/unidad22.html#qué-es-docker",
-    "href": "unidades/unidad22.html#qué-es-docker",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "¿Qué es Docker?",
-    "text": "¿Qué es Docker?\nDocker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un contenedor es una instancia ejecutable de una imagen que incluye todo lo necesario para ejecutar una aplicación, como bibliotecas, dependencias y el propio código. Creando un Dockerfile para una Aplicación Django\nUn Dockerfile es esencial para construir una imagen Docker personalizada. Aquí hay un ejemplo básico para una aplicación Django:\n\n# Usa una imagen oficial de Python como base\nFROM python:3.12\n\n# Establece el directorio de trabajo en el contenedor\nWORKDIR /app\n\n# Copia los archivos de requerimientos y el código de la aplicación\nCOPY requirements.txt .\n\n# Instala las dependencias\nRUN pip install --no-cache-dir -r requirements.txt\n\n# Copia el resto de la aplicación\nCOPY . .\n\n# Expone el puerto en el que se ejecutará la aplicación\nEXPOSE 8000\n\n# Comando para ejecutar la aplicación Django\nCMD [\"python\", \"manage.py\", \"runserver\", \"0.0.0.0:8000\"]\nEste Dockerfile utiliza una imagen base de Python, instala las dependencias desde el archivo requirements.txt y configura la aplicación Django para ejecutarse en el puerto 8000. Docker Compose para Orquestar Contenedores\nDocker Compose es una herramienta que simplifica la gestión de aplicaciones multi-contenedor. Un archivo docker-compose.yml define la configuración de los servicios, redes y volúmenes. Aquí hay un ejemplo para nuestra aplicación Django:\nversion: '3'\nservices:\n  web:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    image: my-django-app\n    ports:\n      - \"8000:8000\"\n    volumes:\n      - .:/app\n    depends_on:\n      - db\n  db:\n    image: postgres:latest\n    environment:\n      POSTGRES_DB: mydatabase\n      POSTGRES_USER: myuser\n      POSTGRES_PASSWORD: mypassword\nEste archivo docker-compose.yml define dos servicios: web (la aplicación Django) y db (una base de datos PostgreSQL). El servicio web depende del servicio db, asegurando que la base de datos esté disponible antes de iniciar la aplicación Django."
-  },
-  {
-    "objectID": "unidades/unidad22.html#actividad-práctica",
-    "href": "unidades/unidad22.html#actividad-práctica",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "Actividad Práctica",
-    "text": "Actividad Práctica\n\nCrea un directorio para tu proyecto Django y coloca el Dockerfile y el docker-compose.yml en él.\nInicia el entorno de desarrollo ejecutando docker-compose up -d.\nAccede a la aplicación Django en http://localhost:8000 en tu navegador.\nRealiza cambios en tu aplicación y observa cómo Docker facilita la actualización del entorno.\n\n\n\nResolución de la Actividad Práctica\n\n\nCrea un directorio llamado mi-proyecto-django y coloca el Dockerfile y el docker-compose.yml en él.\n\nAbre una terminal, navega al directorio del proyecto y ejecuta el siguiente comando:\ndocker-compose up -d\nEsto construirá la imagen y ejecutará los contenedores en segundo plano.\nAccede a la aplicación Django en tu navegador ingresando a http://localhost:8000. Deberías ver la aplicación en ejecución.\nRealiza cambios en tu aplicación Django local, como modificar archivos estáticos o de templates. Los cambios se reflejarán automáticamente en el contenedor gracias al volumen configurado en el docker-compose.yml."
-  },
-  {
-    "objectID": "unidades/unidad22.html#qué-aprendimo",
-    "href": "unidades/unidad22.html#qué-aprendimo",
-    "title": "4. Dockerizando un Ambiente de Desarrollo con Python y Django",
-    "section": "¿Qué aprendimo?",
-    "text": "¿Qué aprendimo?\nEn este tutorial, hemos explorado cómo dockerizar un ambiente de desarrollo para una aplicación Python y Django. Al utilizar Docker y Docker Compose, hemos creado un entorno consistente y reproducible, facilitando el desarrollo y la colaboración en equipo. Además, hemos practicado la creación de un Dockerfile, la configuración de Docker Compose y la gestión de servicios multi-contenedor. ¡Ahora estás listo para llevar tu desarrollo con Python y Django a un nivel más eficiente y portable!"
-  },
-  {
-    "objectID": "unidades/ejercicios22.html#objetivo",
-    "href": "unidades/ejercicios22.html#objetivo",
+    "objectID": "unidades/ejercicios2.html",
+    "href": "unidades/ejercicios2.html",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nPracticar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose."
+    "section": "",
+    "text": "Objetivo\nEl objetivo de esta actividad es practicar la creación de imágenes personalizadas utilizando Dockerfile y la orquestación de servicios con Docker Compose.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios22.html#instrucciones",
-    "href": "unidades/ejercicios22.html#instrucciones",
+    "objectID": "unidades/ejercicios2.html#instrucciones",
+    "href": "unidades/ejercicios2.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse.\nConstruye la imagen a partir del Dockerfile.\nUtilizando Docker Compose, define un servicio que utilice la imagen creada y exponga el puerto 5000.\nInicia el servicio con Docker Compose.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nCrea un Dockerfile para una aplicación Python simple que imprima “Hola, Docker” al ejecutarse. Asegúrate de que tu aplicación esté configurada para escuchar en el puerto 5000.\nConstruye la imagen a partir del Dockerfile utilizando el comando docker build.\nCrea un archivo docker-compose.yml. Dentro de este archivo, define un servicio que utilice la imagen que acabas de crear. Asegúrate de mapear el puerto 5000 del host al puerto 5000 del contenedor.\nInicia el servicio con Docker Compose utilizando el comando docker-compose up.\nAccede a la aplicación en http://localhost:5000 y verifica que imprime “Hola, Docker”.\n\nRecuerda que puedes consultar la documentación de Docker y Docker Compose si necesitas ayuda con los comandos.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios22.html#entregables",
-    "href": "unidades/ejercicios22.html#entregables",
+    "objectID": "unidades/ejercicios2.html#entregables",
+    "href": "unidades/ejercicios2.html#entregables",
     "title": "Actividad Práctica",
     "section": "Entregables:",
-    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador."
+    "text": "Entregables:\n\nDockerfile para la aplicación Python.\nArchivo Docker Compose.\nDocumento explicando los comandos utilizados.\nCapturas de pantalla que demuestren el acceso a la aplicación.\n\n\n\nResolución de la Actividad Práctica\n\nDockerfile para la aplicación Python:\nFROM python:3.9\nCMD [\"python\", \"-c\", \"print('Hola, Docker')\"]\nConstruir la imagen:\ndocker build -t my-python-app .\nArchivo Docker Compose (docker-compose.yml):\nversion: '3'\nservices:\n  myapp:\n    image: my-python-app\n    ports:\n      - \"5000:5000\"\nIniciar el servicio con Docker Compose:\ndocker-compose up -d\nVerificar el acceso a la aplicación:\nAcceder a http://localhost:5000 en el navegador.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/ejercicios22.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios22.html#rubrica-de-evaluación",
+    "objectID": "unidades/ejercicios2.html#rubrica-de-evaluación",
+    "href": "unidades/ejercicios2.html#rubrica-de-evaluación",
     "title": "Actividad Práctica",
     "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos"
+    "text": "Rubrica de Evaluación:\n\nCorrecta creación del Dockerfile: 6 puntos\nImagen construida correctamente: 4 puntos\nConfiguración adecuada en Docker Compose: 6 puntos\nAcceso exitoso a la aplicación: 4 puntos",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/unidad3.html#conceptos",
-    "href": "unidades/unidad3.html#conceptos",
-    "title": "4: Buenas Prácticas y Seguridad",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nEscaneo de imagen:\nDespués de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como Snyk, que examinan la imagen en busca de posibles problemas de seguridad.\n\n\nCapas de la imagen:\nCada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción.\n\n\nMulti-Stage builds:\nLas Multi-Stage builds son una práctica recomendada para construir imágenes Docker. Permiten separar las dependencias necesarias para construir la aplicación de las necesarias para ejecutarla en producción. Al hacerlo, se reduce significativamente el tamaño de la imagen final. Un ejemplo común es construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx para la producción."
-  },
-  {
-    "objectID": "unidades/unidad3.html#ejemplos",
-    "href": "unidades/unidad3.html#ejemplos",
-    "title": "4: Buenas Prácticas y Seguridad",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\nEscaneo de imagen con Snyk:\nsnyk container test &lt;IMAGE_NAME:TAG&gt;\nUtilizando la herramienta Snyk, podemos escanear una imagen en busca de vulnerabilidades. Esto es esencial para identificar y abordar posibles riesgos de seguridad antes de implementar la aplicación.\nUso de Multi-Stage builds:\nFROM node:14 AS builder\nWORKDIR /app\nCOPY . .\nRUN npm install\nRUN npm run build\n\nFROM nginx:alpine\nCOPY --from=builder /app/dist /usr/share/nginx/html\nEste Dockerfile utiliza Multi-Stage builds para primero construir una aplicación Node.js y luego copiar solo los artefactos necesarios en una imagen más ligera de Nginx. Este enfoque no solo facilita el proceso de construcción sino que también resulta en imágenes más eficientes y seguras."
-  },
-  {
-    "objectID": "unidades/unidad3.html#práctica",
-    "href": "unidades/unidad3.html#práctica",
-    "title": "4: Buenas Prácticas y Seguridad",
-    "section": "Práctica:",
-    "text": "Práctica:\n\nRealiza un escaneo de vulnerabilidades en una imagen de tu elección utilizando Snyk.\nImplementa un Multi-Stage build en un Dockerfile para una aplicación de tu preferencia.\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de imagen con Snyk:\nsnyk container test my-image:my-tag\nEjemplo de Multi-Stage Dockerfile:\nFROM node:14 AS builder\nWORKDIR /app\nCOPY . .\nRUN npm install\nRUN npm run build\n\nFROM nginx:alpine\nCOPY --from=builder /app/dist /usr/share/nginx/html\n\n\n\n\n\n\n\nTip\n\n\n\nRecuerda crear contenedores efímeros y desacoplar aplicaciones para mejorar el rendimiento y la eficiencia."
-  },
-  {
-    "objectID": "unidades/unidad3.html#qué-aprendimos",
-    "href": "unidades/unidad3.html#qué-aprendimos",
-    "title": "4: Buenas Prácticas y Seguridad",
-    "section": "¿Qué Aprendimos?",
-    "text": "¿Qué Aprendimos?\n\nComprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.\nAprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes."
-  },
-  {
-    "objectID": "unidades/ejercicios3.html#objetivo",
-    "href": "unidades/ejercicios3.html#objetivo",
+    "objectID": "unidades/ejercicios3.html",
+    "href": "unidades/ejercicios3.html",
     "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
+    "section": "",
+    "text": "Objetivo\nEl objetivo de esta actividad es aplicar buenas prácticas y medidas de seguridad al trabajar con Docker.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios3.html#instrucciones",
     "href": "unidades/ejercicios3.html#instrucciones",
     "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
+    "section": "Instrucciones",
+    "text": "Instrucciones\n\nUtiliza la herramienta Snyk para escanear la imagen “alpine:latest” en busca de vulnerabilidades.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas. Por ejemplo, podrías incluir información sobre la versión del software y la fecha de creación en las etiquetas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez de tu archivo Docker Compose. Asegúrate de corregir cualquier advertencia o error que encuentres.\nImplementa una red de contenedores utilizando el comando docker network create. Asegúrate de que solo los contenedores que necesitan comunicarse entre sí tengan acceso a esta red.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker. Esto puede ayudar a reducir el tamaño de tus imágenes y a evitar la inclusión accidental de información sensible.\n\nRecuerda que puedes consultar la documentación de Docker y Snyk si necesitas ayuda con los comandos.",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios3.html#entregables",
     "href": "unidades/ejercicios3.html#entregables",
     "title": "Actividad Práctica",
     "section": "Entregables:",
-    "text": "Entregables:\n\nCapturas de pantalla del escaneo de vulnerabilidades.\nPolítica de etiquetado para imágenes Docker.\nResultado de la verificación del archivo Docker Compose.\nDocumento explicando la implementación de la red de contenedores.\nArchivo “.dockerignore”.\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de vulnerabilidades:\nsnyk container test alpine:latest\nPolítica de etiquetado (ejemplo):\nSe etiquetarán las imágenes con el formato “versión-año-mes-día” (ejemplo: 1.0-20230115).\nVerificación del archivo Docker Compose:\ndocker-compose config\nImplementación de una red de contenedores:\ndocker network create my-network\nArchivo “.dockerignore” (ejemplo):\nnode_modules\n.git\n.env"
+    "text": "Entregables:\n\nCapturas de pantalla del escaneo de vulnerabilidades.\nPolítica de etiquetado para imágenes Docker.\nResultado de la verificación del archivo Docker Compose.\nDocumento explicando la implementación de la red de contenedores.\nArchivo “.dockerignore”.\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de vulnerabilidades:\nsnyk container test alpine:latest\nPolítica de etiquetado (ejemplo):\nSe etiquetarán las imágenes con el formato “versión-año-mes-día” (ejemplo: 1.0-20230115).\nVerificación del archivo Docker Compose:\ndocker-compose config\nImplementación de una red de contenedores:\ndocker network create my-network\nArchivo “.dockerignore” (ejemplo):\nnode_modules\n.git\n.env",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
     "objectID": "unidades/ejercicios3.html#rubrica-de-evaluación",
     "href": "unidades/ejercicios3.html#rubrica-de-evaluación",
     "title": "Actividad Práctica",
     "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nEscaneo de vulnerabilidades realizado con éxito: 4 puntos\nCorrecta implementación de la política de etiquetado: 4 puntos\nValidación exitosa del archivo Docker Compose: 4 puntos\nImplementación adecuada de la red de contenedores: 4 puntos\nCorrecta configuración del archivo “.dockerignore”: 4 puntos"
+    "text": "Rubrica de Evaluación:\n\nEscaneo de vulnerabilidades realizado con éxito: 4 puntos\nCorrecta implementación de la política de etiquetado: 4 puntos\nValidación exitosa del archivo Docker Compose: 4 puntos\nImplementación adecuada de la red de contenedores: 4 puntos\nCorrecta configuración del archivo “.dockerignore”: 4 puntos",
+    "crumbs": [
+      "Ejercicios",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Actividad Práctica</span>"
+    ]
   },
   {
-    "objectID": "unidades/unidad4.html#conceptos",
-    "href": "unidades/unidad4.html#conceptos",
-    "title": "5. DevContainers",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nDevContainers\nDevContainers es una extensión de Visual Studio Code que permite definir entornos de desarrollo en contenedores. Facilita la configuración y el uso de entornos de desarrollo reproducibles."
-  },
-  {
-    "objectID": "unidades/unidad4.html#ejemplos",
-    "href": "unidades/unidad4.html#ejemplos",
-    "title": "5. DevContainers",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\nConfigurar un entorno DevContainers para un stack MEAN:\n// En el archivo .devcontainer/devcontainer.json\n{\n  \"name\": \"MEAN Stack\",\n  \"dockerFile\": \"Dockerfile\",\n  \"settings\": {},\n  \"extensions\": [\n    \"dbaeumer.vscode-eslint\",\n    \"ms-azuretools.vscode-docker\"\n  ],\n  \"forwardPorts\": [3000, 4200, 27017],\n  \"postCreateCommand\": \"yarn install && ng serve\",\n  \"appPort\": [3000]\n}\nEste archivo de configuración crea un entorno DevContainers utilizando un Dockerfile específico, instala extensiones de Visual Studio Code, reenvía puertos necesarios para el desarrollo MEAN stack, y ejecuta comandos post-creación."
-  },
-  {
-    "objectID": "unidades/unidad4.html#práctica",
-    "href": "unidades/unidad4.html#práctica",
-    "title": "5. DevContainers",
-    "section": "Práctica:",
-    "text": "Práctica:\n\nConfigura un entorno DevContainers para un proyecto Python:\nAsegúrate de que el entorno tiene la extensión “ms-python.python” instalada.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de archivo .devcontainer/devcontainer.json:\n{\n  \"name\": \"Python Project\",\n  \"dockerFile\": \"Dockerfile.python\",\n  \"extensions\": [\n    \"ms-python.python\"\n  ],\n  \"forwardPorts\": [8000],\n  \"postCreateCommand\": \"pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000\",\n  \"appPort\": [8000]\n}\n\n\n\n\n\n\n\nTip\n\n\n\nUsa DevContainers para garantizar un entorno de desarrollo coherente y fácilmente replicable."
-  },
-  {
-    "objectID": "unidades/unidad4.html#qué-aprendimos",
-    "href": "unidades/unidad4.html#qué-aprendimos",
-    "title": "5. DevContainers",
-    "section": "¿Qué Aprendimos?",
-    "text": "¿Qué Aprendimos?\n\nComprendemos cómo utilizar DevContainers para crear entornos de desarrollo específicos para proyectos.\nAhora sabemos cómo configurar extensiones y reenviar puertos en entornos DevContainers."
-  },
-  {
-    "objectID": "unidades/ejercicios4.html#objetivo",
-    "href": "unidades/ejercicios4.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nAplicar buenas prácticas y medidas de seguridad al trabajar con Docker."
-  },
-  {
-    "objectID": "unidades/ejercicios4.html#instrucciones",
-    "href": "unidades/ejercicios4.html#instrucciones",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nEscanea la imagen “alpine:latest” en busca de vulnerabilidades utilizando la herramienta Snyk.\nImplementa una política de etiquetado para las imágenes Docker que siga las mejores prácticas.\nUtiliza la herramienta “docker-compose lint” para verificar la validez del archivo Docker Compose.\nImplementa una red de contenedores y asegúrate de que solo los contenedores necesarios tengan acceso a ella.\nCrea un archivo “.dockerignore” para excluir archivos y directorios innecesarios en la construcción de imágenes Docker."
-  },
-  {
-    "objectID": "unidades/ejercicios4.html#entregables",
-    "href": "unidades/ejercicios4.html#entregables",
-    "title": "Actividad Práctica",
-    "section": "Entregables:",
-    "text": "Entregables:\n\nCapturas de pantalla del escaneo de vulnerabilidades.\nPolítica de etiquetado para imágenes Docker.\nResultado de la verificación del archivo Docker Compose.\nDocumento explicando la implementación de la red de contenedores.\nArchivo “.dockerignore”.\n\n\n\nResolución de la Actividad Práctica\n\nEscaneo de vulnerabilidades:\nsnyk container test alpine:latest\nPolítica de etiquetado (ejemplo):\nSe etiquetarán las imágenes con el formato “versión-año-mes-día” (ejemplo: 1.0-20230115).\nVerificación del archivo Docker Compose:\ndocker-compose config\nImplementación de una red de contenedores:\ndocker network create my-network\nArchivo “.dockerignore” (ejemplo):\nnode_modules\n.git\n.env"
-  },
-  {
-    "objectID": "unidades/ejercicios4.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios4.html#rubrica-de-evaluación",
-    "title": "Actividad Práctica",
-    "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nEscaneo de vulnerabilidades realizado con éxito: 4 puntos\nCorrecta implementación de la política de etiquetado: 4 puntos\nValidación exitosa del archivo Docker Compose: 4 puntos\nImplementación adecuada de la red de contenedores: 4 puntos\nCorrecta configuración del archivo “.dockerignore”: 4 puntos"
-  },
-  {
-    "objectID": "unidades/unidad5.html#conceptos",
-    "href": "unidades/unidad5.html#conceptos",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nDocker Swarm\nEs una herramienta de orquestación de contenedores incorporada en Docker. Permite gestionar y escalar aplicaciones en un clúster de Docker.\n\n\nNodos y Servicios\nEn el contexto de Docker Swarm, los nodos son las máquinas que participan en el clúster y los servicios son las aplicaciones que se ejecutan en esos nodos."
-  },
-  {
-    "objectID": "unidades/unidad5.html#ejemplos",
-    "href": "unidades/unidad5.html#ejemplos",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\nInicializando un Swarm:\ndocker swarm init\nEste comando inicia un clúster de Swarm en el nodo actual.\nCreando un Servicio:\ndocker service create --replicas 3 -p 8080:80 --name web nginx\nAquí estamos creando un servicio llamado “web” que ejecuta tres replicas del contenedor Nginx."
-  },
-  {
-    "objectID": "unidades/unidad5.html#práctica",
-    "href": "unidades/unidad5.html#práctica",
-    "title": "6: Orquestación de Contenedores con Docker Swarm",
-    "section": "Práctica:",
-    "text": "Práctica:\n\nConfigurar un Clúster de Docker Swarm:\nInicia un clúster de Docker Swarm con dos nodos.\nCrea un servicio distribuido que ejecute una aplicación de ejemplo en el clúster.\n\n\n\nResolución de la Actividad Práctica\n\nInicializar el Swarm:\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO&gt;\nUnirse a un Nodo al Swarm:\ndocker swarm join --token &lt;TOKEN&gt; &lt;IP_DEL_MANAGER&gt;:&lt;PUERTO&gt;\nCrear un Servicio:\ndocker service create --replicas 3 -p 8080:80 --name web nginx\n\n\n\n\n\n\n\nTip\n\n\n\nUtiliza Docker Swarm para mejorar la escalabilidad y la administración de tus aplicaciones en contenedores."
-  },
-  {
-    "objectID": "unidades/ejercicios5.html#objetivo",
-    "href": "unidades/ejercicios5.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nConfigurar un clúster de Docker Swarm con un nodo manager y varios nodos workers."
-  },
-  {
-    "objectID": "unidades/ejercicios5.html#instrucciones",
-    "href": "unidades/ejercicios5.html#instrucciones",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\nInicializa el Swarm en el Nodo Manager ejecutando el siguiente comando:\ndocker swarm init --advertise-addr &lt;IP_DEL_NODO_MANAGER&gt;\nSustituye  con la dirección IP del nodo que actuará como manager.\nÚnete a un Nodo al Swarm ejecutando el siguiente comando en cada Nodo Worker:\ndocker swarm join --token &lt;TOKEN_GENERADO&gt; &lt;IP_DEL_NODO_MANAGER&gt;:&lt;PUERTO&gt;\nReemplaza  con el token proporcionado en el paso anterior y  con la dirección IP del nodo manager."
-  },
-  {
-    "objectID": "unidades/unidad6.html#conceptos",
-    "href": "unidades/unidad6.html#conceptos",
-    "title": "7: Despliegue de Aplicaciones con Docker Compose",
-    "section": "Conceptos:",
-    "text": "Conceptos:\n\nDocker Compose para Despliegues Complejos\nDocker Compose no solo es útil para el desarrollo local; también se puede usar para definir y desplegar aplicaciones en entornos de producción.\n\n\nVariables de Entorno en Docker Compose\nPermite gestionar configuraciones específicas del entorno, facilitando la portabilidad de la aplicación entre diferentes contextos."
-  },
-  {
-    "objectID": "unidades/unidad6.html#ejemplos",
-    "href": "unidades/unidad6.html#ejemplos",
-    "title": "7: Despliegue de Aplicaciones con Docker Compose",
-    "section": "Ejemplos:",
-    "text": "Ejemplos:\nDefinir un Servicio con Docker Compose:\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\nEste archivo docker-compose.yml define un servicio llamado “web” que utiliza la imagen de Nginx y mapea el puerto 8080."
-  },
-  {
-    "objectID": "unidades/unidad6.html#práctica",
-    "href": "unidades/unidad6.html#práctica",
-    "title": "7: Despliegue de Aplicaciones con Docker Compose",
-    "section": "Práctica:",
-    "text": "Práctica:\n\nDesplegar una Aplicación Compleja con Docker Compose\nCrea un archivo docker-compose.yml para una aplicación de varios servicios.\nDespliega la aplicación en tu entorno local.\n\n\n\nResolución de la Actividad Práctica\n\nEjemplo de docker-compose.yml:\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"\n\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: example\nDesplegar con Docker Compose:\ndocker-compose up -d\n\n\n\n\n\n\n\nTip\n\n\n\nOptimiza tus despliegues de aplicaciones utilizando Docker Compose y configura variables de entorno según sea necesario."
-  },
-  {
-    "objectID": "unidades/ejercicios6.html",
-    "href": "unidades/ejercicios6.html",
-    "title": "Actividad Práctica",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre mí",
     "section": "",
-    "text": "Desplegar una Aplicación Compleja con Docker Compose"
-  },
-  {
-    "objectID": "unidades/ejercicios6.html#objetivo",
-    "href": "unidades/ejercicios6.html#objetivo",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nCrear un servicio distribuido con varias réplicas utilizando Docker Swarm."
-  },
-  {
-    "objectID": "unidades/ejercicios6.html#instrucciones",
-    "href": "unidades/ejercicios6.html#instrucciones",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\nCrea un servicio llamado “web” que ejecute tres replicas del contenedor Nginx con el siguiente comando:\ndocker service create --replicas 3 -p 8080:80 --name web nginx\nDespliegue de Aplicaciones con Docker Compose"
-  },
-  {
-    "objectID": "unidades/ejercicios6.html#objetivo-1",
-    "href": "unidades/ejercicios6.html#objetivo-1",
-    "title": "Actividad Práctica",
-    "section": "Objetivo:",
-    "text": "Objetivo:\nDesplegar una aplicación compuesta por servicios web y de base de datos utilizando Docker Compose."
-  },
-  {
-    "objectID": "unidades/ejercicios6.html#instrucciones-1",
-    "href": "unidades/ejercicios6.html#instrucciones-1",
-    "title": "Actividad Práctica",
-    "section": "Instrucciones:",
-    "text": "Instrucciones:\n\nCrea un archivo llamado docker-compose.yml con el contenido proporcionado.\nDespliega la aplicación ejecutando el siguiente comando:\n\ndocker-compose up -d\n\nUtiliza el flag -d para realizar el despliegue en segundo plano.\n\n\n\nResolución de la Actividad Práctica\n\nLa resolución de la actividad práctica consiste en seguir las instrucciones proporcionadas para cada práctica y verificar que los servicios se desplieguen correctamente."
-  },
-  {
-    "objectID": "unidades/ejercicios6.html#rubrica-de-evaluación",
-    "href": "unidades/ejercicios6.html#rubrica-de-evaluación",
-    "title": "Actividad Práctica",
-    "section": "Rubrica de Evaluación:",
-    "text": "Rubrica de Evaluación:\n\nConfiguración exitosa del clúster de Docker Swarm (Práctica 1): 5 puntos\nCreación correcta del servicio distribuido (Práctica 2): 5 puntos\nCreación del archivo docker-compose.yml: 3 puntos\nDespliegue exitoso de la aplicación con Docker Compose: 7 puntos"
+    "text": "¿Quién soy?"
   },
   {
     "objectID": "about.html#quién-soy",
     "href": "about.html#quién-soy",
     "title": "Sobre mí",
-    "section": "¿Quién soy?",
-    "text": "¿Quién soy?\n\n\n\n\nDiego Saavedra\n\n\n\n\nSoy candidato a doctorado en Informática con una sólida formación en esta área y una profunda pasión por el desarrollo avanzado de software e investigación.\nMi trayectoria abarca tanto la enseñanza de Ciencias de la Computación como la investigación en áreas fundamentales como Desarrollo de Software e Inteligencia Artificial.\nHe acumulado habilidades técnicas en un amplio espectro de tecnologías y lenguajes de programación, incluyendo Python (junto con sus frameworks Django, Flask y Fast API), JavaScript (con Express, Next y Astro), así como el desarrollo de aplicaciones móviles en Android y Flutter.\nAdemás, he trabajado extensamente con diversas bases de datos, abarcando tanto bases de datos relacionales como PostgreSQL, MySQL y MariaDB, como bases de datos no relacionales como MongoDB y Firebase.\nMi experiencia se extiende más allá de los lenguajes de programación y las bases de datos, ya que tengo experiencia con diversas arquitecturas de software, incluyendo microservicios y arquitecturas basadas en la nube (Azure, AWS) utilizando Docker y Kubernetes. Esta comprensión me ha permitido diseñar y desarrollar sistemas escalables y de alto rendimiento.\nComo profesional, mi enfoque ha sido la creación de software de alta calidad y el liderazgo efectivo de equipos ágiles. Mis fuertes habilidades de comunicación son esenciales para una colaboración productiva con colegas y clientes. Además, mi capacidad para analizar y resolver problemas complejos me ha capacitado para abordar con confianza desafíos técnicos. Además, mis habilidades de gestión del tiempo y los recursos han sido fundamentales para cumplir con los plazos y lograr resultados tanto en proyectos de desarrollo como de investigación dentro del entorno académico.\nEn resumen, como candidato a doctorado en Informática, mi compromiso radica en alcanzar la excelencia en el desarrollo de software e investigar en tecnologías de vanguardia. Mi experiencia y competencia técnica, combinadas con mi apasionado interés por la innovación y la educación, me posicionan como un profesional versátil e invaluable en el campo de la ciencia de la computación."
+    "section": "",
+    "text": "Diego Saavedra"
   },
   {
-    "objectID": "license.html#uso-permitido",
-    "href": "license.html#uso-permitido",
+    "objectID": "about.html#formación-académica",
+    "href": "about.html#formación-académica",
+    "title": "Sobre mí",
+    "section": "Formación Académica",
+    "text": "Formación Académica\n\nSoy candidato a doctorado en Informática con una sólida formación en esta área y una profunda pasión por el desarrollo avanzado de software e investigación."
+  },
+  {
+    "objectID": "about.html#experiencia-laboral",
+    "href": "about.html#experiencia-laboral",
+    "title": "Sobre mí",
+    "section": "Experiencia Laboral",
+    "text": "Experiencia Laboral\n\nMi trayectoria abarca tanto la enseñanza de Ciencias de la Computación como la investigación en áreas fundamentales como Desarrollo de Software e Inteligencia Artificial."
+  },
+  {
+    "objectID": "about.html#habilidades-técnicas",
+    "href": "about.html#habilidades-técnicas",
+    "title": "Sobre mí",
+    "section": "Habilidades Técnicas",
+    "text": "Habilidades Técnicas\n\nHe acumulado habilidades técnicas en un amplio espectro de tecnologías y lenguajes de programación, incluyendo:\n\nPython (junto con sus frameworks Django, Flask y Fast API)\nJavaScript (con Express, Next y Astro)\nDesarrollo de aplicaciones móviles en Android y Flutter\nBases de datos relacionales como PostgreSQL, MySQL y MariaDB\nBases de datos no relacionales como MongoDB y Firebase\nArquitecturas de software, incluyendo microservicios y arquitecturas basadas en la nube (Azure, AWS) utilizando Docker y Kubernetes"
+  },
+  {
+    "objectID": "about.html#contacto",
+    "href": "about.html#contacto",
+    "title": "Sobre mí",
+    "section": "Contacto",
+    "text": "Contacto\n\nPuedes contactarme a través de LinkedIn o GitHub."
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
     "title": "Licencia",
-    "section": "Uso Permitido",
+    "section": "",
     "text": "Uso Permitido\nPuedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje."
   },
   {
@@ -480,20 +434,13 @@
     "href": "license.html#restricciones",
     "title": "Licencia",
     "section": "Restricciones",
-    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
+    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de Diego Saavedra. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio. No está permitido compartir el curso con otros fuera de tu hogar o aula sin el permiso explícito de Diego Saavedra."
   },
   {
-    "objectID": "license.html#atribución",
-    "href": "license.html#atribución",
+    "objectID": "license.html#contacto",
+    "href": "license.html#contacto",
     "title": "Licencia",
-    "section": "Atribución",
-    "text": "Atribución\nSi compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía]."
-  },
-  {
-    "objectID": "license.html#cambios-en-la-licencia",
-    "href": "license.html#cambios-en-la-licencia",
-    "title": "Licencia",
-    "section": "Cambios en la Licencia",
-    "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
+    "section": "Contacto",
+    "text": "Contacto\nSi deseas obtener permiso para usos comerciales o para compartir el curso con otros, por favor contacta a Diego Medardo Saavedra Garcia a través de dsaavedra88@gmail.com."
   }
 ]
