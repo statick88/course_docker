@@ -1,0 +1,101 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Curso de Docker"
+  author: "Diego Saavedra"
+  output-file: "curso_docker"  
+  date: today
+  date-format: medium
+  favicon: images/docker.png
+  description: Curso de Docker 2024
+  keyword: Docker
+  url: https://github.com/statick88/curso_docker
+  page-navigation: true
+  sidebar: 
+    logo: images/docker.png
+    search: true
+    collapse-level: 1
+
+  repo-subdir: book
+  sharing: [twitter, linkedin]
+  downloads: [pdf, epub]
+  image: images/docker.png
+
+  page-footer:
+    center: 
+      - text: "About"
+        href: about.qmd
+      - text: "License"
+        href: license.qmd
+        
+  chapters:
+    - index.qmd
+    - part: "Unidad 1: Introducción a Docker"
+      chapters:
+        - unidades/unidad0.qmd
+    - part: "Unidad 2: Dockerfile y Docker Compose"
+      chapters:
+        - unidades/unidad2.qmd
+    - part: "Unidad 3: Servidores en Docker"
+      chapters:
+        - unidades/unidad1.qmd
+    # - part: "Unidad 4: Buenas Prácticas en Docker"
+    #   chapters: 
+    #     - unidades/unidad3.qmd
+    # - part: "Unidad 5: Devcontainers"
+    #   chapters: 
+    #     - unidades/unidad4.qmd
+    # - part: "Unidad 6: Orquestadores de Contenedores"
+    #   chapters: 
+    #     - unidades/unidad5.qmd
+    # - part: "Unidad 4: Python Avanzado"
+    #   chapters: 
+    #     - unidades/unidad22.qmd    
+    - part: "Ejercicios"
+      chapters: 
+        - unidades/ejercicios0.qmd
+        - unidades/ejercicios1.qmd
+        - unidades/ejercicios2.qmd
+        - unidades/ejercicios3.qmd
+        # - unidades/ejercicios4.qmd
+        # - unidades/ejercicios5.qmd
+        # - unidades/ejercicios6.qmd
+        # - unidades/ejercicios22.qmd
+
+bibliography: references.bib
+biblio-style: "apalike"
+
+format:
+  html:
+    number-sections: false
+    theme: 
+      dark:  solar #slate, darkly, solar, superhero, vapor
+      # light: cosmo
+    number-depth: 4
+    link-external-icon: true
+    link-external-newwindow: true
+    css: css/styles.css
+
+  pdf:
+    documentclass: scrreprt
+    classoption: ["onepage", "openany"]
+    papersize: a4
+    toc: true
+    margin-top: 35mm
+    margin-left: 30mm
+    margin-bottom: 30mm
+    margin-right: 30mm
+    titlepage-geometry: 
+      - top=35mm
+      - bottom=30mm
+      - right=30mm
+      - left=30mm
+  epub: 
+    belongs-to-collection: "Curso de Docker 2024"
+    group-position: 0
+    creator: "Lcdo. Diego Saavedra Mgtr."
+    rights: "© Statick | 2024"
+    fig-responsive: true
+    number-sections: true

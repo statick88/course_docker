@@ -1,0 +1,171 @@
+# Dockerfile y Docker Compose
+
+## Introducción
+
+Dockerfile y Docker Compose son herramientas esenciales para la construcción y gestión de aplicaciones Docker. Un Dockerfile es un archivo de texto que define cómo se construirá una imagen Docker, mientras que Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. En esta lección, aprenderemos cómo usar Dockerfile y Docker Compose para personalizar imágenes Docker y orquestar servicios en un entorno multi-contenedor.
+
+A continuación veremos algunos conceptos básicos sobre Dockerfile y Docker Compose.
+
+### Dockerfile
+
+Un Dockerfile es un archivo de texto que contiene una serie de instrucciones para construir una imagen Docker. Estas instrucciones incluyen la configuración del sistema operativo base, la instalación de paquetes y dependencias, la configuración de variables de entorno y la definición de comandos para ejecutar la aplicación.
+
+### Docker Compose
+
+Docker Compose es una herramienta para definir y gestionar aplicaciones Docker con múltiples contenedores. Permite definir servicios, redes y volúmenes en un archivo YAML y orquestar la ejecución de los contenedores en un entorno de desarrollo o producción.
+
+## Ejemplos:
+
+En este ejemplo vamos a dockerizar una aplicación nodejs con un servidor sencillo en express.
+
+Empezamos por el código de nuestra aplicación:
+
+Para ello creamos un nuevo proyecto nodejs con el siguiente comando:
+
+``` bash
+npm init -y
+```
+
+Instalamos el paquete express con el siguiente comando:
+
+``` bash
+npm install express
+```
+Creamos los siguientes archivos:
+
+- server.js
+- package.json
+- Dockerfile
+- docker-compose.yml
+
+### server.js
+
+``` javascript
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
+```
+
+### Dockerfile
+
+``` dockerfile
+# Use the official Node.js 14 image
+FROM node:14
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the dependencies file to the working directory
+COPY package.json .
+
+# Install dependencies
+RUN npm install
+
+# Copy the app code to the working directory
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Serve the app
+CMD ["node", "server.js"]
+```
+
+### docker-compose.yml
+
+``` yaml
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+```
+
+En este ejemplo, el Dockerfile define una imagen Docker para una aplicación Node.js. El archivo docker-compose.yml define un servicio llamado myapp que utiliza el Dockerfile.nodejs para construir la imagen y expone el puerto 3000 para acceder a la aplicación.
+
+:::{.callout-tip}
+El puerto del lado izquierdo de los 2 puntos en el archivo docker-compose.yml es el puerto en el host, mientras que el puerto del lado derecho es el puerto en el contenedor.
+:::
+
+Para probar nuestro ejemplo, ejecutamos el siguiente comando:
+
+``` bash
+docker-compose up -d
+```
+
+Esto construirá la imagen Docker y ejecutará el contenedor en segundo plano. Podemos acceder a la aplicación en http://localhost:3000.
+
+Para verificar que el contenedor está en ejecución, ejecutamos el siguiente comando:
+
+``` bash
+docker ps
+```
+
+Podemos utilizar una aplicación como Thunder Client o Postman para enviar una solicitud HTTP a la aplicación y ver la respuesta.
+
+Para detener y eliminar el contenedor, ejecutamos el siguiente comando:
+
+``` bash
+docker-compose down
+```
+
+:::{.callout-tip}
+Recuerda: La imagen que se crea a partir del Dockerfile se almacena en el caché local de Docker. Si realizas cambios en el Dockerfile y deseas reconstruir la imagen, puedes usar el comando 
+
+``` bash
+docker-compose up --build
+```
+:::
+
+## Práctica:
+
+- Crea un Dockerfile para una aplicación Python simple.
+- Configura un archivo docker-compose.yml para ejecutar la aplicación.
+
+<details>
+<summary>Resolución de la Actividad Práctica</summary>
+
+Ejemplo de aplicación Python simple:
+
+``` python
+# app.py
+print("Hello, World!")
+```
+
+Ejemplo de Dockerfile:
+
+``` dockerfile
+FROM python:3.12
+WORKDIR /app
+COPY . .
+CMD ["python", "app.py"]
+```
+Ejemplo de docker-compose.yml:
+
+``` yaml
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    image: my-python-app
+```
+</details>
+
+## ¿Qué Aprendimos?
+
+- Aprendimos a crear un Dockerfile para personalizar una imagen Docker.
+- Entendimos cómo usar Docker Compose para orquestar servicios en un entorno multi-contenedor.
+- Practicamos la configuración básica de un Dockerfile y un archivo docker-compose.yml.

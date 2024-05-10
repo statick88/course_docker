@@ -1,0 +1,194 @@
+
+### Docker
+
+:::{.text-center}
+![](images/docker.png)
+:::
+
+Docker es una plataforma que permite desarrollar, enviar y ejecutar aplicaciones en contenedores. Un **contenedor** es una instancia ejecutable de una **imagen**, que es una especie de **plantilla** que contiene todo lo necesario para ejecutar una aplicación.
+
+Haciendo una analogía con los contenedores de transporte, una **imagen** sería el **contenedor** en sí, y el **contenedor** sería la **carga** que se transporta.
+
+:::{.text-center}
+![](images/docker_image.png)
+:::
+
+Una imagen Docker es una plantilla inmutable que contiene un conjunto de instrucciones para crear un contenedor Docker. Las imágenes son portátiles y pueden ser compartidas, almacenadas y actualizadas.
+
+:::{.callout-tip}
+Las imágenes Docker son inmutables, lo que significa que no se pueden modificar una vez creadas. Si se realizan cambios en una imagen, se debe crear una nueva versión de la imagen.
+:::
+
+
+:::{.text-center}
+![](images/docker_container.png)
+:::
+
+Un contenedor Docker es una instancia ejecutable de una imagen Docker. Se ejecuta de manera aislada y contiene todo lo necesario para ejecutar la aplicación, incluyendo el código, las dependencias, el entorno de ejecución, las bibliotecas y los archivos de configuración.
+
+:::{.callout-tip}
+Un contenedor aisla la aplicación de su entorno, lo que garantiza que la aplicación se ejecute de manera consistente en diferentes entornos.
+:::
+
+## Ejemplos:
+
+:::{.text-justify}
+Descargar una imagen:
+
+``` bash
+docker pull docker/getting-started
+```
+:::{.text-center}
+![](images/paste-2.png)
+:::
+
+Este comando descarga la imagen **getting-started** desde el registro público de Docker.
+
+Correr un contenedor en el puerto 80:
+
+``` bash
+docker run -d -p 80:80 docker/getting-started
+```
+
+:::{.text-center}
+![](images/paste-1.png)
+:::
+
+Este comando ejecuta un contenedor desenlazado en segundo plano (-d) y mapea el puerto 80 de la máquina host al puerto 80 del contenedor (-p 80:80).
+
+Descargar una imagen desde un registro.
+
+:::{.callout-tip}
+El comando -p se utiliza para mapear los puertos de la máquina host al contenedor, muchas personas consideran que significa "puerto". Sin embargo en realidad significa "publicar" o "publicar puerto".
+:::
+
+## Comandos básicos de Docker:
+
+Descargar una imagen desde un registro.
+
+``` bash
+docker pull <IMAGE_NAME:TAG>
+```
+Listar las imágenes descargadas.
+
+``` bash
+docker images
+```
+Listar contenedores en ejecución.
+
+``` bash
+docker ps
+```
+Listar todos los contenedores, incluyendo los detenidos.
+
+``` bash
+docker ps -a
+```
+Ejecutar un contenedor a partir de una imagen.
+
+``` bash
+docker run -d -p <HOST_PORT>:<CONTAINER_PORT> <IMAGE_NAME:TAG>
+```
+Detener un contenedor en ejecución.
+
+``` bash
+docker stop <CONTAINER_ID>
+```
+Iniciar un contenedor detenio.
+
+``` bash
+docker start <CONTAINER_ID>
+```
+Eliminar un contenedor.
+
+``` bash
+docker rm <CONTAINER_ID>
+```
+Eliminar una imagen.
+
+``` bash
+docker rmi <IMAGE_NAME:TAG>
+```
+## Atajos y Comandos Adicionales:
+
+Ejecutar comandos dentro de un contenedor en ejecución.
+
+``` bash
+docker exec -it <CONTAINER_ID> /bin/bash
+```
+Obtener detalles sobre un contenedor o imagen.
+
+``` bash
+docker inspect <CONTAINER_ID or IMAGE_NAME:TAG>
+```
+Ver los logs de un contenedor.
+
+``` bash
+docker logs <CONTAINER_ID>
+```
+Utilizar Docker Compose para gestionar aplicaciones multi-contenedor.
+
+``` bash
+docker-compose up -d
+```
+
+## Práctica:
+
+- Descarga la imagen de Nginx desde el registro público.
+- Crea y ejecuta un contenedor de Nginx en el puerto 8080.
+- Detén y elimina el contenedor creado
+- Utiliza los comandos para detener y eliminar un contenedor.
+:::
+
+<details>
+<summary>Resolución de la Actividad Práctica</summary>
+
+1. Abre tu terminal o línea de comandos.
+2. Descarga la imagen de Nginx desde el registro público de Docker:
+
+```bash
+docker pull nginx
+```
+3. Crea y ejecuta un contenedor de Nginx en el puerto 8080:
+
+``` bash
+docker run -d -p 8080:80 nginx
+```
+Elige un puerto en tu máquina local (por ejemplo, 8080) para mapearlo al puerto 80 del contenedor.
+
+4. Verifica que el contenedor esté en ejecución:
+
+``` bash
+docker ps
+```
+5. Si el contenedor está en ejecución, detenlo utilizando el siguiente comando:
+
+``` bash
+docker stop <CONTAINER_ID>
+```
+Reemplaza **<CONTAINER_ID>** con el ID real del contenedor que obtuviste en el paso anterior.
+
+6. Elimina el contenedor detenido:
+
+``` bash
+docker rm <CONTAINER_ID>
+```
+Reemplaza **<CONTAINER_ID>** con el ID real del contenedor.
+
+</details>
+
+::: {.callout-tip}
+:::{.text-center}
+Combina los comandos docker ps, docker stop, y docker rm para gestionar contenedores eficientemente. 
+
+¡Practica estos pasos para familiarizarte con el ciclo de vida de los contenedores Docker!
+:::
+:::
+
+## ¿Qué Aprendimos?
+
+:::{.text-justify}
+-   Aprendimos a descargar imágenes, correr contenedores y gestionarlos básicamente.
+-   Entendimos la importancia de las banderas en los comandos Docker.
+-   Practicamos la creación y gestión de contenedores Docker.
+:::
