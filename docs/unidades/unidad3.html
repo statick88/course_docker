@@ -8,7 +8,7 @@
 
 <meta name="description" content="Curso de Docker 2024">
 
-<title>Django y React 2024 - 4: Buenas Prácticas y Seguridad</title>
+<title>Curso de Docker - Servidores Docker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,9 +65,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidades/unidad4.html" rel="next">
-<link href="../unidades/unidad1.html" rel="prev">
-<link href="../logo.png" rel="icon" type="image/png">
+<link href="../unidades/ejercicios0.html" rel="next">
+<link href="../unidades/unidad2.html" rel="prev">
+<link href="../images/docker.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad3.html">Unidad 4: Buenas Prácticas en Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad3.html">Unidad 3: Servidores en Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-title">Servidores Docker</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -101,22 +135,22 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/docker.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Django y React 2024</a> 
+      <a href="../">Curso de Docker</a> 
         <div class="sidebar-tools-main tools-wide">
     <div class="dropdown">
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../curso_django_and_react_2024.pdf">
+            <a class="dropdown-item sidebar-tools-main-item" href="../curso_docker.pdf">
               <i class="bi bi-bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../curso_django_and_react_2024.epub">
+            <a class="dropdown-item sidebar-tools-main-item" href="../curso_docker.epub">
               <i class="bi bi-bi-journal pe-1"></i>
             Download ePub
             </a>
@@ -167,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. Docker</span></a>
+  <a href="../unidades/unidad0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Docker</span></a>
   </div>
 </li>
       </ul>
@@ -183,116 +217,36 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2. Dockerfile y Docker Compose</span></a>
+  <a href="../unidades/unidad2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Dockerfile y Docker Compose</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Unidad 3: Servidores en Docker</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></a>
+  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Servidores Docker</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Unidad 4: Buenas Prácticas en Docker</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
- <span class="menu-text">Unidad 2: Python Básico</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6. DevContainers</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
- <span class="menu-text">Unidad 3: Python Intermedio</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7. Orquestación de Contenedores con Docker Swarm</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
- <span class="menu-text">Unidad 2: Python Básico</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Dockerfile y Docker Compose</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
- <span class="menu-text">Unidad 4: Python Avanzado</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/unidad22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4. Dockerizando un Ambiente de Desarrollo con Python y Django</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Ejercicios</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unidades/ejercicios0.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
@@ -313,26 +267,6 @@ ul.task-list li input[type="checkbox"] {
   <a href="../unidades/ejercicios3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Despliegue de Servicios con Docker Swarm</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unidades/ejercicios22.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Actividad Práctica</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -345,23 +279,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conceptos" id="toc-conceptos" class="nav-link active" data-scroll-target="#conceptos">Conceptos:</a>
-  <ul class="collapse">
-  <li><a href="#escaneo-de-imagen" id="toc-escaneo-de-imagen" class="nav-link" data-scroll-target="#escaneo-de-imagen">Escaneo de imagen:</a></li>
-  <li><a href="#capas-de-la-imagen" id="toc-capas-de-la-imagen" class="nav-link" data-scroll-target="#capas-de-la-imagen">Capas de la imagen:</a></li>
-  <li><a href="#multi-stage-builds" id="toc-multi-stage-builds" class="nav-link" data-scroll-target="#multi-stage-builds">Multi-Stage builds:</a></li>
-  </ul></li>
-  <li><a href="#qué-aprendimos" id="toc-qué-aprendimos" class="nav-link" data-scroll-target="#qué-aprendimos">¿Qué Aprendimos?</a></li>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
+  <li><a href="#mysql" id="toc-mysql" class="nav-link active" data-scroll-target="#mysql">MySQL</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad3.html">Unidad 4: Buenas Prácticas en Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidades/unidad3.html">Unidad 3: Servidores en Docker</a></li><li class="breadcrumb-item"><a href="../unidades/unidad3.html"><span class="chapter-title">Servidores Docker</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">4: Buenas Prácticas y Seguridad</span></h1>
+<h1 class="title"><span class="chapter-title">Servidores Docker</span></h1>
 </div>
 
 
@@ -378,32 +305,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="conceptos" class="level2">
-<h2 class="anchored" data-anchor-id="conceptos">Conceptos:</h2>
-<section id="escaneo-de-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="escaneo-de-imagen">Escaneo de imagen:</h3>
-<p>Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como <a href="https://snyk.io/">Snyk</a>, que examinan la imagen en busca de posibles problemas de seguridad. Por ejemplo, puedes usar el comando <code>snyk test</code> para escanear tu imagen.</p>
-</section>
-<section id="capas-de-la-imagen" class="level3">
-<h3 class="anchored" data-anchor-id="capas-de-la-imagen">Capas de la imagen:</h3>
-<p>Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción. Puedes usar el comando <code>docker history &lt;image&gt;</code> para ver las capas de una imagen.</p>
-</section>
-<section id="multi-stage-builds" class="level3">
-<h3 class="anchored" data-anchor-id="multi-stage-builds">Multi-Stage builds:</h3>
-<p><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Multi-Stage builds</a> es una técnica que te permite usar múltiples etapas de construcción en un solo Dockerfile, lo que te permite crear imágenes más pequeñas y más eficientes.</p>
-</section>
-</section>
-<section id="qué-aprendimos" class="level2">
-<h2 class="anchored" data-anchor-id="qué-aprendimos">¿Qué Aprendimos?</h2>
-<ul>
-<li>Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.</li>
-<li>Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.</li>
-<li>Entendimos cómo Docker utiliza un sistema de archivos en capas para optimizar el almacenamiento y la construcción de imágenes.</li>
-</ul>
-</section>
-<section id="resumen" class="level2">
-<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
-<p>En esta unidad, aprendimos sobre varias buenas prácticas y técnicas de seguridad en Docker, incluyendo el escaneo de imagen, el uso de capas de imagen y la implementación de Multi-Stage builds. Estas técnicas son esenciales para construir y mantener imágenes de Docker seguras y eficientes.</p>
+<p>En esta unidad vamos a aprender acerca de los distinto servidores de bases de datos que podemos utilizar en Docker.</p>
+<section id="mysql" class="level2">
+<h2 class="anchored" data-anchor-id="mysql">MySQL</h2>
+<p>Para instalar un servidor MySQL en Docker, podemos utilizar la imagen oficial de MySQL. or ejemplo, para instalar la versión 8.4.0, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-mysql <span class="at">-e</span> MYSQL_ROOT_PASSWORD=my-secret-pw <span class="at">-d</span> mysql:8.4.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos a la base de datos, podemos utilizar el siguiente comando:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> some-mysql mysql <span class="at">-uroot</span> <span class="at">-p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O si lo deseamos hacer de forma gráfica podemos utilizar MySQL Workbench.</p>
 
 
 </section>
@@ -971,13 +880,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidades/unidad1.html" class="pagination-link" aria-label="3. Creación de un servidor web con Docker y Nginx">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3. Creación de un servidor web con Docker y Nginx</span></span>
+      <a href="../unidades/unidad2.html" class="pagination-link" aria-label="Dockerfile y Docker Compose">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Dockerfile y Docker Compose</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidades/unidad4.html" class="pagination-link" aria-label="6. DevContainers">
-        <span class="nav-page-text"><span class="chapter-title">6. DevContainers</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidades/ejercicios0.html" class="pagination-link" aria-label="Actividad Práctica">
+        <span class="nav-page-text"><span class="chapter-title">Actividad Práctica</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

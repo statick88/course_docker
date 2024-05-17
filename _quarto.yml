@@ -40,7 +40,7 @@ book:
         - unidades/unidad2.qmd
     - part: "Unidad 3: Servidores en Docker"
       chapters:
-        - unidades/unidad1.qmd
+        - unidades/unidad3.qmd
     # - part: "Unidad 4: Buenas Prácticas en Docker"
     #   chapters: 
     #     - unidades/unidad3.qmd

@@ -1,18 +1,240 @@
-# 4: Buenas Prácticas y Seguridad
-## Conceptos:
-### Escaneo de imagen:
-Después de construir una imagen, es una buena práctica realizar un escaneo en busca de vulnerabilidades. Esto implica el uso de herramientas como [Snyk](https://snyk.io/), que examinan la imagen en busca de posibles problemas de seguridad. Por ejemplo, puedes usar el comando `snyk test` para escanear tu imagen.
+# Servidores Docker
 
-### Capas de la imagen:
-Cada imagen de Docker se construye en capas. Las capas son un aspecto clave para entender la construcción y optimización de imágenes. Docker utiliza un sistema de archivos en capas, donde cada instrucción en el Dockerfile crea una nueva capa en la imagen. Este enfoque permite la reutilización eficiente de capas entre imágenes, lo que ahorra espacio de almacenamiento y tiempo de construcción. Puedes usar el comando `docker history <image>` para ver las capas de una imagen.
+En esta unidad vamos a aprender acerca de los distinto servidores de bases de datos que podemos utilizar en Docker.
 
-### Multi-Stage builds:
-[Multi-Stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) es una técnica que te permite usar múltiples etapas de construcción en un solo Dockerfile, lo que te permite crear imágenes más pequeñas y más eficientes.
+## MySQL
 
-## ¿Qué Aprendimos?
-- Comprendemos la importancia de realizar escaneos de seguridad en las imágenes de Docker.
-- Aprendimos cómo implementar Multi-Stage builds para optimizar el tamaño y la seguridad de las imágenes.
-- Entendimos cómo Docker utiliza un sistema de archivos en capas para optimizar el almacenamiento y la construcción de imágenes.
+Para instalar un servidor MySQL en Docker, podemos utilizar la imagen oficial de MySQL. or ejemplo, para instalar la versión 8.4.0, Para ello, ejecutamos el siguiente comando:
 
-## Resumen
-En esta unidad, aprendimos sobre varias buenas prácticas y técnicas de seguridad en Docker, incluyendo el escaneo de imagen, el uso de capas de imagen y la implementación de Multi-Stage builds. Estas técnicas son esenciales para construir y mantener imágenes de Docker seguras y eficientes.
+```bash
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.4.0
+```
+
+Para conectarnos a la base de datos, podemos utilizar Workbench o cualquier otro cliente de MySQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mysql
+```
+
+## PostgreSQL
+
+Para instalar un servidor PostgreSQL en Docker, podemos utilizar la imagen oficial de PostgreSQL. Por ejemplo, para instalar la versión 13.4, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13.4
+```
+
+Para conectarnos a la base de datos, podemos utilizar pgAdmin o cualquier otro cliente de PostgreSQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-postgres
+```
+
+## MongoDB
+
+Para instalar un servidor MongoDB en Docker, podemos utilizar la imagen oficial de MongoDB. Por ejemplo, para instalar la versión 5.0.2, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-mongo -d mongo:5.0.2
+```
+
+Para conectarnos a la base de datos, podemos utilizar Compass o cualquier otro cliente de MongoDB. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mongo
+```
+
+## Redis
+
+Para instalar un servidor Redis en Docker, podemos utilizar la imagen oficial de Redis. Por ejemplo, para instalar la versión 6.2.5, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-redis -d redis:6.2.5
+```
+
+Para conectarnos a la base de datos, podemos utilizar Redis Desktop Manager o cualquier otro cliente de Redis. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-redis
+```
+
+Otros servidores típicos que vamos a utilizar en el desarrollo de software son:
+
+- Apache
+- Nginx
+- Tomcat
+
+## Apache
+
+Para instalar un servidor Apache en Docker, podemos utilizar la imagen oficial de Apache. Por ejemplo, para instalar la versión 2.4.48, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-apache -d httpd:2.4.48
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-apache
+```
+
+## Nginx
+
+Para instalar un servidor Nginx en Docker, podemos utilizar la imagen oficial de Nginx. Por ejemplo, para instalar la versión 1.21.1, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-nginx -d nginx:1.21.1
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-nginx
+```
+
+## Tomcat
+
+Para instalar un servidor Tomcat en Docker, podemos utilizar la imagen oficial de Tomcat. Por ejemplo, para instalar la versión 9.0.52, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-tomcat -d tomcat:9.0.52
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-tomcat
+```
+
+Por otra parte se ha vuelto muy popular el uso de frameworks tanto de backend como de frontend, vamos a aprender a realizar la instalación de algunos de ellos.
+
+## Node.js
+
+Para instalar un servidor Node.js en Docker, podemos utilizar la imagen oficial de Node.js. Por ejemplo, para instalar la versión 16.6.1, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-node -d node:16.6.1
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-node
+```
+
+## React
+
+Para instalar un servidor React en Docker, podemos utilizar la imagen oficial de React. Por ejemplo, para instalar la versión 17.0.2, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-react -d react:17.0.2
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-react
+```
+
+## Angular
+
+Para instalar un servidor Angular en Docker, podemos utilizar la imagen oficial de Angular. Por ejemplo, para instalar la versión 12.2.0, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-angular -d angular:12.2.0
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-angular
+```
+Desde la parte de backend tambien son muy populares los frameworks de Boot Spring y Django, vamos a aprender a instalarlos en Docker. 
+
+## Spring Boot
+
+Para instalar un servidor Spring Boot en Docker, podemos utilizar la imagen oficial de Spring Boot. Por ejemplo, para instalar la versión 2.5.4, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-spring -d spring:2.5.4
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-spring
+```
+
+## Django
+
+Para instalar un servidor Django en Docker, podemos utilizar la imagen oficial de Django. Por ejemplo, para instalar la versión 3.2.6, Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-django -d django:3.2.6
+```
+
+Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-django
+```
+
+## Conclusión
+
+En esta unidad hemos aprendido a instalar distintos servidores de bases de datos y servidores web en Docker. En la siguiente unidad, vamos a aprender a crear nuestras propias imágenes de Docker.
+
+---
+
+# Creación de Imágenes Docker
+
+En esta unidad vamos a aprender a crear nuestras propias imágenes de Docker.
+
+## Creación de Imágenes
+
+Para crear una imagen de Docker, necesitamos un archivo Dockerfile. Un archivo Dockerfile es un archivo de texto que contiene una serie de instrucciones que Docker utilizará para crear una imagen. Por ejemplo, el siguiente archivo Dockerfile crea una imagen de Apache:
+
+```Dockerfile
+# Use the official Apache image
+
+FROM httpd:2.4.48
+
+# Copy the configuration file
+
+COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
+
+# Expose port 80
+
+EXPOSE 80
+
+# Start Apache
+
+CMD ["httpd-foreground"]
+```
+
+Para crear una imagen de Docker a partir de un archivo Dockerfile, ejecutamos el siguiente comando:
+
+```bash
+docker build -t my-apache .
+```
+
+## Publicación de Imágenes
+
+Para publicar una imagen de Docker en Docker Hub, necesitamos una cuenta en Docker Hub. Una vez que tenemos una cuenta en Docker Hub, podemos publicar una imagen de Docker utilizando el siguiente comando:
+
+```bash
+docker login
+docker tag my-apache myusername/my-apache
+docker push myusername/my-apache
+```
+
+## Descarga de Imágenes
+
+Para descargar una imagen de Docker desde Docker Hub, ejecutamos el siguiente comando:
+
+```bash
+docker pull myusername/my-apache
+```
+
+## Conclusión
+
+En esta unidad hemos aprendido a crear nuestras propias imágenes de Docker y a publicarlas en Docker Hub. En la siguiente unidad, vamos a aprender a trabajar con contenedores en Docker.
