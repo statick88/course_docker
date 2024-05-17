@@ -165,7 +165,7 @@
     "href": "unidades/unidad3.html",
     "title": "Servidores Docker",
     "section": "",
-    "text": "MySQL\nPara instalar un servidor MySQL en Docker, podemos utilizar la imagen oficial de MySQL. or ejemplo, para instalar la versión 8.4.0, Para ello, ejecutamos el siguiente comando:\nPara conectarnos a la base de datos, podemos utilizar Workbench o cualquier otro cliente de MySQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:",
+    "text": "MySQL\nEmpezamos con la creación de un archivo llamado Dockerfile con el siguiente contenido:\nPara construir la imagen de MySQL, ejecutamos el siguiente comando:\nPara ejecutar el contenedor de MySQL, ejecutamos el siguiente comando:\nPosiblemente en algunos casos necesitemos utilizar un archivo docker-compose.yml para la creación del contenedor, el contenido del archivo sería el siguiente:\nPara ejecutar el contenedor de MySQL, ejecutamos el siguiente comando:\nPara configurar en un cliente de MySQL, necesitamos concer los siguientes datos:",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -176,7 +176,7 @@
     "href": "unidades/unidad3.html#mysql",
     "title": "Servidores Docker",
     "section": "",
-    "text": "docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.4.0\n\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mysql",
+    "text": "# Use the official MySQL image\n\nFROM mysql:8.0.26\n\n# Set the root password\n\nENV MYSQL_ROOT_PASSWORD=mysecretpassword\n\n# Expose port 3306\n\nEXPOSE 3306\n\n# Start MySQL\n\nCMD [\"mysqld\"]\n\ndocker build -t my-mysql .\n\ndocker run --name some-mysql -d my-mysql\n\nversion: '3.3'\n\nservices:\n  mysql:\n    image: mysql:8.0.26\n    environment:\n      MYSQL_ROOT_PASSWORD: mysecretpassword\n    ports:\n      - \"3306:3306\"\n\ndocker-compose up -d\n\n\nHost: localhost\nPort: 330\nUser: root\nPassword: mysecretpassword",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -187,7 +187,7 @@
     "href": "unidades/unidad3.html#postgresql",
     "title": "Servidores Docker",
     "section": "PostgreSQL",
-    "text": "PostgreSQL\nPara instalar un servidor PostgreSQL en Docker, podemos utilizar la imagen oficial de PostgreSQL. Por ejemplo, para instalar la versión 13.4, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13.4\nPara conectarnos a la base de datos, podemos utilizar pgAdmin o cualquier otro cliente de PostgreSQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-postgres",
+    "text": "PostgreSQL",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -198,18 +198,7 @@
     "href": "unidades/unidad3.html#mongodb",
     "title": "Servidores Docker",
     "section": "MongoDB",
-    "text": "MongoDB\nPara instalar un servidor MongoDB en Docker, podemos utilizar la imagen oficial de MongoDB. Por ejemplo, para instalar la versión 5.0.2, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-mongo -d mongo:5.0.2\nPara conectarnos a la base de datos, podemos utilizar Compass o cualquier otro cliente de MongoDB. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mongo",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#redis",
-    "href": "unidades/unidad3.html#redis",
-    "title": "Servidores Docker",
-    "section": "Redis",
-    "text": "Redis\nPara instalar un servidor Redis en Docker, podemos utilizar la imagen oficial de Redis. Por ejemplo, para instalar la versión 6.2.5, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-redis -d redis:6.2.5\nPara conectarnos a la base de datos, podemos utilizar Redis Desktop Manager o cualquier otro cliente de Redis. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-redis\nOtros servidores típicos que vamos a utilizar en el desarrollo de software son:\n\nApache\nNginx\nTomcat",
+    "text": "MongoDB\nOtros servidores típicos que vamos a utilizar en el desarrollo de software son:\n\nApache\nNginx\nTomcat",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -220,7 +209,7 @@
     "href": "unidades/unidad3.html#apache",
     "title": "Servidores Docker",
     "section": "Apache",
-    "text": "Apache\nPara instalar un servidor Apache en Docker, podemos utilizar la imagen oficial de Apache. Por ejemplo, para instalar la versión 2.4.48, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-apache -d httpd:2.4.48\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-apache",
+    "text": "Apache",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -231,18 +220,7 @@
     "href": "unidades/unidad3.html#nginx",
     "title": "Servidores Docker",
     "section": "Nginx",
-    "text": "Nginx\nPara instalar un servidor Nginx en Docker, podemos utilizar la imagen oficial de Nginx. Por ejemplo, para instalar la versión 1.21.1, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-nginx -d nginx:1.21.1\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-nginx",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#tomcat",
-    "href": "unidades/unidad3.html#tomcat",
-    "title": "Servidores Docker",
-    "section": "Tomcat",
-    "text": "Tomcat\nPara instalar un servidor Tomcat en Docker, podemos utilizar la imagen oficial de Tomcat. Por ejemplo, para instalar la versión 9.0.52, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-tomcat -d tomcat:9.0.52\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-tomcat\nPor otra parte se ha vuelto muy popular el uso de frameworks tanto de backend como de frontend, vamos a aprender a realizar la instalación de algunos de ellos.",
+    "text": "Nginx",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -253,7 +231,7 @@
     "href": "unidades/unidad3.html#node.js",
     "title": "Servidores Docker",
     "section": "Node.js",
-    "text": "Node.js\nPara instalar un servidor Node.js en Docker, podemos utilizar la imagen oficial de Node.js. Por ejemplo, para instalar la versión 16.6.1, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-node -d node:16.6.1\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-node",
+    "text": "Node.js",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -264,7 +242,7 @@
     "href": "unidades/unidad3.html#react",
     "title": "Servidores Docker",
     "section": "React",
-    "text": "React\nPara instalar un servidor React en Docker, podemos utilizar la imagen oficial de React. Por ejemplo, para instalar la versión 17.0.2, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-react -d react:17.0.2\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-react",
+    "text": "React",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -275,7 +253,7 @@
     "href": "unidades/unidad3.html#angular",
     "title": "Servidores Docker",
     "section": "Angular",
-    "text": "Angular\nPara instalar un servidor Angular en Docker, podemos utilizar la imagen oficial de Angular. Por ejemplo, para instalar la versión 12.2.0, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-angular -d angular:12.2.0\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-angular\nDesde la parte de backend tambien son muy populares los frameworks de Boot Spring y Django, vamos a aprender a instalarlos en Docker.",
+    "text": "Angular",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -286,7 +264,7 @@
     "href": "unidades/unidad3.html#spring-boot",
     "title": "Servidores Docker",
     "section": "Spring Boot",
-    "text": "Spring Boot\nPara instalar un servidor Spring Boot en Docker, podemos utilizar la imagen oficial de Spring Boot. Por ejemplo, para instalar la versión 2.5.4, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-spring -d spring:2.5.4\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-spring",
+    "text": "Spring Boot",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
@@ -297,62 +275,7 @@
     "href": "unidades/unidad3.html#django",
     "title": "Servidores Docker",
     "section": "Django",
-    "text": "Django\nPara instalar un servidor Django en Docker, podemos utilizar la imagen oficial de Django. Por ejemplo, para instalar la versión 3.2.6, Para ello, ejecutamos el siguiente comando:\ndocker run --name some-django -d django:3.2.6\nPara conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:\ndocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-django",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#conclusión",
-    "href": "unidades/unidad3.html#conclusión",
-    "title": "Servidores Docker",
-    "section": "Conclusión",
-    "text": "Conclusión\nEn esta unidad hemos aprendido a instalar distintos servidores de bases de datos y servidores web en Docker. En la siguiente unidad, vamos a aprender a crear nuestras propias imágenes de Docker.",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#creación-de-imágenes",
-    "href": "unidades/unidad3.html#creación-de-imágenes",
-    "title": "Servidores Docker",
-    "section": "Creación de Imágenes",
-    "text": "Creación de Imágenes\nPara crear una imagen de Docker, necesitamos un archivo Dockerfile. Un archivo Dockerfile es un archivo de texto que contiene una serie de instrucciones que Docker utilizará para crear una imagen. Por ejemplo, el siguiente archivo Dockerfile crea una imagen de Apache:\n# Use the official Apache image\n\nFROM httpd:2.4.48\n\n# Copy the configuration file\n\nCOPY ./httpd.conf /usr/local/apache2/conf/httpd.conf\n\n# Expose port 80\n\nEXPOSE 80\n\n# Start Apache\n\nCMD [\"httpd-foreground\"]\nPara crear una imagen de Docker a partir de un archivo Dockerfile, ejecutamos el siguiente comando:\ndocker build -t my-apache .",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#publicación-de-imágenes",
-    "href": "unidades/unidad3.html#publicación-de-imágenes",
-    "title": "Servidores Docker",
-    "section": "Publicación de Imágenes",
-    "text": "Publicación de Imágenes\nPara publicar una imagen de Docker en Docker Hub, necesitamos una cuenta en Docker Hub. Una vez que tenemos una cuenta en Docker Hub, podemos publicar una imagen de Docker utilizando el siguiente comando:\ndocker login\ndocker tag my-apache myusername/my-apache\ndocker push myusername/my-apache",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#descarga-de-imágenes",
-    "href": "unidades/unidad3.html#descarga-de-imágenes",
-    "title": "Servidores Docker",
-    "section": "Descarga de Imágenes",
-    "text": "Descarga de Imágenes\nPara descargar una imagen de Docker desde Docker Hub, ejecutamos el siguiente comando:\ndocker pull myusername/my-apache",
-    "crumbs": [
-      "Unidad 3: Servidores en Docker",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad3.html#conclusión-1",
-    "href": "unidades/unidad3.html#conclusión-1",
-    "title": "Servidores Docker",
-    "section": "Conclusión",
-    "text": "Conclusión\nEn esta unidad hemos aprendido a crear nuestras propias imágenes de Docker y a publicarlas en Docker Hub. En la siguiente unidad, vamos a aprender a trabajar con contenedores en Docker.",
+    "text": "Django",
     "crumbs": [
       "Unidad 3: Servidores en Docker",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Servidores Docker</span>"
