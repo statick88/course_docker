@@ -2,61 +2,74 @@
 
 En esta unidad vamos a aprender acerca de los distinto servidores de bases de datos que podemos utilizar en Docker.
 
+Vamos a utilizar el concepto de Dockerfile y Docker Compose para esta actividad
+
 ## MySQL
 
-Para instalar un servidor MySQL en Docker, podemos utilizar la imagen oficial de MySQL. or ejemplo, para instalar la versión 8.4.0, Para ello, ejecutamos el siguiente comando:
+Empezamos con la creación de un archivo llamado `Dockerfile` con el siguiente contenido:
 
-```bash
-docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.4.0
+```Dockerfile
+# Use the official MySQL image
+
+FROM mysql:8.0.26
+
+# Set the root password
+
+ENV MYSQL_ROOT_PASSWORD=mysecretpassword
+
+# Expose port 3306
+
+EXPOSE 3306
+
+# Start MySQL
+
+CMD ["mysqld"]
 ```
 
-Para conectarnos a la base de datos, podemos utilizar Workbench o cualquier otro cliente de MySQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
+Para construir la imagen de MySQL, ejecutamos el siguiente comando:
 
 ```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mysql
+docker build -t my-mysql .
 ```
+
+Para ejecutar el contenedor de MySQL, ejecutamos el siguiente comando:
+
+```bash
+docker run --name some-mysql -d my-mysql
+```
+
+Posiblemente en algunos casos necesitemos utilizar un archivo `docker-compose.yml` para la creación del contenedor, el contenido del archivo sería el siguiente:
+
+```yaml
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:8.0.26
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+    ports:
+      - "3306:3306"
+```
+
+Para ejecutar el contenedor de MySQL, ejecutamos el siguiente comando:
+
+```bash
+docker-compose up -d
+```
+
+Para configurar en un cliente de MySQL, necesitamos concer los siguientes datos:
+
+- Host: localhost
+- Port: 330
+- User: root
+- Password: mysecretpassword
 
 ## PostgreSQL
 
-Para instalar un servidor PostgreSQL en Docker, podemos utilizar la imagen oficial de PostgreSQL. Por ejemplo, para instalar la versión 13.4, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13.4
-```
-
-Para conectarnos a la base de datos, podemos utilizar pgAdmin o cualquier otro cliente de PostgreSQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-postgres
-```
 
 ## MongoDB
 
-Para instalar un servidor MongoDB en Docker, podemos utilizar la imagen oficial de MongoDB. Por ejemplo, para instalar la versión 5.0.2, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-mongo -d mongo:5.0.2
-```
-
-Para conectarnos a la base de datos, podemos utilizar Compass o cualquier otro cliente de MongoDB. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-mongo
-```
-
-## Redis
-
-Para instalar un servidor Redis en Docker, podemos utilizar la imagen oficial de Redis. Por ejemplo, para instalar la versión 6.2.5, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-redis -d redis:6.2.5
-```
-
-Para conectarnos a la base de datos, podemos utilizar Redis Desktop Manager o cualquier otro cliente de Redis. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-redis
-```
 
 Otros servidores típicos que vamos a utilizar en el desarrollo de software son:
 
@@ -66,120 +79,20 @@ Otros servidores típicos que vamos a utilizar en el desarrollo de software son:
 
 ## Apache
 
-Para instalar un servidor Apache en Docker, podemos utilizar la imagen oficial de Apache. Por ejemplo, para instalar la versión 2.4.48, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-apache -d httpd:2.4.48
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-apache
-```
-
 ## Nginx
-
-Para instalar un servidor Nginx en Docker, podemos utilizar la imagen oficial de Nginx. Por ejemplo, para instalar la versión 1.21.1, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-nginx -d nginx:1.21.1
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-nginx
-```
-
-## Tomcat
-
-Para instalar un servidor Tomcat en Docker, podemos utilizar la imagen oficial de Tomcat. Por ejemplo, para instalar la versión 9.0.52, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-tomcat -d tomcat:9.0.52
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-tomcat
-```
-
-Por otra parte se ha vuelto muy popular el uso de frameworks tanto de backend como de frontend, vamos a aprender a realizar la instalación de algunos de ellos.
 
 ## Node.js
 
-Para instalar un servidor Node.js en Docker, podemos utilizar la imagen oficial de Node.js. Por ejemplo, para instalar la versión 16.6.1, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-node -d node:16.6.1
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-node
-```
-
 ## React
-
-Para instalar un servidor React en Docker, podemos utilizar la imagen oficial de React. Por ejemplo, para instalar la versión 17.0.2, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-react -d react:17.0.2
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-react
-```
 
 ## Angular
 
-Para instalar un servidor Angular en Docker, podemos utilizar la imagen oficial de Angular. Por ejemplo, para instalar la versión 12.2.0, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-angular -d angular:12.2.0
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-angular
-```
-Desde la parte de backend tambien son muy populares los frameworks de Boot Spring y Django, vamos a aprender a instalarlos en Docker. 
-
 ## Spring Boot
-
-Para instalar un servidor Spring Boot en Docker, podemos utilizar la imagen oficial de Spring Boot. Por ejemplo, para instalar la versión 2.5.4, Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker run --name some-spring -d spring:2.5.4
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-spring
-```
 
 ## Django
 
-Para instalar un servidor Django en Docker, podemos utilizar la imagen oficial de Django. Por ejemplo, para instalar la versión 3.2.6, Para ello, ejecutamos el siguiente comando:
 
-```bash
-docker run --name some-django -d django:3.2.6
-```
-
-Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:
-
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' some-django
-```
-
-## Conclusión
+<!-- ## Conclusión
 
 En esta unidad hemos aprendido a instalar distintos servidores de bases de datos y servidores web en Docker. En la siguiente unidad, vamos a aprender a crear nuestras propias imágenes de Docker.
 
@@ -237,4 +150,4 @@ docker pull myusername/my-apache
 
 ## Conclusión
 
-En esta unidad hemos aprendido a crear nuestras propias imágenes de Docker y a publicarlas en Docker Hub. En la siguiente unidad, vamos a aprender a trabajar con contenedores en Docker.
+En esta unidad hemos aprendido a crear nuestras propias imágenes de Docker y a publicarlas en Docker Hub. En la siguiente unidad, vamos a aprender a trabajar con contenedores en Docker. -->

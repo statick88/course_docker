@@ -280,6 +280,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#mysql" id="toc-mysql" class="nav-link active" data-scroll-target="#mysql">MySQL</a></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql">PostgreSQL</a></li>
+  <li><a href="#mongodb" id="toc-mongodb" class="nav-link" data-scroll-target="#mongodb">MongoDB</a></li>
+  <li><a href="#redis" id="toc-redis" class="nav-link" data-scroll-target="#redis">Redis</a></li>
+  <li><a href="#apache" id="toc-apache" class="nav-link" data-scroll-target="#apache">Apache</a></li>
+  <li><a href="#nginx" id="toc-nginx" class="nav-link" data-scroll-target="#nginx">Nginx</a></li>
+  <li><a href="#tomcat" id="toc-tomcat" class="nav-link" data-scroll-target="#tomcat">Tomcat</a></li>
+  <li><a href="#node.js" id="toc-node.js" class="nav-link" data-scroll-target="#node.js">Node.js</a></li>
+  <li><a href="#react" id="toc-react" class="nav-link" data-scroll-target="#react">React</a></li>
+  <li><a href="#angular" id="toc-angular" class="nav-link" data-scroll-target="#angular">Angular</a></li>
+  <li><a href="#spring-boot" id="toc-spring-boot" class="nav-link" data-scroll-target="#spring-boot">Spring Boot</a></li>
+  <li><a href="#django" id="toc-django" class="nav-link" data-scroll-target="#django">Django</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión">Conclusión</a></li>
+  <li><a href="#creación-de-imágenes-docker" id="toc-creación-de-imágenes-docker" class="nav-link" data-scroll-target="#creación-de-imágenes-docker">Creación de Imágenes Docker</a>
+  <ul class="collapse">
+  <li><a href="#creación-de-imágenes" id="toc-creación-de-imágenes" class="nav-link" data-scroll-target="#creación-de-imágenes">Creación de Imágenes</a></li>
+  <li><a href="#publicación-de-imágenes" id="toc-publicación-de-imágenes" class="nav-link" data-scroll-target="#publicación-de-imágenes">Publicación de Imágenes</a></li>
+  <li><a href="#descarga-de-imágenes" id="toc-descarga-de-imágenes" class="nav-link" data-scroll-target="#descarga-de-imágenes">Descarga de Imágenes</a></li>
+  <li><a href="#conclusión-1" id="toc-conclusión-1" class="nav-link" data-scroll-target="#conclusión-1">Conclusión</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -310,11 +329,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="mysql">MySQL</h2>
 <p>Para instalar un servidor MySQL en Docker, podemos utilizar la imagen oficial de MySQL. or ejemplo, para instalar la versión 8.4.0, Para ello, ejecutamos el siguiente comando:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-mysql <span class="at">-e</span> MYSQL_ROOT_PASSWORD=my-secret-pw <span class="at">-d</span> mysql:8.4.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para conectarnos a la base de datos, podemos utilizar el siguiente comando:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> some-mysql mysql <span class="at">-uroot</span> <span class="at">-p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O si lo deseamos hacer de forma gráfica podemos utilizar MySQL Workbench.</p>
+<p>Para conectarnos a la base de datos, podemos utilizar Workbench o cualquier otro cliente de MySQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-mysql</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="postgresql" class="level2">
+<h2 class="anchored" data-anchor-id="postgresql">PostgreSQL</h2>
+<p>Para instalar un servidor PostgreSQL en Docker, podemos utilizar la imagen oficial de PostgreSQL. Por ejemplo, para instalar la versión 13.4, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-postgres <span class="at">-e</span> POSTGRES_PASSWORD=mysecretpassword <span class="at">-d</span> postgres:13.4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos a la base de datos, podemos utilizar pgAdmin o cualquier otro cliente de PostgreSQL. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-postgres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mongodb" class="level2">
+<h2 class="anchored" data-anchor-id="mongodb">MongoDB</h2>
+<p>Para instalar un servidor MongoDB en Docker, podemos utilizar la imagen oficial de MongoDB. Por ejemplo, para instalar la versión 5.0.2, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-mongo <span class="at">-d</span> mongo:5.0.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos a la base de datos, podemos utilizar Compass o cualquier otro cliente de MongoDB. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-mongo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="redis" class="level2">
+<h2 class="anchored" data-anchor-id="redis">Redis</h2>
+<p>Para instalar un servidor Redis en Docker, podemos utilizar la imagen oficial de Redis. Por ejemplo, para instalar la versión 6.2.5, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-redis <span class="at">-d</span> redis:6.2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos a la base de datos, podemos utilizar Redis Desktop Manager o cualquier otro cliente de Redis. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-redis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Otros servidores típicos que vamos a utilizar en el desarrollo de software son:</p>
+<ul>
+<li>Apache</li>
+<li>Nginx</li>
+<li>Tomcat</li>
+</ul>
+</section>
+<section id="apache" class="level2">
+<h2 class="anchored" data-anchor-id="apache">Apache</h2>
+<p>Para instalar un servidor Apache en Docker, podemos utilizar la imagen oficial de Apache. Por ejemplo, para instalar la versión 2.4.48, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-apache <span class="at">-d</span> httpd:2.4.48</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-apache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nginx" class="level2">
+<h2 class="anchored" data-anchor-id="nginx">Nginx</h2>
+<p>Para instalar un servidor Nginx en Docker, podemos utilizar la imagen oficial de Nginx. Por ejemplo, para instalar la versión 1.21.1, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-nginx <span class="at">-d</span> nginx:1.21.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-nginx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tomcat" class="level2">
+<h2 class="anchored" data-anchor-id="tomcat">Tomcat</h2>
+<p>Para instalar un servidor Tomcat en Docker, podemos utilizar la imagen oficial de Tomcat. Por ejemplo, para instalar la versión 9.0.52, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-tomcat <span class="at">-d</span> tomcat:9.0.52</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-tomcat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por otra parte se ha vuelto muy popular el uso de frameworks tanto de backend como de frontend, vamos a aprender a realizar la instalación de algunos de ellos.</p>
+</section>
+<section id="node.js" class="level2">
+<h2 class="anchored" data-anchor-id="node.js">Node.js</h2>
+<p>Para instalar un servidor Node.js en Docker, podemos utilizar la imagen oficial de Node.js. Por ejemplo, para instalar la versión 16.6.1, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-node <span class="at">-d</span> node:16.6.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-node</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="react" class="level2">
+<h2 class="anchored" data-anchor-id="react">React</h2>
+<p>Para instalar un servidor React en Docker, podemos utilizar la imagen oficial de React. Por ejemplo, para instalar la versión 17.0.2, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-react <span class="at">-d</span> react:17.0.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-react</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="angular" class="level2">
+<h2 class="anchored" data-anchor-id="angular">Angular</h2>
+<p>Para instalar un servidor Angular en Docker, podemos utilizar la imagen oficial de Angular. Por ejemplo, para instalar la versión 12.2.0, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-angular <span class="at">-d</span> angular:12.2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-angular</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Desde la parte de backend tambien son muy populares los frameworks de Boot Spring y Django, vamos a aprender a instalarlos en Docker.</p>
+</section>
+<section id="spring-boot" class="level2">
+<h2 class="anchored" data-anchor-id="spring-boot">Spring Boot</h2>
+<p>Para instalar un servidor Spring Boot en Docker, podemos utilizar la imagen oficial de Spring Boot. Por ejemplo, para instalar la versión 2.5.4, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-spring <span class="at">-d</span> spring:2.5.4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-spring</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="django" class="level2">
+<h2 class="anchored" data-anchor-id="django">Django</h2>
+<p>Para instalar un servidor Django en Docker, podemos utilizar la imagen oficial de Django. Por ejemplo, para instalar la versión 3.2.6, Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> some-django <span class="at">-d</span> django:3.2.6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para conectarnos al servidor, podemos utilizar un navegador web. Para ello, necesitamos conocer la IP del contenedor. Para ello, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> inspect <span class="at">-f</span> <span class="st">'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span> some-django</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="conclusión" class="level2">
+<h2 class="anchored" data-anchor-id="conclusión">Conclusión</h2>
+<p>En esta unidad hemos aprendido a instalar distintos servidores de bases de datos y servidores web en Docker. En la siguiente unidad, vamos a aprender a crear nuestras propias imágenes de Docker.</p>
+<hr>
+</section>
+<section id="creación-de-imágenes-docker" class="level1">
+<h1>Creación de Imágenes Docker</h1>
+<p>En esta unidad vamos a aprender a crear nuestras propias imágenes de Docker.</p>
+<section id="creación-de-imágenes" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-imágenes">Creación de Imágenes</h2>
+<p>Para crear una imagen de Docker, necesitamos un archivo Dockerfile. Un archivo Dockerfile es un archivo de texto que contiene una serie de instrucciones que Docker utilizará para crear una imagen. Por ejemplo, el siguiente archivo Dockerfile crea una imagen de Apache:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the official Apache image</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> httpd:2.4.48</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the configuration file</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./httpd.conf /usr/local/apache2/conf/httpd.conf</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Expose port 80</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 80</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Apache</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"httpd-foreground"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para crear una imagen de Docker a partir de un archivo Dockerfile, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-apache .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="publicación-de-imágenes" class="level2">
+<h2 class="anchored" data-anchor-id="publicación-de-imágenes">Publicación de Imágenes</h2>
+<p>Para publicar una imagen de Docker en Docker Hub, necesitamos una cuenta en Docker Hub. Una vez que tenemos una cuenta en Docker Hub, podemos publicar una imagen de Docker utilizando el siguiente comando:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> login</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> tag my-apache myusername/my-apache</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> push myusername/my-apache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="descarga-de-imágenes" class="level2">
+<h2 class="anchored" data-anchor-id="descarga-de-imágenes">Descarga de Imágenes</h2>
+<p>Para descargar una imagen de Docker desde Docker Hub, ejecutamos el siguiente comando:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull myusername/my-apache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="conclusión-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusión-1">Conclusión</h2>
+<p>En esta unidad hemos aprendido a crear nuestras propias imágenes de Docker y a publicarlas en Docker Hub. En la siguiente unidad, vamos a aprender a trabajar con contenedores en Docker.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
